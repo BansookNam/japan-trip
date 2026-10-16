@@ -2,670 +2,643 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#FFF7F2">
 <title>오사카 3박 4일 졸업여행 가이드</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR:wght@400;500;700;800&display=swap" rel="stylesheet">
 <style>
 /* ===== RESET & BASE ===== */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { font-size: 18px; scroll-behavior: smooth; }
-body {
-  font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
-  background: #F3F6FB;
-  color: #23293A;
-  overflow: hidden;
-  height: 100vh;
-  width: 100vw;
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scroll-behavior: smooth;
+  scroll-padding-top: 72px;
 }
+body {
+  font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+  overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
+}
+img { max-width: 100%; }
+a { color: inherit; }
 
 /* ===== COLOR PALETTE ===== */
 :root {
-  --primary: #1A2B5C;
-  --accent: #2F5BB7;
-  --accent-light: #5B8DEF;
-  --bg: #F3F6FB;
-  --bg-card: #FFFFFF;
-  --bg-card-alt: #EEF2F9;
-  --text: #23293A;
-  --text-light: #667085;
-  --border: #D6DEEB;
-  --warning: #E65100;
-  --info: #0277BD;
-  --day1: #1E6FD9;
-  --day1-dark: #0F4C9E;
-  --day2: #E8487F;
-  --day2-dark: #B8285C;
-  --day3: #23A04B;
-  --day3-dark: #157535;
-  --day4: #F07F1A;
-  --day4-dark: #C25E07;
-  --shadow: 0 2px 12px rgba(26,43,92,0.10);
-  --shadow-lg: 0 4px 24px rgba(26,43,92,0.15);
+  --bg: #FFF7F2;
+  --card: #FFFFFF;
+  --text: #2E2A3B;
+  --text-light: #6F6A80;
+  --border: #F0E4DC;
+  --primary: #3B3355;
+  --accent: #F2708F;
+  --accent-light: #FFB3C4;
+  --tint: #FFEFF3;
+  --warning: #D9480F;
+  --info: #1971C2;
+  --day1: #4C8DF6;
+  --day1-dark: #2563C9;
+  --day2: #F2708F;
+  --day2-dark: #C93B60;
+  --day3: #3DBB6A;
+  --day3-dark: #1F8A47;
+  --day4: #F59A3C;
+  --day4-dark: #C46A10;
+  --radius: 22px;
+  --shadow: 0 6px 20px rgba(120, 80, 70, 0.08);
+  --display: 'Jua', 'Noto Sans KR', sans-serif;
 }
 
 /* ===== PER-DAY THEME ===== */
-.slide.day1 { --primary: var(--day1-dark); --accent: var(--day1); --accent-light: #5B9BF0; --tint: #EAF2FD; }
-.slide.day2 { --primary: var(--day2-dark); --accent: var(--day2); --accent-light: #F27BA4; --tint: #FDECF2; }
-.slide.day3 { --primary: var(--day3-dark); --accent: var(--day3); --accent-light: #5CC27C; --tint: #E8F6EC; }
-.slide.day4 { --primary: var(--day4-dark); --accent: var(--day4); --accent-light: #F7A85E; --tint: #FEF1E4; }
+.day1 { --primary: var(--day1-dark); --accent: var(--day1); --accent-light: #A9C8FB; --tint: #EAF2FE; }
+.day2 { --primary: var(--day2-dark); --accent: var(--day2); --accent-light: #FFB3C4; --tint: #FFEEF3; }
+.day3 { --primary: var(--day3-dark); --accent: var(--day3); --accent-light: #A6E2BC; --tint: #E9F8EF; }
+.day4 { --primary: var(--day4-dark); --accent: var(--day4); --accent-light: #FBCF9F; --tint: #FFF2E3; }
 
-/* ===== SLIDE CONTAINER ===== */
-.slides-wrapper {
-  display: flex;
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
-  position: relative;
-}
-
-.slide {
-  min-width: 100vw;
-  height: 100vh;
-  overflow-y: auto;
-  overflow-x: hidden;
-  padding: 0;
-  -webkit-overflow-scrolling: touch;
-}
-
-.slide-inner {
-  max-width: 900px;
+.wrap {
+  max-width: 760px;
   margin: 0 auto;
-  padding: 20px 24px 100px 24px;
-}
-
-/* ===== HEADER ===== */
-.slide-header {
-  background: var(--primary);
-  color: white;
-  padding: 18px 24px;
-  border-radius: 0 0 20px 20px;
-  margin: 0 -24px 24px -24px;
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  box-shadow: var(--shadow-lg);
-}
-.slide-header h1 {
-  font-size: 1.6rem;
-  font-weight: 700;
-  margin-bottom: 4px;
-}
-.slide-header .subtitle {
-  font-size: 0.85rem;
-  opacity: 0.9;
-  font-weight: 300;
-}
-.day-badge {
-  display: inline-block;
-  background: var(--accent-light);
-  color: white;
-  font-size: 0.8rem;
-  font-weight: 700;
-  padding: 3px 12px;
-  border-radius: 20px;
-  margin-right: 10px;
-  vertical-align: middle;
-}
-.day-date {
-  font-size: 0.85rem;
-  opacity: 0.9;
-  font-weight: 400;
-}
-
-/* ===== NAVIGATION ===== */
-.nav-arrows {
-  position: fixed;
-  bottom: 24px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  z-index: 1000;
-  background: rgba(26,43,92,0.92);
-  padding: 10px 20px;
-  border-radius: 50px;
-  backdrop-filter: blur(10px);
-  box-shadow: var(--shadow-lg);
-}
-.nav-btn {
-  background: none;
-  border: 2px solid rgba(255,255,255,0.4);
-  color: white;
-  min-width: 44px;
-  height: 44px;
   padding: 0 16px;
-  border-radius: 30px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 4px;
-  transition: all 0.15s;
-  -webkit-tap-highlight-color: transparent;
-  touch-action: manipulation;
-  user-select: none;
-  -webkit-user-select: none;
-  font-family: inherit;
+  padding-left: max(16px, env(safe-area-inset-left));
+  padding-right: max(16px, env(safe-area-inset-right));
 }
-.nav-btn:hover { background: #2F5BB7; border-color: #2F5BB7; }
-.slide-indicator {
-  color: white;
-  font-size: 0.85rem;
-  font-weight: 500;
-  min-width: 50px;
+
+/* ===== HERO ===== */
+.hero {
   text-align: center;
+  padding: 40px 0 24px;
+  background:
+    radial-gradient(circle at 12% 20%, #FFE1EA 0 70px, transparent 71px),
+    radial-gradient(circle at 92% 8%, #E3EEFF 0 90px, transparent 91px),
+    radial-gradient(circle at 85% 95%, #FFF0D9 0 60px, transparent 61px);
 }
-
-/* ===== CARDS ===== */
-.card {
-  background: var(--bg-card);
-  border-radius: 16px;
-  padding: 20px;
-  margin-bottom: 16px;
-  box-shadow: var(--shadow);
-  border: 1px solid var(--border);
-}
-.card h3 {
-  font-size: 1.15rem;
-  font-weight: 700;
-  color: var(--primary);
-  margin-bottom: 10px;
-}
-.card p, .card li {
-  font-size: 0.9rem;
-  line-height: 1.7;
-  color: var(--text);
-}
-
-/* ===== ROUTE STRIP ===== */
-.route-strip {
-  background: var(--tint, var(--bg-card-alt));
-  border: 1px solid var(--border);
-  border-left: 5px solid var(--accent);
-  border-radius: 0 12px 12px 0;
-  padding: 12px 16px;
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: var(--primary);
-  line-height: 1.7;
-  margin-bottom: 16px;
-}
-
-/* ===== TIMELINE ===== */
-.timeline { position: relative; padding-left: 44px; margin-top: 8px; }
-.timeline::before {
-  content: '';
-  position: absolute;
-  left: 14px;
-  top: 8px;
-  bottom: 8px;
-  width: 3px;
-  background: linear-gradient(to bottom, var(--accent), var(--accent-light));
-  border-radius: 3px;
-}
-.timeline-item {
-  position: relative;
-  margin-bottom: 20px;
-  padding-bottom: 2px;
-}
-.timeline-num {
-  position: absolute;
-  left: -44px;
-  top: 0;
-  width: 31px;
-  height: 31px;
-  border-radius: 50%;
-  background: var(--accent);
-  color: white;
-  font-weight: 800;
-  font-size: 0.85rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 3px solid var(--bg);
-  box-shadow: 0 0 0 2px var(--accent);
-}
-.timeline-time {
-  font-size: 0.82rem;
-  font-weight: 700;
-  color: var(--accent);
-  margin-bottom: 2px;
-}
-.timeline-title {
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--primary);
-}
-.timeline-title .jp {
-  font-size: 0.8rem;
+.hero-flags { font-size: 2.2rem; letter-spacing: 4px; margin-bottom: 8px; }
+.hero h1 {
+  font-family: var(--display);
   font-weight: 400;
-  color: var(--text-light);
-}
-.timeline-desc {
-  font-size: 0.85rem;
-  color: var(--text-light);
-  margin-top: 2px;
-  line-height: 1.6;
-}
-.timeline-desc ul { margin: 4px 0 0 18px; }
-.timeline-desc li { margin-bottom: 2px; }
-
-/* ===== MAP CONTAINER ===== */
-.map-container {
-  border-radius: 14px;
-  overflow: hidden;
-  margin: 0 0 16px 0;
-  box-shadow: var(--shadow);
-  border: 2px solid var(--border);
-}
-.map-container iframe {
-  width: 100%;
-  height: 280px;
-  border: none;
-  display: block;
-}
-.map-label {
-  background: var(--primary);
-  color: white;
-  font-size: 0.78rem;
-  padding: 8px 14px;
-  font-weight: 500;
-}
-
-/* ===== CHECKLIST ===== */
-.check-card {
-  background: white;
-  border-radius: 14px;
-  padding: 16px;
-  box-shadow: var(--shadow);
-  border: 1px solid var(--border);
-  margin-bottom: 16px;
-}
-.check-card h4 {
-  font-size: 0.95rem;
+  font-size: clamp(1.9rem, 7vw, 2.6rem);
+  line-height: 1.25;
   color: var(--primary);
+}
+.hero h1 .pink { color: var(--day2); }
+.hero-date {
+  display: inline-block;
+  margin-top: 12px;
+  background: var(--card);
+  border: 2px solid var(--border);
+  border-radius: 999px;
+  padding: 6px 16px;
+  font-size: 0.92rem;
   font-weight: 700;
-  margin-bottom: 10px;
-  padding-bottom: 6px;
-  border-bottom: 2px solid var(--accent-light);
-}
-.check-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  padding: 8px 0;
-  cursor: pointer;
-  user-select: none;
-  border-bottom: 1px dashed var(--border);
-}
-.check-item:last-child { border-bottom: none; }
-.check-item input[type="checkbox"] {
-  width: 18px;
-  height: 18px;
-  accent-color: var(--accent);
-  cursor: pointer;
-  flex-shrink: 0;
-  margin-top: 3px;
-}
-.check-item label {
-  font-size: 0.88rem;
-  cursor: pointer;
-  line-height: 1.5;
-}
-.check-item.checked label {
-  text-decoration: line-through;
-  color: var(--text-light);
+  color: var(--primary);
 }
 
-/* ===== OVERVIEW CARDS ===== */
+/* ===== OVERVIEW ===== */
 .overview-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  margin-top: 16px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 22px;
+  text-align: left;
 }
 .overview-card {
-  background: white;
-  border-radius: 14px;
+  background: var(--card);
+  border-radius: 18px;
   padding: 14px;
-  text-align: center;
   box-shadow: var(--shadow);
   border: 1px solid var(--border);
 }
-.overview-icon {
-  font-size: 2rem;
-  margin-bottom: 6px;
-}
-.overview-label {
-  font-size: 0.75rem;
-  color: var(--text-light);
-  font-weight: 500;
-  margin-bottom: 4px;
-}
-.overview-value {
-  font-size: 0.95rem;
-  color: var(--primary);
-  font-weight: 700;
-  line-height: 1.4;
-}
+.overview-icon { font-size: 1.5rem; line-height: 1; margin-bottom: 6px; }
+.overview-label { font-size: 0.75rem; color: var(--text-light); font-weight: 700; }
+.overview-value { font-size: 0.9rem; color: var(--primary); font-weight: 700; line-height: 1.45; margin-top: 2px; }
+.overview-value small { display: block; font-size: 0.76rem; font-weight: 500; color: var(--text-light); }
 
-/* ===== DAY LEGEND ===== */
+/* ===== DAY CHIPS (jump links) ===== */
 .day-legend {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 10px;
-  margin-top: 16px;
+  margin-top: 12px;
+  text-align: left;
 }
 .day-chip {
   display: flex;
   align-items: center;
   gap: 10px;
-  background: white;
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 12px 14px;
-  cursor: pointer;
-  text-align: left;
-  font-family: inherit;
-  font-size: 0.85rem;
+  min-height: 56px;
+  background: var(--tint);
+  border: 2px solid var(--accent-light);
+  border-radius: 18px;
+  padding: 10px 12px;
+  text-decoration: none;
   color: var(--text);
-  box-shadow: var(--shadow);
+  font-size: 0.85rem;
   transition: transform 0.15s;
 }
-.day-chip:hover { transform: translateY(-2px); }
-.day-dot { width: 18px; height: 18px; border-radius: 50%; flex-shrink: 0; }
+.day-chip:active { transform: scale(0.97); }
 .day-chip strong { color: var(--primary); }
-.day-chip .chip-sub { display: block; font-size: 0.75rem; color: var(--text-light); margin-top: 2px; }
+.day-dot {
+  width: 30px; height: 30px; border-radius: 50%; flex-shrink: 0;
+  background: var(--accent); color: #fff;
+  display: grid; place-items: center;
+  font-family: var(--display); font-size: 1rem;
+}
+.chip-sub { display: block; font-size: 0.74rem; color: var(--text-light); line-height: 1.35; margin-top: 1px; }
 
-/* ===== TITLE SLIDE ===== */
-.title-slide {
+/* ===== STICKY NAV ===== */
+.topnav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(255, 247, 242, 0.92);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+}
+.topnav-inner {
+  position: relative;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  min-height: 100vh;
-  text-align: center;
-  padding: 32px 24px 110px;
+  gap: 6px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
-.title-slide h1 {
-  font-size: 2.2rem;
-  font-weight: 900;
+.topnav-inner::-webkit-scrollbar { display: none; }
+.topnav a {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 0 14px;
+  border-radius: 999px;
+  background: var(--card);
+  border: 1.5px solid var(--border);
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--text-light);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+.topnav a.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+/* ===== SECTIONS ===== */
+.section { padding: 28px 0 8px; }
+.section-head { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+.section-icon {
+  width: 46px; height: 46px; border-radius: 16px; flex-shrink: 0;
+  background: var(--tint); display: grid; place-items: center; font-size: 1.4rem;
+  border: 2px solid var(--accent-light);
+}
+.section-head h2 {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: 1.5rem;
+  line-height: 1.25;
   color: var(--primary);
-  margin-bottom: 8px;
-  line-height: 1.3;
 }
-.title-slide .title-sub {
+.section-head .subtitle { font-size: 0.82rem; color: var(--text-light); margin-top: 2px; line-height: 1.4; }
+
+.day-badge {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-family: var(--display);
+  font-size: 0.95rem;
+  padding: 2px 12px 1px;
+  border-radius: 999px;
+  margin-bottom: 4px;
+}
+
+/* ===== CARDS ===== */
+.card {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 18px;
+  margin-bottom: 14px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+}
+.card h3 {
   font-size: 1rem;
-  color: var(--accent);
-  font-weight: 500;
-  margin-bottom: 24px;
-}
-.title-flag {
-  font-size: 3rem;
+  font-weight: 800;
+  color: var(--primary);
   margin-bottom: 10px;
 }
+
+/* ===== ROUTE STRIP ===== */
+.route-strip {
+  background: var(--tint);
+  border: 2px dashed var(--accent-light);
+  border-radius: 18px;
+  padding: 12px 14px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--primary);
+  line-height: 1.75;
+  margin-bottom: 14px;
+}
+.route-strip::before { content: '🗺️ '; }
+
+/* ===== TIMELINE ===== */
+.timeline { position: relative; padding-left: 40px; }
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 15px;
+  top: 14px;
+  bottom: 14px;
+  width: 3px;
+  background: repeating-linear-gradient(to bottom, var(--accent-light) 0 6px, transparent 6px 11px);
+  border-radius: 3px;
+}
+.timeline-item {
+  position: relative;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 12px 14px;
+  margin-bottom: 10px;
+  box-shadow: 0 3px 10px rgba(120, 80, 70, 0.05);
+}
+.timeline-num {
+  position: absolute;
+  left: -40px;
+  top: 10px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 800;
+  font-size: 0.82rem;
+  display: grid;
+  place-items: center;
+  border: 3px solid var(--bg);
+}
+.timeline-time {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: var(--primary);
+  background: var(--tint);
+  border-radius: 999px;
+  padding: 1px 10px;
+  margin-bottom: 4px;
+}
+.timeline-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+.timeline-desc {
+  font-size: 0.86rem;
+  color: var(--text-light);
+  margin-top: 4px;
+  line-height: 1.6;
+}
+.timeline-desc ul { margin: 4px 0 0 18px; }
+.timeline-desc li { margin-bottom: 2px; }
+.jp { font-size: 0.8rem; font-weight: 400; color: var(--text-light); }
+
+/* ===== MAP ===== */
+.map-container {
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin: 0 0 16px;
+  box-shadow: var(--shadow);
+  border: 2px solid var(--accent-light);
+  background: var(--card);
+}
+.map-container iframe { width: 100%; height: 260px; border: 0; display: block; }
+.map-label {
+  background: var(--tint);
+  color: var(--primary);
+  font-size: 0.8rem;
+  padding: 9px 14px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+/* ===== CHECKLIST ===== */
+.check-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 4px;
+  min-height: 48px;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  border-bottom: 1.5px dashed var(--border);
+}
+.check-item:last-child { border-bottom: none; }
+.check-item input[type="checkbox"] {
+  width: 22px; height: 22px;
+  accent-color: var(--accent);
+  cursor: pointer;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.check-item label { font-size: 0.92rem; cursor: pointer; line-height: 1.5; }
+.check-item.checked label { text-decoration: line-through; color: var(--text-light); }
 
 /* ===== INFO TAGS ===== */
 .info-tag {
   display: inline-block;
-  background: color-mix(in srgb, var(--accent) 12%, transparent);
-  color: var(--accent);
-  font-size: 0.78rem;
-  padding: 4px 10px;
-  border-radius: 8px;
-  margin: 2px 2px 2px 0;
-  font-weight: 500;
+  background: var(--tint);
+  color: var(--primary);
+  font-size: 0.76rem;
+  padding: 3px 10px;
+  border-radius: 999px;
+  margin: 3px 3px 0 0;
+  font-weight: 700;
+  line-height: 1.5;
 }
-.info-tag.warning {
-  background: rgba(230,81,0,0.1);
-  color: var(--warning);
-}
-.info-tag.info {
-  background: rgba(2,119,189,0.1);
-  color: var(--info);
-}
+.info-tag.warning { background: #FFF0E6; color: var(--warning); }
+.info-tag.info { background: #E7F1FC; color: var(--info); }
 
-/* ===== SUMMARY TABLE ===== */
+/* ===== TABLES ===== */
+.table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
 .summary-table {
   width: 100%;
-  border-collapse: collapse;
-  font-size: 0.82rem;
-  margin-top: 12px;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 0.86rem;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
 }
 .summary-table th {
-  background: var(--primary);
-  color: white;
-  padding: 10px 10px;
+  background: var(--tint);
+  color: var(--primary);
+  padding: 10px;
   text-align: left;
-  font-weight: 600;
-  font-size: 0.78rem;
+  font-weight: 800;
+  font-size: 0.8rem;
 }
 .summary-table td {
-  padding: 8px 10px;
-  border-bottom: 1px solid var(--border);
+  padding: 10px;
+  border-top: 1px solid var(--border);
   vertical-align: top;
+  line-height: 1.5;
 }
-.summary-table tr:nth-child(even) { background: #F6F8FC; }
-.summary-table td:last-child { white-space: nowrap; font-weight: 600; color: var(--primary); }
+.flight-table td:last-child { white-space: nowrap; font-weight: 800; color: var(--primary); }
+
+/* transport list (replaces wide table) */
+.route-list { list-style: none; }
+.route-list li {
+  padding: 12px 0;
+  border-bottom: 1.5px dashed var(--border);
+}
+.route-list li:first-child { padding-top: 0; }
+.route-list li:last-child { border-bottom: none; padding-bottom: 0; }
+.route-from { font-weight: 800; color: var(--primary); font-size: 0.95rem; }
+.route-how { font-size: 0.86rem; color: var(--text-light); margin-top: 2px; }
 .day-pill {
   display: inline-block;
-  font-size: 0.68rem;
-  font-weight: 700;
-  color: white;
-  padding: 1px 7px;
-  border-radius: 8px;
-  margin-right: 4px;
-  vertical-align: 1px;
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: #fff;
+  padding: 1px 8px;
+  border-radius: 999px;
+  margin-right: 6px;
+  vertical-align: 2px;
 }
 
 /* ===== TIP BOX ===== */
 .tip-box {
-  background: #FFF3E0;
-  border-left: 4px solid #E65100;
-  border-radius: 0 8px 8px 0;
-  padding: 14px 20px;
-  margin: 16px 0;
+  background: #FFF6DB;
+  border: 2px solid #FFE08A;
+  border-radius: 18px;
+  padding: 14px 16px;
+  margin: 14px 0;
   font-size: 0.9rem;
   line-height: 1.7;
 }
 
-/* ===== CLOSING ===== */
-.closing-msg {
-  font-size: 2rem;
-  font-weight: 900;
-  color: var(--primary);
-  margin: 10px 0 6px;
-}
-.footnote {
-  font-size: 0.78rem;
-  color: var(--text-light);
-  line-height: 1.6;
-  margin-top: 20px;
-}
-
-.place-link { color: var(--accent); text-decoration: none; border-bottom: 1px dotted var(--accent); }
-.place-link:hover { color: var(--primary); }
-.qr-inline { display: inline-block; width: 50px; height: 50px; vertical-align: middle; margin-left: 6px; border-radius: 4px; border: 1px solid var(--border); }
-
 /* ===== HOTEL ===== */
-.hotel-name { font-size: 1.1rem; font-weight: 800; color: var(--primary); margin-bottom: 6px; }
-.hotel-addr { font-size: 0.88rem; line-height: 1.7; color: var(--text); }
-.hotel-addr .jp, .timeline-title .jp { font-size: 0.8rem; font-weight: 400; color: var(--text-light); }
+.hotel-name { font-size: 1.1rem; font-weight: 800; color: var(--primary); margin-bottom: 6px; overflow-wrap: anywhere; }
+.hotel-addr { font-size: 0.9rem; line-height: 1.7; overflow-wrap: anywhere; }
+
+/* ===== LINKS & QR ===== */
+.place-link {
+  color: var(--primary);
+  text-decoration: none;
+  background: linear-gradient(transparent 62%, var(--accent-light) 62%);
+  border-radius: 2px;
+  padding: 0 1px;
+}
+.place-link:hover { color: var(--accent); }
+.qr-inline {
+  display: inline-block;
+  width: 44px; height: 44px;
+  vertical-align: middle;
+  margin: 0 4px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: #fff;
+}
 
 /* ===== SUB LIST (shopping block) ===== */
 .sub-list {
   margin-top: 8px;
-  background: var(--tint, var(--bg-card-alt));
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 6px 14px;
+  background: var(--tint);
+  border-radius: 14px;
+  padding: 4px 12px;
 }
 .sub-item {
   display: flex;
-  gap: 12px;
+  gap: 10px;
   align-items: baseline;
-  padding: 7px 0;
+  padding: 8px 0;
   font-size: 0.86rem;
-  border-bottom: 1px dashed var(--border);
+  border-bottom: 1.5px dashed var(--accent-light);
 }
 .sub-item:last-child { border-bottom: none; }
-.sub-time { font-weight: 700; color: var(--accent); font-size: 0.8rem; min-width: 42px; }
+.sub-time { font-weight: 800; color: var(--primary); font-size: 0.8rem; min-width: 42px; flex-shrink: 0; }
 
-/* ===== RESPONSIVE ===== */
-@media (max-width: 700px) {
-  html { font-size: 16px; }
-  .slide-inner { padding: 16px 16px 120px 16px; }
-  .slide-header { margin: 0 -16px 20px -16px; padding: 14px 16px; }
-  .slide-header h1 { font-size: 1.3rem; }
-  .title-slide h1 { font-size: 1.7rem; }
-  .qr-inline { width: 40px; height: 40px; }
-  .nav-arrows {
-    bottom: 0;
-    left: 0;
-    right: 0;
-    transform: none;
-    width: 100%;
-    border-radius: 0;
-    padding: 12px 20px;
-    justify-content: space-between;
-    background: rgba(26,43,92,0.96);
-    gap: 0;
-  }
-  .nav-btn {
-    min-width: 80px;
-    height: 48px;
-    padding: 0 18px;
-    font-size: 0.9rem;
-  }
-  .nav-btn:active { background: #2F5BB7; border-color: #2F5BB7; transform: scale(0.95); }
-  .slide-indicator { font-size: 0.9rem; min-width: 70px; }
-  .map-container iframe { height: 220px; }
-  .summary-table { font-size: 0.76rem; }
-  .summary-table th, .summary-table td { padding: 7px 6px; }
+/* ===== CLOSING ===== */
+.closing { text-align: center; padding: 36px 0 calc(88px + env(safe-area-inset-bottom)); }
+.closing-flags { font-size: 2.2rem; }
+.closing-msg {
+  font-family: var(--display);
+  font-size: 1.9rem;
+  color: var(--primary);
+  margin: 6px 0 4px;
+}
+.closing-sub { font-size: 0.9rem; color: var(--day2-dark); font-weight: 700; }
+.footnote {
+  font-size: 0.78rem;
+  color: var(--text-light);
+  line-height: 1.7;
+  margin-top: 18px;
 }
 
-@media (max-width: 400px) {
+.to-top {
+  position: fixed;
+  right: max(16px, env(safe-area-inset-right));
+  bottom: max(16px, env(safe-area-inset-bottom));
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  border: 0;
+  background: var(--primary);
+  color: #fff;
+  font-size: 1.2rem;
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+  z-index: 40;
+}
+.to-top.show { opacity: 0.9; pointer-events: auto; }
+
+/* ===== RESPONSIVE ===== */
+@media (min-width: 640px) {
+  html { font-size: 17px; }
+  .overview-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .day-legend { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .map-container iframe { height: 320px; }
+  .topnav-inner { justify-content: center; }
+}
+@media (max-width: 360px) {
   .overview-grid, .day-legend { grid-template-columns: 1fr; }
-  html { font-size: 15px; }
-  .slide-inner { padding: 12px 12px 120px 12px; }
-  .slide-header { margin: 0 -12px 16px -12px; }
+  .wrap { padding-left: 12px; padding-right: 12px; }
 }
 
 /* ===== PRINT ===== */
 @media print {
-  body { overflow: visible; height: auto; }
-  .slide { min-width: auto !important; width: auto !important; height: auto; overflow: visible; page-break-after: always; }
-  .slides-wrapper { display: block; width: auto !important; height: auto; overflow: visible; transform: none !important; }
-  .nav-arrows, #pw-overlay { display: none !important; }
-  .slide-header { position: static; }
-  .map-container { display: none; }
-  .slide-inner { padding-bottom: 20px; }
+  .topnav, .to-top, #pw-overlay, .map-container { display: none !important; }
+  .section { break-inside: avoid-page; }
+  body { background: #fff; }
 }
-
-/* ===== SCROLLBAR ===== */
-.slide::-webkit-scrollbar { width: 6px; }
-.slide::-webkit-scrollbar-track { background: transparent; }
-.slide::-webkit-scrollbar-thumb { background: rgba(26,43,92,0.2); border-radius: 3px; }
-.slide::-webkit-scrollbar-thumb:hover { background: rgba(26,43,92,0.4); }
 
 /* ===== PASSWORD OVERLAY ===== */
 #pw-overlay {
   position: fixed; inset: 0; z-index: 9999;
-  background: rgba(26,43,92,0.97);
+  background: linear-gradient(160deg, #FFE1EA, #E3EEFF);
   display: flex; flex-direction: column;
   align-items: center; justify-content: center;
-  gap: 20px;
+  gap: 16px;
+  padding: 24px;
+  text-align: center;
 }
-#pw-overlay h2 { color: #fff; font-size: 1.4rem; }
+#pw-overlay .pw-emoji { font-size: 3rem; }
+#pw-overlay h2 { color: var(--primary); font-family: var(--display); font-weight: 400; font-size: 1.7rem; }
+#pw-overlay p { color: var(--text-light); font-size: 0.9rem; }
 #pw-overlay input {
   font-size: 1.5rem; letter-spacing: 0.4em;
-  text-align: center; padding: 12px 24px;
-  border-radius: 12px; border: 2px solid #5B8DEF;
-  width: 200px; outline: none;
-}
-#pw-overlay button {
-  background: #5B8DEF; color: #fff;
-  border: none; border-radius: 10px;
-  padding: 12px 32px; font-size: 1rem;
-  cursor: pointer; font-weight: 700;
+  text-align: center; padding: 12px 20px;
+  border-radius: 18px; border: 2px solid var(--day2);
+  width: 220px; max-width: 100%; outline: none;
+  background: #fff; color: var(--text);
   font-family: inherit;
 }
-#pw-overlay button:disabled { background: #666; cursor: not-allowed; }
-#pw-msg { color: #FF6B6B; font-size: 0.9rem; min-height: 1.2em; }
-#pw-cooldown { color: #FFD54F; font-size: 0.9rem; }
+#pw-overlay button {
+  background: var(--day2); color: #fff;
+  border: none; border-radius: 999px;
+  min-height: 48px;
+  padding: 0 40px; font-size: 1rem;
+  cursor: pointer; font-weight: 800;
+  font-family: inherit;
+}
+#pw-overlay button:disabled { background: #aaa; cursor: not-allowed; }
+#pw-msg { color: #D6336C; font-size: 0.9rem; min-height: 1.2em; font-weight: 700; }
+#pw-cooldown { color: #B07A00; font-size: 0.9rem; }
 </style>
 </head>
 <body>
 
 <!-- ===== PASSWORD OVERLAY ===== -->
 <div id="pw-overlay">
-  <div style="font-size:2.5rem;">🔐</div>
+  <div class="pw-emoji">🔐</div>
   <h2>오사카 여행 가이드</h2>
-  <p style="color:#ccc;font-size:0.85rem;">암호를 입력하세요</p>
-  <input type="password" id="pw-input" maxlength="10" placeholder="••••" inputmode="numeric" autofocus>
+  <p>암호를 입력하세요</p>
+  <input type="password" id="pw-input" maxlength="10" placeholder="••••" inputmode="numeric" autocomplete="off">
   <button id="pw-btn" onclick="checkPassword()">확인</button>
   <div id="pw-msg"></div>
   <div id="pw-cooldown"></div>
 </div>
 
-<div class="slides-wrapper" id="slidesWrapper">
+<!-- ==================== HERO ==================== -->
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="hero-flags">&#x1F1F0;&#x1F1F7; &#9992;&#65039; &#x1F1EF;&#x1F1F5;</div>
+    <h1>오사카 3박 4일<br><span class="pink">졸업여행</span> 가이드</h1>
+    <div class="hero-date">2026.12.12(토) ~ 12.15(화) · 3박 4일</div>
 
-<!-- ==================== SLIDE 1: TITLE ==================== -->
-<div class="slide" id="slide-1">
-<div class="slide-inner title-slide">
-  <div class="title-flag">&#x1F1F0;&#x1F1F7; &#10145; &#x1F1EF;&#x1F1F5;</div>
-  <h1>오사카 3박 4일<br>졸업여행 가이드</h1>
-  <p class="title-sub">2026.12.12(토) ~ 12.15(화) | 3박 4일</p>
+    <div class="overview-grid">
+      <div class="overview-card">
+        <div class="overview-icon">&#9992;&#65039;</div>
+        <div class="overview-label">항공</div>
+        <div class="overview-value">12/12 간사이공항 도착 09:30<br>12/15 간사이공항 출발 18:00</div>
+      </div>
+      <div class="overview-card">
+        <div class="overview-icon">&#127976;</div>
+        <div class="overview-label">숙소</div>
+        <div class="overview-value">eni.suite macchamachi<small>마쓰야마치역 도보 약 3분</small></div>
+      </div>
+      <div class="overview-card">
+        <div class="overview-icon">&#127906;</div>
+        <div class="overview-label">하이라이트</div>
+        <div class="overview-value">USJ 종일<br>도톤보리 · 신세카이</div>
+      </div>
+      <div class="overview-card">
+        <div class="overview-icon">&#128647;</div>
+        <div class="overview-label">주요 거점</div>
+        <div class="overview-value">마쓰야마치역 · 난바역<small>짐 보관 · 환승 중심</small></div>
+      </div>
+    </div>
 
-  <div class="overview-grid">
-    <div class="overview-card">
-      <div class="overview-icon">&#9992;&#65039;</div>
-      <div class="overview-label">항공</div>
-      <div class="overview-value">12/12 간사이공항 도착 09:30<br>12/15 간사이공항 출발 18:00</div>
-    </div>
-    <div class="overview-card">
-      <div class="overview-icon">&#127976;</div>
-      <div class="overview-label">숙소</div>
-      <div class="overview-value">eni.suite macchamachi<br><span style="font-size:0.78rem; font-weight:500; color:var(--text-light);">마쓰야마치역 도보 약 3분</span></div>
-    </div>
-    <div class="overview-card">
-      <div class="overview-icon">&#127906;</div>
-      <div class="overview-label">하이라이트</div>
-      <div class="overview-value">USJ 종일<br>도톤보리 · 신세카이</div>
-    </div>
-    <div class="overview-card">
-      <div class="overview-icon">&#128647;</div>
-      <div class="overview-label">주요 거점</div>
-      <div class="overview-value">마쓰야마치역 · 난바역<br>짐 보관 · 환승 중심</div>
+    <div class="day-legend">
+      <a class="day-chip day1" href="#day1"><span class="day-dot">1</span><span><strong>1일차</strong> (12/12 토)<span class="chip-sub">차니와 · 나카노시마 일루미네이션</span></span></a>
+      <a class="day-chip day2" href="#day2"><span class="day-dot">2</span><span><strong>2일차</strong> (12/13 일)<span class="chip-sub">구로몬 · 난바 쇼핑 · 도톤보리</span></span></a>
+      <a class="day-chip day3" href="#day3"><span class="day-dot">3</span><span><strong>3일차</strong> (12/14 월)<span class="chip-sub">유니버설 스튜디오 재팬</span></span></a>
+      <a class="day-chip day4" href="#day4"><span class="day-dot">4</span><span><strong>4일차</strong> (12/15 화)<span class="chip-sub">신세카이 · 난바 쇼핑 · 귀국</span></span></a>
     </div>
   </div>
+</header>
 
-  <div class="day-legend">
-    <button class="day-chip" onclick="goTo(3)"><span class="day-dot" style="background:var(--day1)"></span><span><strong>1일차</strong> (12/12 토)<span class="chip-sub">차니와 · 나카노시마 일루미네이션</span></span></button>
-    <button class="day-chip" onclick="goTo(4)"><span class="day-dot" style="background:var(--day2)"></span><span><strong>2일차</strong> (12/13 일)<span class="chip-sub">구로몬 · 난바 쇼핑 · 도톤보리</span></span></button>
-    <button class="day-chip" onclick="goTo(5)"><span class="day-dot" style="background:var(--day3)"></span><span><strong>3일차</strong> (12/14 월)<span class="chip-sub">유니버설 스튜디오 재팬</span></span></button>
-    <button class="day-chip" onclick="goTo(6)"><span class="day-dot" style="background:var(--day4)"></span><span><strong>4일차</strong> (12/15 화)<span class="chip-sub">신세카이 · 난바 쇼핑 · 귀국</span></span></button>
+<!-- ==================== STICKY NAV ==================== -->
+<nav class="topnav" aria-label="섹션 이동">
+  <div class="wrap topnav-inner">
+    <a href="#stay">&#127976; 항공·숙소</a>
+    <a href="#check">&#9989; 체크</a>
+    <a href="#day1" class="day1">1일차</a>
+    <a href="#day2" class="day2">2일차</a>
+    <a href="#day3" class="day3">3일차</a>
+    <a href="#day4" class="day4">4일차</a>
+    <a href="#transport">&#128646; 교통</a>
   </div>
+</nav>
 
-  <p style="margin-top:24px; font-size:0.78rem; color:var(--text-light);">
-    &#8592; &#8594; 화살표 키 또는 하단 버튼으로 슬라이드를 넘기세요
-  </p>
-</div>
-</div>
+<main class="wrap">
 
-<!-- ==================== SLIDE 2: FLIGHT + HOTEL ==================== -->
-<div class="slide" id="slide-2">
-<div class="slide-inner">
-  <div class="slide-header">
-    <h1>&#127976; 항공 + 숙소 정보</h1>
-    <div class="subtitle">간사이공항 도착·출발 시간과 숙소 위치</div>
+<!-- ==================== FLIGHT + HOTEL ==================== -->
+<section class="section" id="stay">
+  <div class="section-head">
+    <div class="section-icon">&#127976;</div>
+    <div>
+      <h2>항공 + 숙소 정보</h2>
+      <div class="subtitle">간사이공항 도착·출발 시간과 숙소 위치</div>
+    </div>
   </div>
 
   <div class="card">
     <h3>&#9992;&#65039; 항공 정보</h3>
-    <table class="summary-table">
+    <table class="summary-table flight-table">
       <tr><th>날짜</th><th>구분</th><th>시간</th></tr>
       <tr><td><strong>12/12 (토)</strong></td><td>간사이공항 도착</td><td>09:30</td></tr>
       <tr><td><strong>12/15 (화)</strong></td><td>간사이공항 출발</td><td>18:00</td></tr>
@@ -674,7 +647,7 @@ body {
 
   <div class="card">
     <h3>&#127968; 숙소 정보</h3>
-    <div class="hotel-name"><a href="https://www.google.com/maps/search/%E5%A4%A7%E9%98%AA%E5%BA%9C%E5%A4%A7%E9%98%AA%E5%B8%82%E4%B8%AD%E5%A4%AE%E5%8C%BA%E6%9D%BE%E5%B1%8B%E7%94%BA%E4%BD%8F%E5%90%896-26" target="_blank" class="place-link">eni.suite macchamachi</a> <img src="https://api.qrserver.com/v1/create-qr-code/?size=60x60&data=https://www.google.com/maps/search/%E5%A4%A7%E9%98%AA%E5%BA%9C%E5%A4%A7%E9%98%AA%E5%B8%82%E4%B8%AD%E5%A4%AE%E5%8C%BA%E6%9D%BE%E5%B1%8B%E7%94%BA%E4%BD%8F%E5%90%896-26" alt="QR" class="qr-inline"></div>
+    <div class="hotel-name"><a href="https://www.google.com/maps/search/%E5%A4%A7%E9%98%AA%E5%BA%9C%E5%A4%A7%E9%98%AA%E5%B8%82%E4%B8%AD%E5%A4%AE%E5%8C%BA%E6%9D%BE%E5%B1%8B%E7%94%BA%E4%BD%8F%E5%90%896-26" target="_blank" rel="noopener" class="place-link">eni.suite macchamachi</a> <img src="https://api.qrserver.com/v1/create-qr-code/?size=60x60&data=https://www.google.com/maps/search/%E5%A4%A7%E9%98%AA%E5%BA%9C%E5%A4%A7%E9%98%AA%E5%B8%82%E4%B8%AD%E5%A4%AE%E5%8C%BA%E6%9D%BE%E5%B1%8B%E7%94%BA%E4%BD%8F%E5%90%896-26" alt="QR" class="qr-inline"></div>
     <div class="hotel-addr">
       〒540-0017<br>
       오사카부 오사카시 츄오구 마츠야마치 스미요시 6-26<br>
@@ -684,7 +657,7 @@ body {
     <div style="margin-top:10px;">
       <span class="info-tag">체크인 16:00 이후</span>
       <span class="info-tag">체크아웃 10:00</span>
-      <span class="info-tag info">&#128647; <a href="https://www.google.com/maps/search/Matsuyamachi+Station+Osaka" target="_blank" class="place-link">마쓰야마치역(松屋町駅)</a> 3번 출구, 도보 약 3분</span>
+      <span class="info-tag info">&#128647; <a href="https://www.google.com/maps/search/Matsuyamachi+Station+Osaka" target="_blank" rel="noopener" class="place-link">마쓰야마치역(松屋町駅)</a> 3번 출구, 도보 약 3분</span>
     </div>
   </div>
 
@@ -692,19 +665,20 @@ body {
     <div class="map-label">&#128205; 숙소 위치: 마쓰야마치역 3번 출구 → eni.suite macchamachi (4F)</div>
     <iframe src="https://maps.google.com/maps?q=%E5%A4%A7%E9%98%AA%E5%BA%9C%E5%A4%A7%E9%98%AA%E5%B8%82%E4%B8%AD%E5%A4%AE%E5%8C%BA%E6%9D%BE%E5%B1%8B%E7%94%BA%E4%BD%8F%E5%90%896-26&z=17&output=embed" allowfullscreen loading="lazy" title="숙소 지도"></iframe>
   </div>
-</div>
-</div>
+</section>
 
-<!-- ==================== SLIDE 3: CHECKLIST ==================== -->
-<div class="slide" id="slide-3">
-<div class="slide-inner">
-  <div class="slide-header">
-    <h1>&#9989; 여행 체크 포인트</h1>
-    <div class="subtitle">출발 전 확인할 사항 (체크하면 이 기기에 저장돼요)</div>
+<!-- ==================== CHECKLIST ==================== -->
+<section class="section" id="check">
+  <div class="section-head">
+    <div class="section-icon">&#9989;</div>
+    <div>
+      <h2>여행 체크 포인트</h2>
+      <div class="subtitle">출발 전 확인할 사항 (체크하면 이 기기에 저장돼요)</div>
+    </div>
   </div>
 
-  <div class="check-card">
-    <h4>&#128203; 체크 포인트</h4>
+  <div class="card">
+    <h3>&#128203; 체크 포인트</h3>
     <div class="check-item" onclick="toggleCheck(this)">
       <input type="checkbox" data-key="v2_arrival"><label><strong>1일차 공항 도착</strong>은 09:30 (일정에 시간 반영 완료)</label>
     </div>
@@ -725,15 +699,17 @@ body {
   <div class="tip-box">
     <strong>⚠️ 참고:</strong> 본 일정은 대략적인 계획으로, 현지 상황에 따라 시간과 동선이 변경될 수 있습니다. 최종 일정은 여행 전 최신 정보를 꼭 확인해 주세요.
   </div>
-</div>
-</div>
+</section>
 
-<!-- ==================== SLIDE 4: D1 (12/12) ==================== -->
-<div class="slide day1" id="slide-4">
-<div class="slide-inner">
-  <div class="slide-header">
-    <h1><span class="day-badge">1일차</span> 차니와 + 나카노시마 일루미네이션</h1>
-    <div class="subtitle"><span class="day-date">12월 12일 (토) | 공항 도착 · 난바 · 나카노시마</span></div>
+<!-- ==================== D1 (12/12) ==================== -->
+<section class="section day1" id="day1">
+  <div class="section-head">
+    <div class="section-icon">&#10024;</div>
+    <div>
+      <span class="day-badge">1일차</span>
+      <h2>차니와 + 나카노시마 일루미네이션</h2>
+      <div class="subtitle">12월 12일 (토) | 공항 도착 · 난바 · 나카노시마</div>
+    </div>
   </div>
 
   <div class="route-strip">간사이공항 도착 → 난바 짐보관 → 차니와 → 나카노시마 → 일루미네이션 → 숙소</div>
@@ -747,7 +723,7 @@ body {
     <div class="timeline-item">
       <div class="timeline-num">1</div>
       <div class="timeline-time">09:30</div>
-      <div class="timeline-title">&#9992;&#65039; <a href="https://www.google.com/maps/search/Kansai+International+Airport" target="_blank" class="place-link">간사이공항</a> <img src="https://api.qrserver.com/v1/create-qr-code/?size=60x60&data=https://www.google.com/maps/search/Kansai+International+Airport" alt="QR" class="qr-inline"> 도착</div>
+      <div class="timeline-title">&#9992;&#65039; <a href="https://www.google.com/maps/search/Kansai+International+Airport" target="_blank" rel="noopener" class="place-link">간사이공항</a> <img src="https://api.qrserver.com/v1/create-qr-code/?size=60x60&data=https://www.google.com/maps/search/Kansai+International+Airport" alt="QR" class="qr-inline"> 도착</div>
       <div class="timeline-desc">입국심사 및 수하물 수령</div>
     </div>
     <div class="timeline-item">
@@ -759,37 +735,37 @@ body {
     <div class="timeline-item">
       <div class="timeline-num">3</div>
       <div class="timeline-time">11:15</div>
-      <div class="timeline-title">&#129523; <a href="https://www.google.com/maps/search/Nankai+Namba+Station" target="_blank" class="place-link">난카이 난바역</a> <img src="https://api.qrserver.com/v1/create-qr-code/?size=60x60&data=https://www.google.com/maps/search/Nankai+Namba+Station" alt="QR" class="qr-inline"> 도착</div>
+      <div class="timeline-title">&#129523; <a href="https://www.google.com/maps/search/Nankai+Namba+Station" target="_blank" rel="noopener" class="place-link">난카이 난바역</a> <img src="https://api.qrserver.com/v1/create-qr-code/?size=60x60&data=https://www.google.com/maps/search/Nankai+Namba+Station" alt="QR" class="qr-inline"> 도착</div>
       <div class="timeline-desc">짐 보관 (n·e·s·t 또는 코인로커)</div>
     </div>
     <div class="timeline-item">
       <div class="timeline-num">4</div>
       <div class="timeline-time">11:45</div>
       <div class="timeline-title">&#128694; 차니와 이동</div>
-      <div class="timeline-desc"><a href="https://www.google.com/maps/search/Yotsubashi+Station" target="_blank" class="place-link">요쓰바시역</a> 방면 지하철 약 7분</div>
+      <div class="timeline-desc"><a href="https://www.google.com/maps/search/Yotsubashi+Station" target="_blank" rel="noopener" class="place-link">요쓰바시역</a> 방면 지하철 약 7분</div>
     </div>
     <div class="timeline-item">
       <div class="timeline-num">5</div>
       <div class="timeline-time">12:15</div>
-      <div class="timeline-title">&#127861; <a href="https://www.google.com/maps/search/Chaniwa+Osaka" target="_blank" class="place-link">차니와</a> <img src="https://api.qrserver.com/v1/create-qr-code/?size=60x60&data=https://www.google.com/maps/search/Chaniwa+Osaka" alt="QR" class="qr-inline"> <span class="jp">(寺カフェ 茶庭)</span></div>
+      <div class="timeline-title">&#127861; <a href="https://www.google.com/maps/search/Chaniwa+Osaka" target="_blank" rel="noopener" class="place-link">차니와</a> <img src="https://api.qrserver.com/v1/create-qr-code/?size=60x60&data=https://www.google.com/maps/search/Chaniwa+Osaka" alt="QR" class="qr-inline"> <span class="jp">(寺カフェ 茶庭)</span></div>
       <div class="timeline-desc">카페 &amp; 점심<br><span class="info-tag">영업 12:00~17:30</span> <span class="info-tag warning">토요일 한정 영업</span></div>
     </div>
     <div class="timeline-item">
       <div class="timeline-num">6</div>
       <div class="timeline-time">14:00</div>
-      <div class="timeline-title">&#127963; <a href="https://www.google.com/maps/search/Osaka+Prefectural+Nakanoshima+Library" target="_blank" class="place-link">나카노시마 도서관</a> <img src="https://api.qrserver.com/v1/create-qr-code/?size=60x60&data=https://www.google.com/maps/search/Osaka+Prefectural+Nakanoshima+Library" alt="QR" class="qr-inline"></div>
+      <div class="timeline-title">&#127963; <a href="https://www.google.com/maps/search/Osaka+Prefectural+Nakanoshima+Library" target="_blank" rel="noopener" class="place-link">나카노시마 도서관</a> <img src="https://api.qrserver.com/v1/create-qr-code/?size=60x60&data=https://www.google.com/maps/search/Osaka+Prefectural+Nakanoshima+Library" alt="QR" class="qr-inline"></div>
       <div class="timeline-desc">내부 관람<br><span class="info-tag warning">토요일 17:00까지</span></div>
     </div>
     <div class="timeline-item">
       <div class="timeline-num">7</div>
       <div class="timeline-time">15:10</div>
-      <div class="timeline-title">&#9749; <a href="https://www.google.com/maps/search/MOUNT+KITAHAMA+Osaka" target="_blank" class="place-link">MOUNT KITAHAMA</a> <img src="https://api.qrserver.com/v1/create-qr-code/?size=60x60&data=https://www.google.com/maps/search/MOUNT+KITAHAMA+Osaka" alt="QR" class="qr-inline"></div>
+      <div class="timeline-title">&#9749; <a href="https://www.google.com/maps/search/MOUNT+KITAHAMA+Osaka" target="_blank" rel="noopener" class="place-link">MOUNT KITAHAMA</a> <img src="https://api.qrserver.com/v1/create-qr-code/?size=60x60&data=https://www.google.com/maps/search/MOUNT+KITAHAMA+Osaka" alt="QR" class="qr-inline"></div>
       <div class="timeline-desc">강변 카페<br><span class="info-tag">라스트오더 17:30</span></div>
     </div>
     <div class="timeline-item">
       <div class="timeline-num">8</div>
       <div class="timeline-time">17:00</div>
-      <div class="timeline-title">&#10024; <a href="https://www.google.com/maps/search/Nakanoshima+Park+Osaka" target="_blank" class="place-link">나카노시마 일루미네이션</a> <img src="https://api.qrserver.com/v1/create-qr-code/?size=60x60&data=https://www.google.com/maps/search/Nakanoshima+Park+Osaka" alt="QR" class="qr-inline"></div>
+      <div class="timeline-title">&#10024; <a href="https://www.google.com/maps/search/Nakanoshima+Park+Osaka" target="_blank" rel="noopener" class="place-link">나카노시마 일루미네이션</a> <img src="https://api.qrserver.com/v1/create-qr-code/?size=60x60&data=https://www.google.com/maps/search/Nakanoshima+Park+Osaka" alt="QR" class="qr-inline"></div>
       <div class="timeline-desc">약 17:00 점등, 강변 산책</div>
     </div>
     <div class="timeline-item">
@@ -816,15 +792,17 @@ body {
     <strong>⚠️ 1일차 TIP:</strong> <strong>차니와</strong>는 토요일만 영업 (12:00~17:30)합니다.<br>
     <strong>나카노시마 도서관</strong>은 토요일 17:00까지 운영하고 일요일은 휴관입니다.
   </div>
-</div>
-</div>
+</section>
 
-<!-- ==================== SLIDE 5: D2 (12/13) ==================== -->
-<div class="slide day2" id="slide-5">
-<div class="slide-inner">
-  <div class="slide-header">
-    <h1><span class="day-badge">2일차</span> 구로몬 + 난바 쇼핑 + 도톤보리</h1>
-    <div class="subtitle"><span class="day-date">12월 13일 (일) | 난바 · 닛폰바시 · 신사이바시</span></div>
+<!-- ==================== D2 (12/13) ==================== -->
+<section class="section day2" id="day2">
+  <div class="section-head">
+    <div class="section-icon">&#127747;</div>
+    <div>
+      <span class="day-badge">2일차</span>
+      <h2>구로몬 + 난바 쇼핑 + 도톤보리</h2>
+      <div class="subtitle">12월 13일 (일) | 난바 · 닛폰바시 · 신사이바시</div>
+    </div>
   </div>
 
   <div class="route-strip">난바 야사카 신사 → 구로몬 시장 → 덴덴타운 → 난바 파크스/난바 CITY 쇼핑 → 도톤보리 → 신사이바시</div>
@@ -844,13 +822,13 @@ body {
     <div class="timeline-item">
       <div class="timeline-num">2</div>
       <div class="timeline-time">09:30</div>
-      <div class="timeline-title">&#9961;&#65039; <a href="https://www.google.com/maps/search/Namba+Yasaka+Shrine" target="_blank" class="place-link">난바 야사카 신사</a> <img src="https://api.qrserver.com/v1/create-qr-code/?size=60x60&data=https://www.google.com/maps/search/Namba+Yasaka+Shrine" alt="QR" class="qr-inline"></div>
+      <div class="timeline-title">&#9961;&#65039; <a href="https://www.google.com/maps/search/Namba+Yasaka+Shrine" target="_blank" rel="noopener" class="place-link">난바 야사카 신사</a> <img src="https://api.qrserver.com/v1/create-qr-code/?size=60x60&data=https://www.google.com/maps/search/Namba+Yasaka+Shrine" alt="QR" class="qr-inline"></div>
       <div class="timeline-desc">사자머리 신사</div>
     </div>
     <div class="timeline-item">
       <div class="timeline-num">3</div>
       <div class="timeline-time">10:30</div>
-      <div class="timeline-title">&#128722; <a href="https://www.google.com/maps/search/Kuromon+Market+Osaka" target="_blank" class="place-link">구로몬 시장</a> <img src="https://api.qrserver.com/v1/create-qr-code/?size=60x60&data=https://www.google.com/maps/search/Kuromon+Market+Osaka" alt="QR" class="qr-inline"></div>
+      <div class="timeline-title">&#128722; <a href="https://www.google.com/maps/search/Kuromon+Market+Osaka" target="_blank" rel="noopener" class="place-link">구로몬 시장</a> <img src="https://api.qrserver.com/v1/create-qr-code/?size=60x60&data=https://www.google.com/maps/search/Kuromon+Market+Osaka" alt="QR" class="qr-inline"></div>
       <div class="timeline-desc">먹거리 &amp; 간식</div>
     </div>
     <div class="timeline-item">
@@ -862,13 +840,13 @@ body {
     <div class="timeline-item">
       <div class="timeline-num">5</div>
       <div class="timeline-time">13:00</div>
-      <div class="timeline-title">&#127918; <a href="https://www.google.com/maps/search/Den+Den+Town+Osaka" target="_blank" class="place-link">덴덴타운</a> <img src="https://api.qrserver.com/v1/create-qr-code/?size=60x60&data=https://www.google.com/maps/search/Den+Den+Town+Osaka" alt="QR" class="qr-inline"> (닛폰바시)</div>
+      <div class="timeline-title">&#127918; <a href="https://www.google.com/maps/search/Den+Den+Town+Osaka" target="_blank" rel="noopener" class="place-link">덴덴타운</a> <img src="https://api.qrserver.com/v1/create-qr-code/?size=60x60&data=https://www.google.com/maps/search/Den+Den+Town+Osaka" alt="QR" class="qr-inline"> (닛폰바시)</div>
       <div class="timeline-desc">게임 · 애니메이션 · 전자제품</div>
     </div>
     <div class="timeline-item">
       <div class="timeline-num">6</div>
       <div class="timeline-time">14:15</div>
-      <div class="timeline-title">&#128717;&#65039; <a href="https://www.google.com/maps/search/Namba+Parks" target="_blank" class="place-link">난바 파크스</a> / <a href="https://www.google.com/maps/search/Namba+CITY" target="_blank" class="place-link">난바 CITY</a> 쇼핑</div>
+      <div class="timeline-title">&#128717;&#65039; <a href="https://www.google.com/maps/search/Namba+Parks" target="_blank" rel="noopener" class="place-link">난바 파크스</a> / <a href="https://www.google.com/maps/search/Namba+CITY" target="_blank" rel="noopener" class="place-link">난바 CITY</a> 쇼핑</div>
       <div class="sub-list">
         <div class="sub-item"><span class="sub-time">14:15</span><span><strong>스탠다드 프로덕츠</strong> (난바 파크스 1F)</span></div>
         <div class="sub-item"><span class="sub-time">14:50</span><span><strong>로프트</strong> (난바 파크스 5F)</span></div>
@@ -878,13 +856,13 @@ body {
     <div class="timeline-item">
       <div class="timeline-num">7</div>
       <div class="timeline-time">16:30</div>
-      <div class="timeline-title">&#127747; <a href="https://www.google.com/maps/search/Dotonbori+Osaka" target="_blank" class="place-link">도톤보리</a> <img src="https://api.qrserver.com/v1/create-qr-code/?size=60x60&data=https://www.google.com/maps/search/Dotonbori+Osaka" alt="QR" class="qr-inline"></div>
+      <div class="timeline-title">&#127747; <a href="https://www.google.com/maps/search/Dotonbori+Osaka" target="_blank" rel="noopener" class="place-link">도톤보리</a> <img src="https://api.qrserver.com/v1/create-qr-code/?size=60x60&data=https://www.google.com/maps/search/Dotonbori+Osaka" alt="QR" class="qr-inline"></div>
       <div class="timeline-desc">구경 &amp; 간식 (글리코상)</div>
     </div>
     <div class="timeline-item">
       <div class="timeline-num">8</div>
       <div class="timeline-time">17:30</div>
-      <div class="timeline-title">&#128717;&#65039; <a href="https://www.google.com/maps/search/Shinsaibashi+PARCO" target="_blank" class="place-link">신사이바시 PARCO</a> <img src="https://api.qrserver.com/v1/create-qr-code/?size=60x60&data=https://www.google.com/maps/search/Shinsaibashi+PARCO" alt="QR" class="qr-inline"> (핸즈)</div>
+      <div class="timeline-title">&#128717;&#65039; <a href="https://www.google.com/maps/search/Shinsaibashi+PARCO" target="_blank" rel="noopener" class="place-link">신사이바시 PARCO</a> <img src="https://api.qrserver.com/v1/create-qr-code/?size=60x60&data=https://www.google.com/maps/search/Shinsaibashi+PARCO" alt="QR" class="qr-inline"> (핸즈)</div>
       <div class="timeline-desc">구 도큐핸즈, 9~11F</div>
     </div>
     <div class="timeline-item">
@@ -894,15 +872,17 @@ body {
       <div class="timeline-desc">저녁 식사 후 난바역 → 마쓰야마치역 약 7분</div>
     </div>
   </div>
-</div>
-</div>
+</section>
 
-<!-- ==================== SLIDE 6: D3 (12/14) ==================== -->
-<div class="slide day3" id="slide-6">
-<div class="slide-inner">
-  <div class="slide-header">
-    <h1><span class="day-badge">3일차</span> 유니버설 스튜디오 재팬</h1>
-    <div class="subtitle"><span class="day-date">12월 14일 (월) | USJ 종일</span></div>
+<!-- ==================== D3 (12/14) ==================== -->
+<section class="section day3" id="day3">
+  <div class="section-head">
+    <div class="section-icon">&#127906;</div>
+    <div>
+      <span class="day-badge">3일차</span>
+      <h2>유니버설 스튜디오 재팬</h2>
+      <div class="subtitle">12월 14일 (월) | USJ 종일</div>
+    </div>
   </div>
 
   <div class="route-strip">숙소 → 지하철·JR 환승 → 유니버설 스튜디오 재팬 → 하루 종일 → 숙소</div>
@@ -929,18 +909,18 @@ body {
       <div class="timeline-num">3</div>
       <div class="timeline-time">07:30</div>
       <div class="timeline-title">&#128646; JR 환승</div>
-      <div class="timeline-desc">사카이스지혼마치역 → 벤텐초역 → <a href="https://www.google.com/maps/search/Nishikujo+Station" target="_blank" class="place-link">니시쿠조역</a><br><span class="info-tag">약 25~30분</span></div>
+      <div class="timeline-desc">사카이스지혼마치역 → 벤텐초역 → <a href="https://www.google.com/maps/search/Nishikujo+Station" target="_blank" rel="noopener" class="place-link">니시쿠조역</a><br><span class="info-tag">약 25~30분</span></div>
     </div>
     <div class="timeline-item">
       <div class="timeline-num">4</div>
       <div class="timeline-time">08:00</div>
-      <div class="timeline-title">&#128649; <a href="https://www.google.com/maps/search/Universal+City+Station" target="_blank" class="place-link">유니버설시티역</a> 도착</div>
+      <div class="timeline-title">&#128649; <a href="https://www.google.com/maps/search/Universal+City+Station" target="_blank" rel="noopener" class="place-link">유니버설시티역</a> 도착</div>
       <div class="timeline-desc">도보 약 5분</div>
     </div>
     <div class="timeline-item">
       <div class="timeline-num">5</div>
       <div class="timeline-time">08:30</div>
-      <div class="timeline-title">&#127903;&#65039; <a href="https://www.google.com/maps/search/Universal+Studios+Japan" target="_blank" class="place-link">USJ</a> <img src="https://api.qrserver.com/v1/create-qr-code/?size=60x60&data=https://www.google.com/maps/search/Universal+Studios+Japan" alt="QR" class="qr-inline"> 입장</div>
+      <div class="timeline-title">&#127903;&#65039; <a href="https://www.google.com/maps/search/Universal+Studios+Japan" target="_blank" rel="noopener" class="place-link">USJ</a> <img src="https://api.qrserver.com/v1/create-qr-code/?size=60x60&data=https://www.google.com/maps/search/Universal+Studios+Japan" alt="QR" class="qr-inline"> 입장</div>
       <div class="timeline-desc">QR코드 제시 후 입장</div>
     </div>
     <div class="timeline-item">
@@ -972,15 +952,17 @@ body {
   <div class="tip-box">
     <strong>⚠️ 3일차 TIP:</strong> <strong>USJ</strong> 운영시간 및 익스프레스 패스를 사전에 확인하세요.
   </div>
-</div>
-</div>
+</section>
 
-<!-- ==================== SLIDE 7: D4 (12/15) ==================== -->
-<div class="slide day4" id="slide-7">
-<div class="slide-inner">
-  <div class="slide-header">
-    <h1><span class="day-badge">4일차</span> 신세카이 + 난바 쇼핑 + 귀국</h1>
-    <div class="subtitle"><span class="day-date">12월 15일 (화) | 신세카이 · 난바 · 간사이공항 출발 18:00</span></div>
+<!-- ==================== D4 (12/15) ==================== -->
+<section class="section day4" id="day4">
+  <div class="section-head">
+    <div class="section-icon">&#128508;</div>
+    <div>
+      <span class="day-badge">4일차</span>
+      <h2>신세카이 + 난바 쇼핑 + 귀국</h2>
+      <div class="subtitle">12월 15일 (화) | 신세카이 · 난바 · 간사이공항 출발 18:00</div>
+    </div>
   </div>
 
   <div class="route-strip">체크아웃 → 신세카이·쓰텐카쿠 → 난바 쇼핑 → 간사이공항 → 출발 (18:00)</div>
@@ -1005,7 +987,7 @@ body {
     <div class="timeline-item">
       <div class="timeline-num">3</div>
       <div class="timeline-time">10:00</div>
-      <div class="timeline-title">&#129523; <a href="https://www.google.com/maps/search/Nankai+Namba+Station" target="_blank" class="place-link">난바역</a> 짐 보관</div>
+      <div class="timeline-title">&#129523; <a href="https://www.google.com/maps/search/Nankai+Namba+Station" target="_blank" rel="noopener" class="place-link">난바역</a> 짐 보관</div>
       <div class="timeline-desc">n·e·s·t 또는 코인로커</div>
     </div>
     <div class="timeline-item">
@@ -1017,7 +999,7 @@ body {
     <div class="timeline-item">
       <div class="timeline-num">5</div>
       <div class="timeline-time">11:00</div>
-      <div class="timeline-title">&#128508; <a href="https://www.google.com/maps/search/Shinsekai+Osaka" target="_blank" class="place-link">신세카이</a>·<a href="https://www.google.com/maps/search/Tsutenkaku" target="_blank" class="place-link">쓰텐카쿠</a> <img src="https://api.qrserver.com/v1/create-qr-code/?size=60x60&data=https://www.google.com/maps/search/Tsutenkaku" alt="QR" class="qr-inline"> 관광</div>
+      <div class="timeline-title">&#128508; <a href="https://www.google.com/maps/search/Shinsekai+Osaka" target="_blank" rel="noopener" class="place-link">신세카이</a>·<a href="https://www.google.com/maps/search/Tsutenkaku" target="_blank" rel="noopener" class="place-link">쓰텐카쿠</a> <img src="https://api.qrserver.com/v1/create-qr-code/?size=60x60&data=https://www.google.com/maps/search/Tsutenkaku" alt="QR" class="qr-inline"> 관광</div>
       <div class="timeline-desc"><span class="info-tag">약 60~90분</span></div>
     </div>
     <div class="timeline-item">
@@ -1036,7 +1018,7 @@ body {
       <div class="timeline-num">8</div>
       <div class="timeline-time">14:00</div>
       <div class="timeline-title">&#128717;&#65039; 난바 쇼핑 &amp; 마무리</div>
-      <div class="timeline-desc"><a href="https://www.google.com/maps/search/Namba+Parks" target="_blank" class="place-link">난바 파크스</a> / 난바 CITY / 도톤보리 주변<br><span class="info-tag">약 1시간</span></div>
+      <div class="timeline-desc"><a href="https://www.google.com/maps/search/Namba+Parks" target="_blank" rel="noopener" class="place-link">난바 파크스</a> / 난바 CITY / 도톤보리 주변<br><span class="info-tag">약 1시간</span></div>
     </div>
     <div class="timeline-item">
       <div class="timeline-num">9</div>
@@ -1047,7 +1029,7 @@ body {
     <div class="timeline-item">
       <div class="timeline-num">10</div>
       <div class="timeline-time">16:00</div>
-      <div class="timeline-title">&#9992;&#65039; <a href="https://www.google.com/maps/search/Kansai+International+Airport" target="_blank" class="place-link">공항</a> 도착</div>
+      <div class="timeline-title">&#9992;&#65039; <a href="https://www.google.com/maps/search/Kansai+International+Airport" target="_blank" rel="noopener" class="place-link">공항</a> 도착</div>
       <div class="timeline-desc">체크인 및 보안검색, 면세점</div>
     </div>
     <div class="timeline-item">
@@ -1061,58 +1043,47 @@ body {
   <div class="tip-box">
     <strong>⚠️ 4일차 TIP:</strong> 18:00 출발이므로 <strong>14:00~15:00 사이 공항 이동</strong>을 권장합니다 (최소 3시간 전 도착).
   </div>
-</div>
-</div>
+</section>
 
-<!-- ==================== SLIDE 8: TRANSPORT SUMMARY ==================== -->
-<div class="slide" id="slide-8">
-<div class="slide-inner">
-  <div class="slide-header">
-    <h1>&#128646; 주요 교통편 요약</h1>
-    <div class="subtitle">구간별 추천 교통편과 예상 소요 시간</div>
+<!-- ==================== TRANSPORT SUMMARY ==================== -->
+<section class="section" id="transport">
+  <div class="section-head">
+    <div class="section-icon">&#128646;</div>
+    <div>
+      <h2>주요 교통편 요약</h2>
+      <div class="subtitle">구간별 추천 교통편과 예상 소요 시간</div>
+    </div>
   </div>
 
   <div class="card">
-    <table class="summary-table">
-      <tr>
-        <th>구간</th>
-        <th>교통편 · 소요 시간</th>
-      </tr>
-      <tr><td><span class="day-pill" style="background:var(--day1)">D1</span>간사이공항 → 난바</td><td>난카이 공항급행 약 45분 / 라피트 약 34분</td></tr>
-      <tr><td>난바 → 마쓰야마치역</td><td>지하철 약 7분 (미도스지선 → 나가호리쓰루미료쿠치선)</td></tr>
-      <tr><td><span class="day-pill" style="background:var(--day3)">D3</span>마쓰야마치역 → USJ</td><td>지하철 + JR 환승 약 45~60분</td></tr>
-      <tr><td><span class="day-pill" style="background:var(--day4)">D4</span>난바 → 간사이공항</td><td>난카이 공항급행 약 45분 / 라피트 약 34분</td></tr>
-    </table>
+    <ul class="route-list">
+      <li><div class="route-from"><span class="day-pill" style="background:var(--day1)">D1</span>간사이공항 → 난바</div><div class="route-how">난카이 공항급행 약 45분 / 라피트 약 34분</div></li>
+      <li><div class="route-from">난바 → 마쓰야마치역</div><div class="route-how">지하철 약 7분 (미도스지선 → 나가호리쓰루미료쿠치선)</div></li>
+      <li><div class="route-from"><span class="day-pill" style="background:var(--day3)">D3</span>마쓰야마치역 → USJ</div><div class="route-how">지하철 + JR 환승 약 45~60분</div></li>
+      <li><div class="route-from"><span class="day-pill" style="background:var(--day4)">D4</span>난바 → 간사이공항</div><div class="route-how">난카이 공항급행 약 45분 / 라피트 약 34분</div></li>
+    </ul>
   </div>
-</div>
-</div>
+</section>
 
-<!-- ==================== SLIDE 9: CLOSING ==================== -->
-<div class="slide" id="slide-9">
-<div class="slide-inner title-slide">
-  <div class="title-flag">&#127983; &#9992;&#65039;</div>
+<!-- ==================== CLOSING ==================== -->
+<footer class="closing">
+  <div class="closing-flags">&#127983; &#9992;&#65039;</div>
   <div class="closing-msg">즐거운 여행 되세요! &#128156;</div>
-  <p class="title-sub">오사카 3박 4일 졸업여행 · 2026.12.12 ~ 12.15</p>
+  <p class="closing-sub">오사카 3박 4일 졸업여행 · 2026.12.12 ~ 12.15</p>
 
   <div class="day-legend">
-    <button class="day-chip" onclick="goTo(3)"><span class="day-dot" style="background:var(--day1)"></span><span><strong>1일차</strong> (12/12 토) – 파란색</span></button>
-    <button class="day-chip" onclick="goTo(4)"><span class="day-dot" style="background:var(--day2)"></span><span><strong>2일차</strong> (12/13 일) – 분홍색</span></button>
-    <button class="day-chip" onclick="goTo(5)"><span class="day-dot" style="background:var(--day3)"></span><span><strong>3일차</strong> (12/14 월) – 초록색</span></button>
-    <button class="day-chip" onclick="goTo(6)"><span class="day-dot" style="background:var(--day4)"></span><span><strong>4일차</strong> (12/15 화) – 주황색</span></button>
+    <a class="day-chip day1" href="#day1"><span class="day-dot">1</span><span><strong>1일차</strong> (12/12 토)<span class="chip-sub">파란색</span></span></a>
+    <a class="day-chip day2" href="#day2"><span class="day-dot">2</span><span><strong>2일차</strong> (12/13 일)<span class="chip-sub">분홍색</span></span></a>
+    <a class="day-chip day3" href="#day3"><span class="day-dot">3</span><span><strong>3일차</strong> (12/14 월)<span class="chip-sub">초록색</span></span></a>
+    <a class="day-chip day4" href="#day4"><span class="day-dot">4</span><span><strong>4일차</strong> (12/15 화)<span class="chip-sub">주황색</span></span></a>
   </div>
 
   <p class="footnote">★ 본 일정은 대략적인 계획으로, 현지 상황에 따라 시간과 동선이 변경될 수 있습니다.<br>최종 일정은 여행 전 최신 정보를 꼭 확인해 주세요.</p>
-</div>
-</div>
+</footer>
 
-</div><!-- end slides-wrapper -->
+</main>
 
-<!-- ===== NAVIGATION ===== -->
-<div class="nav-arrows">
-  <button class="nav-btn" id="prevBtn" onclick="goSlide(-1)" aria-label="이전">&#9664; 이전</button>
-  <span class="slide-indicator" id="slideIndicator">1 / 9</span>
-  <button class="nav-btn" id="nextBtn" onclick="goSlide(1)" aria-label="다음">다음 &#9654;</button>
-</div>
+<button class="to-top" id="toTop" aria-label="맨 위로" onclick="window.scrollTo({top:0, behavior:'smooth'})">&#9650;</button>
 
 <script>
 // ===== PASSWORD PROTECTION =====
@@ -1134,11 +1105,19 @@ body {
   function lsSet(k, v) { try { localStorage.setItem(k, v); } catch(e) {} }
   function lsDel(k) { try { localStorage.removeItem(k); } catch(e) {} }
 
+  function unlock() {
+    overlay.style.display = 'none';
+    document.body.style.overflow = '';
+  }
+
   // 이미 인증된 경우 바로 숨김
   if (lsGet(LS_KEY) === 'ok') {
-    overlay.style.display = 'none';
+    unlock();
     return;
   }
+  document.body.style.overflow = 'hidden';
+  // 데스크톱에서만 자동 포커스 (모바일 키보드 자동 팝업 방지)
+  if (window.matchMedia('(hover: hover)').matches) input.focus();
 
   // 쿨타임 체크
   function getCooldownRemaining() {
@@ -1179,7 +1158,8 @@ body {
     if (val === CORRECT) {
       lsSet(LS_KEY, 'ok');
       lsSet(FAIL_KEY, '0');
-      overlay.style.display = 'none';
+      input.blur();
+      unlock();
     } else {
       let fails = parseInt(lsGet(FAIL_KEY) || '0') + 1;
       lsSet(FAIL_KEY, fails);
@@ -1201,101 +1181,35 @@ body {
   });
 })();
 
-// ===== SLIDE NAVIGATION =====
-let currentSlide = 0;
-const slides = document.querySelectorAll('.slide');
-const totalSlides = slides.length;
-const wrapper = document.getElementById('slidesWrapper');
-const indicator = document.getElementById('slideIndicator');
-
-function updateSlide() {
-  wrapper.style.transform = `translateX(-${currentSlide * 100}vw)`;
-  indicator.textContent = `${currentSlide + 1} / ${totalSlides}`;
-  slides[currentSlide].scrollTop = 0;
-}
-
-function goSlide(dir) {
-  let newSlide = currentSlide + dir;
-  if (newSlide < 0) newSlide = totalSlides - 1;
-  else if (newSlide >= totalSlides) newSlide = 0;
-  currentSlide = newSlide;
-  updateSlide();
-}
-
-function goTo(index) {
-  currentSlide = Math.max(0, Math.min(totalSlides - 1, index));
-  updateSlide();
-}
-
-// Keyboard navigation
-document.addEventListener('keydown', function(e) {
-  if (document.getElementById('pw-overlay').style.display !== 'none') return;
-  if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
-    e.preventDefault();
-    goSlide(1);
-  } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
-    e.preventDefault();
-    goSlide(-1);
-  }
-});
-
-// ===== MOBILE SWIPE (robust) =====
+// ===== NAV: ACTIVE SECTION HIGHLIGHT =====
 (function() {
-  let startX = 0, startY = 0, startTime = 0;
-  let dirLocked = null; // 'h' or 'v' or null
+  const links = Array.from(document.querySelectorAll('.topnav a'));
+  const toTop = document.getElementById('toTop');
+  const navBar = document.querySelector('.topnav-inner');
+  const targets = links.map(a => document.querySelector(a.getAttribute('href')));
 
-  slides.forEach(function(slide) {
-    slide.addEventListener('touchstart', function(e) {
-      startX = e.touches[0].clientX;
-      startY = e.touches[0].clientY;
-      startTime = Date.now();
-      dirLocked = null;
-    }, { passive: true });
-
-    slide.addEventListener('touchmove', function(e) {
-      if (dirLocked === 'v') return;
-
-      const dx = e.touches[0].clientX - startX;
-      const dy = e.touches[0].clientY - startY;
-
-      if (dirLocked === null && (Math.abs(dx) > 8 || Math.abs(dy) > 8)) {
-        if (Math.abs(dx) > Math.abs(dy)) {
-          dirLocked = 'h';
-        } else {
-          dirLocked = 'v';
-          return;
-        }
+  function onScroll() {
+    const y = window.scrollY + 90;
+    let idx = -1;
+    targets.forEach((el, i) => { if (el && el.offsetTop <= y) idx = i; });
+    links.forEach((a, i) => {
+      const on = i === idx;
+      if (on && !a.classList.contains('active')) {
+        // 탭 바만 가로 스크롤 (scrollIntoView는 페이지 스크롤까지 건드려서 사용 안 함)
+        navBar.scrollTo({ left: a.offsetLeft - (navBar.clientWidth - a.offsetWidth) / 2, behavior: 'smooth' });
       }
-
-      if (dirLocked === 'h') {
-        e.preventDefault();
-      }
-    }, { passive: false });
-
-    slide.addEventListener('touchend', function(e) {
-      if (dirLocked !== 'h') return;
-
-      const dx = startX - e.changedTouches[0].clientX;
-      const elapsed = Date.now() - startTime;
-
-      // Swipe threshold: 40px minimum, within 600ms
-      if (Math.abs(dx) > 40 && elapsed < 600) {
-        if (dx > 0) goSlide(1);
-        else goSlide(-1);
-      }
-
-      dirLocked = null;
-    }, { passive: true });
-  });
+      a.classList.toggle('active', on);
+    });
+    toTop.classList.toggle('show', window.scrollY > 600);
+  }
+  let ticking = false;
+  window.addEventListener('scroll', function() {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function() { onScroll(); ticking = false; });
+  }, { passive: true });
+  onScroll();
 })();
-
-// ===== SLIDES WRAPPER STYLE =====
-wrapper.style.transition = 'transform 0.45s cubic-bezier(0.4, 0, 0.2, 1)';
-wrapper.style.width = `${totalSlides * 100}vw`;
-slides.forEach(slide => {
-  slide.style.minWidth = '100vw';
-  slide.style.width = '100vw';
-});
 
 // ===== CHECKBOX PERSISTENCE =====
 function toggleCheck(el) {
@@ -1338,9 +1252,7 @@ document.querySelectorAll('.check-item input[type="checkbox"]').forEach(cb => {
   });
 });
 
-// Init
 loadChecks();
-updateSlide();
 </script>
 </body>
 </html>
