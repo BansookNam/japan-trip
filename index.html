@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>오사카 3박 4일 여행 가이드</title>
+<title>오사카 3박 4일 가족여행 가이드</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 /* ===== RESET & BASE ===== */
@@ -489,6 +489,30 @@ body {
 .place-link:hover { color: var(--primary); }
 .qr-inline { display: inline-block; width: 50px; height: 50px; vertical-align: middle; margin-left: 6px; border-radius: 4px; border: 1px solid var(--border); }
 
+/* ===== HOTEL ===== */
+.hotel-name { font-size: 1.1rem; font-weight: 800; color: var(--primary); margin-bottom: 6px; }
+.hotel-addr { font-size: 0.88rem; line-height: 1.7; color: var(--text); }
+.hotel-addr .jp, .timeline-title .jp { font-size: 0.8rem; font-weight: 400; color: var(--text-light); }
+
+/* ===== SUB LIST (shopping block) ===== */
+.sub-list {
+  margin-top: 8px;
+  background: var(--tint, var(--bg-card-alt));
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 6px 14px;
+}
+.sub-item {
+  display: flex;
+  gap: 12px;
+  align-items: baseline;
+  padding: 7px 0;
+  font-size: 0.86rem;
+  border-bottom: 1px dashed var(--border);
+}
+.sub-item:last-child { border-bottom: none; }
+.sub-time { font-weight: 700; color: var(--accent); font-size: 0.8rem; min-width: 42px; }
+
 /* ===== RESPONSIVE ===== */
 @media (max-width: 700px) {
   html { font-size: 16px; }
@@ -592,19 +616,19 @@ body {
 <div class="slide" id="slide-1">
 <div class="slide-inner title-slide">
   <div class="title-flag">&#x1F1F0;&#x1F1F7; &#10145; &#x1F1EF;&#x1F1F5;</div>
-  <h1>오사카 3박 4일<br>여행 가이드</h1>
+  <h1>오사카 3박 4일<br>가족여행 가이드</h1>
   <p class="title-sub">2026.12.12(토) ~ 12.15(화) | 3박 4일</p>
 
   <div class="overview-grid">
     <div class="overview-card">
       <div class="overview-icon">&#9992;&#65039;</div>
-      <div class="overview-label">공항</div>
-      <div class="overview-value">간사이공항 (KIX)<br>난카이 라피트 / 공항급행</div>
+      <div class="overview-label">항공</div>
+      <div class="overview-value">12/12 간사이공항 도착 09:30<br>12/15 간사이공항 출발 18:00</div>
     </div>
     <div class="overview-card">
       <div class="overview-icon">&#127976;</div>
       <div class="overview-label">숙소</div>
-      <div class="overview-value">미쓰아마치 스미요시 6-26<br><span style="font-size:0.75rem; font-weight:500; color:var(--warning);">정확한 주소 확인 필요</span></div>
+      <div class="overview-value">eni.suite macchamachi<br><span style="font-size:0.78rem; font-weight:500; color:var(--text-light);">마쓰야마치역 도보 약 3분</span></div>
     </div>
     <div class="overview-card">
       <div class="overview-icon">&#127906;</div>
@@ -614,15 +638,15 @@ body {
     <div class="overview-card">
       <div class="overview-icon">&#128647;</div>
       <div class="overview-label">주요 거점</div>
-      <div class="overview-value">난바역<br>짐 보관 · 환승 중심</div>
+      <div class="overview-value">마쓰야마치역 · 난바역<br>짐 보관 · 환승 중심</div>
     </div>
   </div>
 
   <div class="day-legend">
-    <button class="day-chip" onclick="goTo(2)"><span class="day-dot" style="background:var(--day1)"></span><span><strong>1일차</strong> (12/12 토)<span class="chip-sub">나카노시마 · 빛의 마르셰</span></span></button>
-    <button class="day-chip" onclick="goTo(3)"><span class="day-dot" style="background:var(--day2)"></span><span><strong>2일차</strong> (12/13 일)<span class="chip-sub">구로몬 · 덴덴타운 · 도톤보리</span></span></button>
-    <button class="day-chip" onclick="goTo(4)"><span class="day-dot" style="background:var(--day3)"></span><span><strong>3일차</strong> (12/14 월)<span class="chip-sub">유니버설 스튜디오 재팬</span></span></button>
-    <button class="day-chip" onclick="goTo(5)"><span class="day-dot" style="background:var(--day4)"></span><span><strong>4일차</strong> (12/15 화)<span class="chip-sub">신세카이 · 난바 쇼핑 · 귀국</span></span></button>
+    <button class="day-chip" onclick="goTo(3)"><span class="day-dot" style="background:var(--day1)"></span><span><strong>1일차</strong> (12/12 토)<span class="chip-sub">차니와 · 나카노시마 일루미네이션</span></span></button>
+    <button class="day-chip" onclick="goTo(4)"><span class="day-dot" style="background:var(--day2)"></span><span><strong>2일차</strong> (12/13 일)<span class="chip-sub">구로몬 · 난바 쇼핑 · 도톤보리</span></span></button>
+    <button class="day-chip" onclick="goTo(5)"><span class="day-dot" style="background:var(--day3)"></span><span><strong>3일차</strong> (12/14 월)<span class="chip-sub">유니버설 스튜디오 재팬</span></span></button>
+    <button class="day-chip" onclick="goTo(6)"><span class="day-dot" style="background:var(--day4)"></span><span><strong>4일차</strong> (12/15 화)<span class="chip-sub">신세카이 · 난바 쇼핑 · 귀국</span></span></button>
   </div>
 
   <p style="margin-top:24px; font-size:0.78rem; color:var(--text-light);">
@@ -631,33 +655,70 @@ body {
 </div>
 </div>
 
-<!-- ==================== SLIDE 2: CHECKLIST ==================== -->
+<!-- ==================== SLIDE 2: FLIGHT + HOTEL ==================== -->
 <div class="slide" id="slide-2">
 <div class="slide-inner">
   <div class="slide-header">
-    <h1>&#9989; 꼭 확인하세요!</h1>
+    <h1>&#127976; 항공 + 숙소 정보</h1>
+    <div class="subtitle">간사이공항 도착·출발 시간과 숙소 위치</div>
+  </div>
+
+  <div class="card">
+    <h3>&#9992;&#65039; 항공 정보</h3>
+    <table class="summary-table">
+      <tr><th>날짜</th><th>구분</th><th>시간</th></tr>
+      <tr><td><strong>12/12 (토)</strong></td><td>간사이공항 도착</td><td>09:30</td></tr>
+      <tr><td><strong>12/15 (화)</strong></td><td>간사이공항 출발</td><td>18:00</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>&#127968; 숙소 정보</h3>
+    <div class="hotel-name"><a href="https://www.google.com/maps/search/%E5%A4%A7%E9%98%AA%E5%BA%9C%E5%A4%A7%E9%98%AA%E5%B8%82%E4%B8%AD%E5%A4%AE%E5%8C%BA%E6%9D%BE%E5%B1%8B%E7%94%BA%E4%BD%8F%E5%90%896-26" target="_blank" class="place-link">eni.suite macchamachi</a> <img src="https://api.qrserver.com/v1/create-qr-code/?size=60x60&data=https://www.google.com/maps/search/%E5%A4%A7%E9%98%AA%E5%BA%9C%E5%A4%A7%E9%98%AA%E5%B8%82%E4%B8%AD%E5%A4%AE%E5%8C%BA%E6%9D%BE%E5%B1%8B%E7%94%BA%E4%BD%8F%E5%90%896-26" alt="QR" class="qr-inline"></div>
+    <div class="hotel-addr">
+      〒540-0017<br>
+      오사카부 오사카시 츄오구 마츠야마치 스미요시 6-26<br>
+      eninal MACCHAMACHI 4F<br>
+      <span class="jp">大阪府大阪市中央区松屋町住吉 6-26 eninal MACCHAMACHI 4F</span>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="info-tag">체크인 16:00 이후</span>
+      <span class="info-tag">체크아웃 10:00</span>
+      <span class="info-tag info">&#128647; <a href="https://www.google.com/maps/search/Matsuyamachi+Station+Osaka" target="_blank" class="place-link">마쓰야마치역(松屋町駅)</a> 3번 출구, 도보 약 3분</span>
+    </div>
+  </div>
+
+  <div class="map-container">
+    <div class="map-label">&#128205; 숙소 위치: 마쓰야마치역 3번 출구 → eni.suite macchamachi (4F)</div>
+    <iframe src="https://maps.google.com/maps?q=%E5%A4%A7%E9%98%AA%E5%BA%9C%E5%A4%A7%E9%98%AA%E5%B8%82%E4%B8%AD%E5%A4%AE%E5%8C%BA%E6%9D%BE%E5%B1%8B%E7%94%BA%E4%BD%8F%E5%90%896-26&z=17&output=embed" allowfullscreen loading="lazy" title="숙소 지도"></iframe>
+  </div>
+</div>
+</div>
+
+<!-- ==================== SLIDE 3: CHECKLIST ==================== -->
+<div class="slide" id="slide-3">
+<div class="slide-inner">
+  <div class="slide-header">
+    <h1>&#9989; 여행 체크 포인트</h1>
     <div class="subtitle">출발 전 확인할 사항 (체크하면 이 기기에 저장돼요)</div>
   </div>
 
   <div class="check-card">
-    <h4>&#128203; 출발 전 확인</h4>
+    <h4>&#128203; 체크 포인트</h4>
     <div class="check-item" onclick="toggleCheck(this)">
-      <input type="checkbox" data-key="chk_chaniwa"><label><strong>차니와</strong>: 토요일 한정 영업, 당일 운영시간 확인</label>
+      <input type="checkbox" data-key="v2_arrival"><label><strong>1일차 공항 도착</strong>은 09:30 (일정에 시간 반영 완료)</label>
     </div>
     <div class="check-item" onclick="toggleCheck(this)">
-      <input type="checkbox" data-key="chk_library"><label><strong>나카노시마 도서관</strong>: 토요일 17시 폐관 (일요일 휴관)</label>
+      <input type="checkbox" data-key="v2_chaniwa"><label><strong>차니와</strong>는 토요일만 영업 (12:00~17:30)</label>
     </div>
     <div class="check-item" onclick="toggleCheck(this)">
-      <input type="checkbox" data-key="chk_mount"><label><strong>MOUNT Coffee</strong>: 영업 여부 및 메뉴 확인</label>
+      <input type="checkbox" data-key="v2_library"><label><strong>나카노시마 도서관</strong> 토요일 17:00까지, 일요일 휴관</label>
     </div>
     <div class="check-item" onclick="toggleCheck(this)">
-      <input type="checkbox" data-key="chk_usj"><label><strong>USJ</strong>: 12월 14일 운영시간, 입장권, 닌텐도 월드 입장 조건 확인</label>
+      <input type="checkbox" data-key="v2_usj"><label><strong>USJ</strong> 운영시간 및 익스프레스 패스 사전 확인</label>
     </div>
     <div class="check-item" onclick="toggleCheck(this)">
-      <input type="checkbox" data-key="chk_flight"><label><strong>항공편</strong>: 간사이공항 출발 터미널, 체크인 마감 시각 확인</label>
-    </div>
-    <div class="check-item" onclick="toggleCheck(this)">
-      <input type="checkbox" data-key="chk_hotel"><label><strong>숙소</strong>: 정확한 주소 기준으로 가장 가까운 역과 짐 보관 위치 확인</label>
+      <input type="checkbox" data-key="v2_lastday"><label><strong>마지막 날</strong> 14:00~15:00 공항 이동 권장 (18:00 출발이므로 최소 3시간 전 도착)</label>
     </div>
   </div>
 
@@ -667,148 +728,195 @@ body {
 </div>
 </div>
 
-<!-- ==================== SLIDE 3: D1 (12/12) ==================== -->
-<div class="slide day1" id="slide-3">
+<!-- ==================== SLIDE 4: D1 (12/12) ==================== -->
+<div class="slide day1" id="slide-4">
 <div class="slide-inner">
   <div class="slide-header">
-    <h1><span class="day-badge">1일차</span> 나카노시마 + 빛의 마르셰</h1>
+    <h1><span class="day-badge">1일차</span> 차니와 + 나카노시마 일루미네이션</h1>
     <div class="subtitle"><span class="day-date">12월 12일 (토) | 공항 도착 · 난바 · 나카노시마</span></div>
   </div>
 
-  <div class="route-strip">공항 → 난바 짐보관 → 차니와 → 나카노시마 도서관 → MOUNT Coffee → 일루미네이션 → 숙소</div>
+  <div class="route-strip">간사이공항 도착 → 난바 짐보관 → 차니와 → 나카노시마 → 일루미네이션 → 숙소</div>
 
   <div class="map-container">
-    <div class="map-label">&#128205; 1일차 동선 (대략적인 경로): 난바 → 나카노시마 → 난바</div>
-    <iframe src="https://maps.google.com/maps?saddr=Nankai+Namba+Station&daddr=Osaka+Prefectural+Nakanoshima+Library+to:Osaka+City+Central+Public+Hall+to:Namba+Station&output=embed" allowfullscreen loading="lazy" title="1일차 지도"></iframe>
-  </div>
-
-  <div class="timeline">
-    <div class="timeline-item">
-      <div class="timeline-num">1</div>
-      <div class="timeline-time">07:00</div>
-      <div class="timeline-title">&#9992;&#65039; <a href="https://www.google.com/maps/search/Kansai+International+Airport" target="_blank" class="place-link">간사이공항</a> <img src="https://api.qrserver.com/v1/create-qr-code/?size=60x60&data=https://www.google.com/maps/search/Kansai+International+Airport" alt="QR" class="qr-inline"> 출발</div>
-      <div class="timeline-desc">난카이 공항급행 / 라피트<br><span class="info-tag">약 35~45분</span></div>
-    </div>
-    <div class="timeline-item">
-      <div class="timeline-num">2</div>
-      <div class="timeline-time">08:00</div>
-      <div class="timeline-title">&#129523; <a href="https://www.google.com/maps/search/Nankai+Namba+Station" target="_blank" class="place-link">난바역</a> <img src="https://api.qrserver.com/v1/create-qr-code/?size=60x60&data=https://www.google.com/maps/search/Nankai+Namba+Station" alt="QR" class="qr-inline"> 도착 → 짐 보관</div>
-      <div class="timeline-desc">n·e·s·t 난카이 난바역 (역 2층 중앙 개찰구 근처)</div>
-    </div>
-    <div class="timeline-item">
-      <div class="timeline-num">3</div>
-      <div class="timeline-time">12:00</div>
-      <div class="timeline-title">&#127861; <a href="https://www.google.com/maps/search/Chaniwa+Osaka" target="_blank" class="place-link">차니와</a> <img src="https://api.qrserver.com/v1/create-qr-code/?size=60x60&data=https://www.google.com/maps/search/Chaniwa+Osaka" alt="QR" class="qr-inline"> <span class="jp">(寺カフェ 茶庭)</span></div>
-      <div class="timeline-desc">난바에서 택시 약 10분<br><span class="info-tag">영업 12:00~17:30</span> <span class="info-tag warning">토요일만</span></div>
-    </div>
-    <div class="timeline-item">
-      <div class="timeline-num">4</div>
-      <div class="timeline-time">13:30</div>
-      <div class="timeline-title">&#127963; <a href="https://www.google.com/maps/search/Osaka+Prefectural+Nakanoshima+Library" target="_blank" class="place-link">나카노시마 도서관</a> <img src="https://api.qrserver.com/v1/create-qr-code/?size=60x60&data=https://www.google.com/maps/search/Osaka+Prefectural+Nakanoshima+Library" alt="QR" class="qr-inline"></div>
-      <div class="timeline-desc">택시 또는 지하철+도보 (약 15~30분)<br><span class="info-tag">토요일 09:00 ~ 17:00</span></div>
-    </div>
-    <div class="timeline-item">
-      <div class="timeline-num">5</div>
-      <div class="timeline-time">14:30</div>
-      <div class="timeline-title">&#9749; <a href="https://www.google.com/maps/search/MOUNT+Coffee+Osaka" target="_blank" class="place-link">MOUNT Coffee</a> <img src="https://api.qrserver.com/v1/create-qr-code/?size=60x60&data=https://www.google.com/maps/search/MOUNT+Coffee+Osaka" alt="QR" class="qr-inline"></div>
-      <div class="timeline-desc">도보 약 10~15분<br><span class="info-tag">토요일 11:00~18:00</span></div>
-    </div>
-    <div class="timeline-item">
-      <div class="timeline-num">6</div>
-      <div class="timeline-time">16:00</div>
-      <div class="timeline-title">&#10024; <a href="https://www.google.com/maps/search/Nakanoshima+Park+Osaka" target="_blank" class="place-link">나카노시마 공원</a> <img src="https://api.qrserver.com/v1/create-qr-code/?size=60x60&data=https://www.google.com/maps/search/Nakanoshima+Park+Osaka" alt="QR" class="qr-inline"> &amp; 빛의 마르셰</div>
-      <div class="timeline-desc"><span class="info-tag">마르셰 16:00~</span> <span class="info-tag">조명 17:00~</span><br><a href="https://www.google.com/maps/search/Osaka+City+Central+Public+Hall" target="_blank" class="place-link">중앙공회당</a> 매핑 <span class="info-tag info">17:30~21:30</span></div>
-    </div>
-    <div class="timeline-item">
-      <div class="timeline-num">7</div>
-      <div class="timeline-time">18:15</div>
-      <div class="timeline-title">&#127860; 난바로 이동 → 저녁 식사</div>
-      <div class="timeline-desc">지하철 약 15분 / 도보<br>타코야키, 오코노미야키 등</div>
-    </div>
-    <div class="timeline-item">
-      <div class="timeline-num">8</div>
-      <div class="timeline-time">20:00</div>
-      <div class="timeline-title">&#128719; 숙소 이동 및 휴식</div>
-      <div class="timeline-desc">미쓰아마치 스미요시 6-26</div>
-    </div>
-  </div>
-
-  <div class="tip-box">
-    <strong>⚠️ 1일차 TIP:</strong> <strong>차니와</strong>는 토요일 한정 영업이니 당일 운영시간을 꼭 확인하세요.<br>
-    <strong>나카노시마 도서관</strong>은 토요일 17시 폐관 (일요일 휴관)입니다.
-  </div>
-</div>
-</div>
-
-<!-- ==================== SLIDE 4: D2 (12/13) ==================== -->
-<div class="slide day2" id="slide-4">
-<div class="slide-inner">
-  <div class="slide-header">
-    <h1><span class="day-badge">2일차</span> 구로몬 + 덴덴타운 + 도톤보리</h1>
-    <div class="subtitle"><span class="day-date">12월 13일 (일) | 난바 · 닛폰바시 · 신사이바시</span></div>
-  </div>
-
-  <div class="route-strip">숙소 → 난바 야사카 신사 → 구로몬 시장 → 덴덴타운 → 도톤보리 → 숙소</div>
-
-  <div class="map-container">
-    <div class="map-label">&#128205; 2일차 동선</div>
-    <iframe src="https://maps.google.com/maps?saddr=Namba+Station+Osaka&daddr=Namba+Yasaka+Shrine+to:Kuromon+Market+to:Den+Den+Town+Osaka+to:Dotonbori+to:Shinsaibashi+Osaka&output=embed" allowfullscreen loading="lazy" title="2일차 지도"></iframe>
+    <div class="map-label">&#128205; 1일차 주요 이동 경로: 난바역 → 차니와 → 나카노시마 → 마쓰야마치역(숙소)</div>
+    <iframe src="https://maps.google.com/maps?saddr=Nankai+Namba+Station&daddr=Osaka+Prefectural+Nakanoshima+Library+to:Osaka+City+Central+Public+Hall+to:Namba+Station+to:Matsuyamachi+Station+Osaka&output=embed" allowfullscreen loading="lazy" title="1일차 지도"></iframe>
   </div>
 
   <div class="timeline">
     <div class="timeline-item">
       <div class="timeline-num">1</div>
       <div class="timeline-time">09:30</div>
-      <div class="timeline-title">&#9961;&#65039; <a href="https://www.google.com/maps/search/Namba+Yasaka+Shrine" target="_blank" class="place-link">난바 야사카 신사</a> <img src="https://api.qrserver.com/v1/create-qr-code/?size=60x60&data=https://www.google.com/maps/search/Namba+Yasaka+Shrine" alt="QR" class="qr-inline"> <span class="info-tag info">외관만</span></div>
-      <div class="timeline-desc">숙소에서 도보 또는 지하철·도보 (약 20~30분)</div>
+      <div class="timeline-title">&#9992;&#65039; <a href="https://www.google.com/maps/search/Kansai+International+Airport" target="_blank" class="place-link">간사이공항</a> <img src="https://api.qrserver.com/v1/create-qr-code/?size=60x60&data=https://www.google.com/maps/search/Kansai+International+Airport" alt="QR" class="qr-inline"> 도착</div>
+      <div class="timeline-desc">입국심사 및 수하물 수령</div>
     </div>
     <div class="timeline-item">
       <div class="timeline-num">2</div>
       <div class="timeline-time">10:30</div>
-      <div class="timeline-title">&#128722; <a href="https://www.google.com/maps/search/Kuromon+Market+Osaka" target="_blank" class="place-link">구로몬 시장</a> <img src="https://api.qrserver.com/v1/create-qr-code/?size=60x60&data=https://www.google.com/maps/search/Kuromon+Market+Osaka" alt="QR" class="qr-inline"></div>
-      <div class="timeline-desc">도보 약 15~20분<br><span class="info-tag">체류 약 45~60분</span></div>
+      <div class="timeline-title">&#128646; 난바로 이동</div>
+      <div class="timeline-desc"><span class="info-tag">난카이 공항급행 약 45분</span> <span class="info-tag">라피트 약 34분</span></div>
     </div>
     <div class="timeline-item">
       <div class="timeline-num">3</div>
-      <div class="timeline-time">12:00</div>
-      <div class="timeline-title">&#127836; 난바·닛폰바시에서 점심</div>
-      <div class="timeline-desc">라멘, 우동, 돈카츠 등</div>
+      <div class="timeline-time">11:15</div>
+      <div class="timeline-title">&#129523; <a href="https://www.google.com/maps/search/Nankai+Namba+Station" target="_blank" class="place-link">난카이 난바역</a> <img src="https://api.qrserver.com/v1/create-qr-code/?size=60x60&data=https://www.google.com/maps/search/Nankai+Namba+Station" alt="QR" class="qr-inline"> 도착</div>
+      <div class="timeline-desc">짐 보관 (n·e·s·t 또는 코인로커)</div>
     </div>
     <div class="timeline-item">
       <div class="timeline-num">4</div>
-      <div class="timeline-time">13:00</div>
-      <div class="timeline-title">&#127918; <a href="https://www.google.com/maps/search/Den+Den+Town+Osaka" target="_blank" class="place-link">덴덴타운</a> <img src="https://api.qrserver.com/v1/create-qr-code/?size=60x60&data=https://www.google.com/maps/search/Den+Den+Town+Osaka" alt="QR" class="qr-inline"></div>
-      <div class="timeline-desc">도보 약 10~15분<br><span class="info-tag">체류 약 1~2시간</span></div>
+      <div class="timeline-time">11:45</div>
+      <div class="timeline-title">&#128694; 차니와 이동</div>
+      <div class="timeline-desc"><a href="https://www.google.com/maps/search/Yotsubashi+Station" target="_blank" class="place-link">요쓰바시역</a> 방면 지하철 약 7분</div>
     </div>
     <div class="timeline-item">
       <div class="timeline-num">5</div>
-      <div class="timeline-time">15:30</div>
-      <div class="timeline-title">&#128717;&#65039; <a href="https://www.google.com/maps/search/Dotonbori+Osaka" target="_blank" class="place-link">도톤보리</a> <img src="https://api.qrserver.com/v1/create-qr-code/?size=60x60&data=https://www.google.com/maps/search/Dotonbori+Osaka" alt="QR" class="qr-inline"> · <a href="https://www.google.com/maps/search/Shinsaibashi-suji+Osaka" target="_blank" class="place-link">신사이바시</a></div>
-      <div class="timeline-desc">도보 약 10~20분<br>간식, 쇼핑, 사진</div>
+      <div class="timeline-time">12:15</div>
+      <div class="timeline-title">&#127861; <a href="https://www.google.com/maps/search/Chaniwa+Osaka" target="_blank" class="place-link">차니와</a> <img src="https://api.qrserver.com/v1/create-qr-code/?size=60x60&data=https://www.google.com/maps/search/Chaniwa+Osaka" alt="QR" class="qr-inline"> <span class="jp">(寺カフェ 茶庭)</span></div>
+      <div class="timeline-desc">카페 &amp; 점심<br><span class="info-tag">영업 12:00~17:30</span> <span class="info-tag warning">토요일 한정 영업</span></div>
     </div>
     <div class="timeline-item">
       <div class="timeline-num">6</div>
-      <div class="timeline-time">18:00</div>
-      <div class="timeline-title">&#128719; 난바에서 저녁 식사 후 숙소 복귀</div>
-      <div class="timeline-desc">도보 또는 지하철 (약 15~20분)</div>
+      <div class="timeline-time">14:00</div>
+      <div class="timeline-title">&#127963; <a href="https://www.google.com/maps/search/Osaka+Prefectural+Nakanoshima+Library" target="_blank" class="place-link">나카노시마 도서관</a> <img src="https://api.qrserver.com/v1/create-qr-code/?size=60x60&data=https://www.google.com/maps/search/Osaka+Prefectural+Nakanoshima+Library" alt="QR" class="qr-inline"></div>
+      <div class="timeline-desc">내부 관람<br><span class="info-tag warning">토요일 17:00까지</span></div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-num">7</div>
+      <div class="timeline-time">15:10</div>
+      <div class="timeline-title">&#9749; <a href="https://www.google.com/maps/search/MOUNT+KITAHAMA+Osaka" target="_blank" class="place-link">MOUNT KITAHAMA</a> <img src="https://api.qrserver.com/v1/create-qr-code/?size=60x60&data=https://www.google.com/maps/search/MOUNT+KITAHAMA+Osaka" alt="QR" class="qr-inline"></div>
+      <div class="timeline-desc">강변 카페<br><span class="info-tag">라스트오더 17:30</span></div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-num">8</div>
+      <div class="timeline-time">17:00</div>
+      <div class="timeline-title">&#10024; <a href="https://www.google.com/maps/search/Nakanoshima+Park+Osaka" target="_blank" class="place-link">나카노시마 일루미네이션</a> <img src="https://api.qrserver.com/v1/create-qr-code/?size=60x60&data=https://www.google.com/maps/search/Nakanoshima+Park+Osaka" alt="QR" class="qr-inline"></div>
+      <div class="timeline-desc">약 17:00 점등, 강변 산책</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-num">9</div>
+      <div class="timeline-time">19:00</div>
+      <div class="timeline-title">&#127860; 난바로 이동</div>
+      <div class="timeline-desc">저녁 식사 및 짐 찾기</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-num">10</div>
+      <div class="timeline-time">20:00</div>
+      <div class="timeline-title">&#128647; 숙소 이동 (마쓰야마치역)</div>
+      <div class="timeline-desc">난바 → 마쓰야마치역 약 7분</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-num">11</div>
+      <div class="timeline-time">20:15</div>
+      <div class="timeline-title">&#127968; 숙소 도착 · 체크인</div>
+      <div class="timeline-desc">eni.suite macchamachi <span class="info-tag">16:00 이후 체크인 가능</span></div>
+    </div>
+  </div>
+
+  <div class="tip-box">
+    <strong>⚠️ 1일차 TIP:</strong> <strong>차니와</strong>는 토요일만 영업 (12:00~17:30)합니다.<br>
+    <strong>나카노시마 도서관</strong>은 토요일 17:00까지 운영하고 일요일은 휴관입니다.
+  </div>
+</div>
+</div>
+
+<!-- ==================== SLIDE 5: D2 (12/13) ==================== -->
+<div class="slide day2" id="slide-5">
+<div class="slide-inner">
+  <div class="slide-header">
+    <h1><span class="day-badge">2일차</span> 구로몬 + 난바 쇼핑 + 도톤보리</h1>
+    <div class="subtitle"><span class="day-date">12월 13일 (일) | 난바 · 닛폰바시 · 신사이바시</span></div>
+  </div>
+
+  <div class="route-strip">난바 야사카 신사 → 구로몬 시장 → 덴덴타운 → 난바 파크스/난바 CITY 쇼핑 → 도톤보리 → 신사이바시</div>
+
+  <div class="map-container">
+    <div class="map-label">&#128205; 2일차 주요 이동 경로</div>
+    <iframe src="https://maps.google.com/maps?saddr=Matsuyamachi+Station+Osaka&daddr=Namba+Yasaka+Shrine+to:Kuromon+Market+to:Den+Den+Town+Osaka+to:Namba+Parks+to:Dotonbori+to:Shinsaibashi+PARCO+to:Matsuyamachi+Station+Osaka&output=embed" allowfullscreen loading="lazy" title="2일차 지도"></iframe>
+  </div>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-num">1</div>
+      <div class="timeline-time">09:00</div>
+      <div class="timeline-title">&#128647; 숙소 출발 → 난바 이동</div>
+      <div class="timeline-desc">마쓰야마치역 → 난바역 약 7분</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-num">2</div>
+      <div class="timeline-time">09:30</div>
+      <div class="timeline-title">&#9961;&#65039; <a href="https://www.google.com/maps/search/Namba+Yasaka+Shrine" target="_blank" class="place-link">난바 야사카 신사</a> <img src="https://api.qrserver.com/v1/create-qr-code/?size=60x60&data=https://www.google.com/maps/search/Namba+Yasaka+Shrine" alt="QR" class="qr-inline"></div>
+      <div class="timeline-desc">사자머리 신사</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-num">3</div>
+      <div class="timeline-time">10:30</div>
+      <div class="timeline-title">&#128722; <a href="https://www.google.com/maps/search/Kuromon+Market+Osaka" target="_blank" class="place-link">구로몬 시장</a> <img src="https://api.qrserver.com/v1/create-qr-code/?size=60x60&data=https://www.google.com/maps/search/Kuromon+Market+Osaka" alt="QR" class="qr-inline"></div>
+      <div class="timeline-desc">먹거리 &amp; 간식</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-num">4</div>
+      <div class="timeline-time">12:00</div>
+      <div class="timeline-title">&#127836; 점심 식사</div>
+      <div class="timeline-desc">라멘, 우동, 돈카츠 등</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-num">5</div>
+      <div class="timeline-time">13:00</div>
+      <div class="timeline-title">&#127918; <a href="https://www.google.com/maps/search/Den+Den+Town+Osaka" target="_blank" class="place-link">덴덴타운</a> <img src="https://api.qrserver.com/v1/create-qr-code/?size=60x60&data=https://www.google.com/maps/search/Den+Den+Town+Osaka" alt="QR" class="qr-inline"> (닛폰바시)</div>
+      <div class="timeline-desc">게임 · 애니메이션 · 전자제품</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-num">6</div>
+      <div class="timeline-time">14:15</div>
+      <div class="timeline-title">&#128717;&#65039; <a href="https://www.google.com/maps/search/Namba+Parks" target="_blank" class="place-link">난바 파크스</a> / <a href="https://www.google.com/maps/search/Namba+CITY" target="_blank" class="place-link">난바 CITY</a> 쇼핑</div>
+      <div class="sub-list">
+        <div class="sub-item"><span class="sub-time">14:15</span><span><strong>스탠다드 프로덕츠</strong> (난바 파크스 1F)</span></div>
+        <div class="sub-item"><span class="sub-time">14:50</span><span><strong>로프트</strong> (난바 파크스 5F)</span></div>
+        <div class="sub-item"><span class="sub-time">15:20</span><span><strong>무지</strong> (난바 CITY 남관 2F)</span></div>
+        <div class="sub-item"><span class="sub-time">15:50</span><span><strong>칼디</strong> (난바 CITY 본관 1F)</span></div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-num">7</div>
+      <div class="timeline-time">16:15</div>
+      <div class="timeline-title">&#127747; <a href="https://www.google.com/maps/search/Dotonbori+Osaka" target="_blank" class="place-link">도톤보리</a> <img src="https://api.qrserver.com/v1/create-qr-code/?size=60x60&data=https://www.google.com/maps/search/Dotonbori+Osaka" alt="QR" class="qr-inline"></div>
+      <div class="timeline-desc">글리코상, 간식, 쇼핑</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-num">8</div>
+      <div class="timeline-time">17:15</div>
+      <div class="timeline-title">&#128717;&#65039; <a href="https://www.google.com/maps/search/Shinsaibashi+PARCO" target="_blank" class="place-link">신사이바시 PARCO</a> <img src="https://api.qrserver.com/v1/create-qr-code/?size=60x60&data=https://www.google.com/maps/search/Shinsaibashi+PARCO" alt="QR" class="qr-inline"> (핸즈)</div>
+      <div class="timeline-desc">구 도큐핸즈, 9~11F</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-num">9</div>
+      <div class="timeline-time">18:30</div>
+      <div class="timeline-title">&#127860; 저녁 식사</div>
+      <div class="timeline-desc">오코노미야키, 이자카야 등</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-num">10</div>
+      <div class="timeline-time">19:30</div>
+      <div class="timeline-title">&#127968; 숙소 복귀</div>
+      <div class="timeline-desc">난바역 → 마쓰야마치역 약 7분</div>
     </div>
   </div>
 </div>
 </div>
 
-<!-- ==================== SLIDE 5: D3 (12/14) ==================== -->
-<div class="slide day3" id="slide-5">
+<!-- ==================== SLIDE 6: D3 (12/14) ==================== -->
+<div class="slide day3" id="slide-6">
 <div class="slide-inner">
   <div class="slide-header">
     <h1><span class="day-badge">3일차</span> 유니버설 스튜디오 재팬</h1>
     <div class="subtitle"><span class="day-date">12월 14일 (월) | USJ 종일</span></div>
   </div>
 
-  <div class="route-strip">숙소 → 지하철·JR 환승 → USJ 종일</div>
+  <div class="route-strip">숙소 → 지하철·JR 환승 → 유니버설 스튜디오 재팬 → 하루 종일 → 숙소</div>
 
   <div class="map-container">
-    <div class="map-label">&#128205; 3일차 동선: 숙소 → 니시쿠조역 → 유니버설시티역 → USJ</div>
-    <iframe src="https://maps.google.com/maps?saddr=Namba+Station+Osaka&daddr=Nishikujo+Station+to:Universal+City+Station+to:Universal+Studios+Japan&output=embed" allowfullscreen loading="lazy" title="3일차 지도"></iframe>
+    <div class="map-label">&#128205; 3일차 주요 이동 경로: 마쓰야마치역 → 나가호리바시 → 벤텐초 → 유니버설시티역</div>
+    <iframe src="https://maps.google.com/maps?saddr=Matsuyamachi+Station+Osaka&daddr=Bentencho+Station+to:Universal+City+Station+to:Universal+Studios+Japan&output=embed" allowfullscreen loading="lazy" title="3일차 지도"></iframe>
   </div>
 
   <div class="timeline">
@@ -816,112 +924,158 @@ body {
       <div class="timeline-num">1</div>
       <div class="timeline-time">07:00</div>
       <div class="timeline-title">&#128694; 숙소 출발</div>
-      <div class="timeline-desc">도보 → 지하철역 이동</div>
+      <div class="timeline-desc">마쓰야마치역 이동 (도보 3분)</div>
     </div>
     <div class="timeline-item">
       <div class="timeline-num">2</div>
-      <div class="timeline-time">07:30</div>
-      <div class="timeline-title">&#128646; 지하철·JR 환승 → USJ</div>
-      <div class="timeline-desc"><a href="https://www.google.com/maps/search/Nishikujo+Station" target="_blank" class="place-link">니시쿠조역</a> → <a href="https://www.google.com/maps/search/Universal+City+Station" target="_blank" class="place-link">유니버설시티역</a><br><span class="info-tag">약 35~50분</span></div>
+      <div class="timeline-time">07:10</div>
+      <div class="timeline-title">&#128647; 지하철 이동</div>
+      <div class="timeline-desc">마쓰야마치역 → 나가호리바시역</div>
     </div>
     <div class="timeline-item">
       <div class="timeline-num">3</div>
-      <div class="timeline-time">09:00</div>
-      <div class="timeline-title">&#127775; <a href="https://www.google.com/maps/search/Universal+Studios+Japan" target="_blank" class="place-link">유니버설 스튜디오 재팬</a> <img src="https://api.qrserver.com/v1/create-qr-code/?size=60x60&data=https://www.google.com/maps/search/Universal+Studios+Japan" alt="QR" class="qr-inline"> 도착</div>
-      <div class="timeline-desc">개장 시간에 맞춰 입장</div>
+      <div class="timeline-time">07:30</div>
+      <div class="timeline-title">&#128646; JR 환승</div>
+      <div class="timeline-desc">사카이스지혼마치역 → 벤텐초역 → <a href="https://www.google.com/maps/search/Nishikujo+Station" target="_blank" class="place-link">니시쿠조역</a><br><span class="info-tag">약 25~30분</span></div>
     </div>
     <div class="timeline-item">
       <div class="timeline-num">4</div>
-      <div class="timeline-time">오전~오후</div>
-      <div class="timeline-title">&#127906; USJ에서 하루 종일</div>
+      <div class="timeline-time">08:00</div>
+      <div class="timeline-title">&#128649; <a href="https://www.google.com/maps/search/Universal+City+Station" target="_blank" class="place-link">유니버설시티역</a> 도착</div>
+      <div class="timeline-desc">도보 약 5분</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-num">5</div>
+      <div class="timeline-time">08:30</div>
+      <div class="timeline-title">&#127903;&#65039; <a href="https://www.google.com/maps/search/Universal+Studios+Japan" target="_blank" class="place-link">USJ</a> <img src="https://api.qrserver.com/v1/create-qr-code/?size=60x60&data=https://www.google.com/maps/search/Universal+Studios+Japan" alt="QR" class="qr-inline"> 입장</div>
+      <div class="timeline-desc">QR코드 제시 후 입장</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-num">6</div>
+      <div class="timeline-time">09:00</div>
+      <div class="timeline-title">&#127906; USJ 하루 종일 즐기기</div>
       <div class="timeline-desc">
         <ul>
           <li>슈퍼 닌텐도 월드</li>
-          <li>해리 포터 구역</li>
-          <li>미니언 파크 등</li>
-          <li>파크 내 식사 및 간식</li>
+          <li>해리포터</li>
+          <li>미니언 파크</li>
+          <li>어트랙션, 공연 등</li>
         </ul>
       </div>
     </div>
     <div class="timeline-item">
-      <div class="timeline-num">5</div>
-      <div class="timeline-time">저녁</div>
-      <div class="timeline-title">&#128719; 숙소 복귀</div>
-      <div class="timeline-desc">지하철·JR 환승 (약 35~50분)</div>
+      <div class="timeline-num">7</div>
+      <div class="timeline-time">18:30</div>
+      <div class="timeline-title">&#128649; USJ 출발</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-num">8</div>
+      <div class="timeline-time">19:00</div>
+      <div class="timeline-title">&#127968; 숙소 복귀</div>
+      <div class="timeline-desc">니시쿠조역 → 마쓰야마치역<br><span class="info-tag">약 45~60분</span></div>
     </div>
   </div>
 
   <div class="tip-box">
-    <strong>⚠️ 3일차 TIP:</strong> <strong>USJ</strong> 12월 14일 운영시간, 입장권, 닌텐도 월드 입장 조건을 미리 확인하세요.
+    <strong>⚠️ 3일차 TIP:</strong> <strong>USJ</strong> 운영시간 및 익스프레스 패스를 사전에 확인하세요.
   </div>
 </div>
 </div>
 
-<!-- ==================== SLIDE 6: D4 (12/15) ==================== -->
-<div class="slide day4" id="slide-6">
+<!-- ==================== SLIDE 7: D4 (12/15) ==================== -->
+<div class="slide day4" id="slide-7">
 <div class="slide-inner">
   <div class="slide-header">
     <h1><span class="day-badge">4일차</span> 신세카이 + 난바 쇼핑 + 귀국</h1>
-    <div class="subtitle"><span class="day-date">12월 15일 (화) | 신세카이 · 난바 · 간사이공항</span></div>
+    <div class="subtitle"><span class="day-date">12월 15일 (화) | 신세카이 · 난바 · 간사이공항 출발 18:00</span></div>
   </div>
 
-  <div class="route-strip">신세카이·쓰텐카쿠 → 점심 → 난바 쇼핑 → 간사이공항</div>
+  <div class="route-strip">체크아웃 → 신세카이·쓰텐카쿠 → 난바 쇼핑 → 간사이공항 → 출발 (18:00)</div>
 
   <div class="map-container">
-    <div class="map-label">&#128205; 4일차 동선</div>
-    <iframe src="https://maps.google.com/maps?saddr=Namba+Station+Osaka&daddr=Tsutenkaku+to:Namba+Parks+to:Kansai+International+Airport&output=embed" allowfullscreen loading="lazy" title="4일차 지도"></iframe>
+    <div class="map-label">&#128205; 4일차 주요 이동 경로: 난바역(짐보관) → 신세카이·쓰텐카쿠 → 간사이공항</div>
+    <iframe src="https://maps.google.com/maps?saddr=Matsuyamachi+Station+Osaka&daddr=Namba+Station+Osaka+to:Tsutenkaku+to:Namba+Parks&output=embed" allowfullscreen loading="lazy" title="4일차 지도"></iframe>
   </div>
 
   <div class="timeline">
     <div class="timeline-item">
       <div class="timeline-num">1</div>
-      <div class="timeline-time">09:00</div>
-      <div class="timeline-title">&#129523; 체크아웃 및 짐 보관</div>
-      <div class="timeline-desc">난바역 주변 보관소 또는 코인락카</div>
+      <div class="timeline-time">08:00</div>
+      <div class="timeline-title">&#129523; 기상 및 짐 정리</div>
     </div>
     <div class="timeline-item">
       <div class="timeline-num">2</div>
-      <div class="timeline-time">10:00</div>
-      <div class="timeline-title">&#128508; <a href="https://www.google.com/maps/search/Shinsekai+Osaka" target="_blank" class="place-link">신세카이</a> &amp; <a href="https://www.google.com/maps/search/Tsutenkaku" target="_blank" class="place-link">쓰텐카쿠</a> <img src="https://api.qrserver.com/v1/create-qr-code/?size=60x60&data=https://www.google.com/maps/search/Tsutenkaku" alt="QR" class="qr-inline"></div>
-      <div class="timeline-desc">지하철 <a href="https://www.google.com/maps/search/Dobutsuen-mae+Station" target="_blank" class="place-link">도부쓰엔마에역</a> 하차 후 도보<br><span class="info-tag">체류 약 60~90분</span></div>
+      <div class="timeline-time">09:30</div>
+      <div class="timeline-title">&#127968; 체크아웃 <span class="info-tag warning">10:00까지</span></div>
+      <div class="timeline-desc">난바역으로 이동 (약 7분)</div>
     </div>
     <div class="timeline-item">
       <div class="timeline-num">3</div>
-      <div class="timeline-time">11:30</div>
-      <div class="timeline-title">&#127842; 신세카이에서 쿠시카츠 점심</div>
-      <div class="timeline-desc">꼬치튀김 등</div>
+      <div class="timeline-time">10:00</div>
+      <div class="timeline-title">&#129523; <a href="https://www.google.com/maps/search/Nankai+Namba+Station" target="_blank" class="place-link">난바역</a> 짐 보관</div>
+      <div class="timeline-desc">n·e·s·t 또는 코인로커</div>
     </div>
     <div class="timeline-item">
       <div class="timeline-num">4</div>
-      <div class="timeline-time">13:00</div>
-      <div class="timeline-title">&#128717;&#65039; 난바로 이동 및 쇼핑</div>
-      <div class="timeline-desc">지하철 약 10분<br><a href="https://www.google.com/maps/search/Namba+Parks" target="_blank" class="place-link">난바 파크스</a> 등</div>
+      <div class="timeline-time">10:30</div>
+      <div class="timeline-title">&#128647; 신세카이 이동</div>
+      <div class="timeline-desc">지하철 또는 도보 약 10분</div>
     </div>
     <div class="timeline-item">
       <div class="timeline-num">5</div>
-      <div class="timeline-time">14:00</div>
-      <div class="timeline-title">&#129523; 난바에서 짐 찾기</div>
-      <div class="timeline-desc">지하철 또는 도보</div>
+      <div class="timeline-time">11:00</div>
+      <div class="timeline-title">&#128508; <a href="https://www.google.com/maps/search/Shinsekai+Osaka" target="_blank" class="place-link">신세카이</a>·<a href="https://www.google.com/maps/search/Tsutenkaku" target="_blank" class="place-link">쓰텐카쿠</a> <img src="https://api.qrserver.com/v1/create-qr-code/?size=60x60&data=https://www.google.com/maps/search/Tsutenkaku" alt="QR" class="qr-inline"> 관광</div>
+      <div class="timeline-desc"><span class="info-tag">약 60~90분</span></div>
     </div>
     <div class="timeline-item">
       <div class="timeline-num">6</div>
-      <div class="timeline-time">14:30</div>
-      <div class="timeline-title">&#9992;&#65039; 난카이 난바역 → <a href="https://www.google.com/maps/search/Kansai+International+Airport" target="_blank" class="place-link">간사이공항</a></div>
-      <div class="timeline-desc"><span class="info-tag">공항급행 약 45분</span> <span class="info-tag">라피트 약 34분</span><br><strong>오후 3시 전후 공항 도착 목표</strong></div>
+      <div class="timeline-time">12:30</div>
+      <div class="timeline-title">&#127842; 점심 식사</div>
+      <div class="timeline-desc">쿠시카츠, 현지 음식 등</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-num">7</div>
+      <div class="timeline-time">13:30</div>
+      <div class="timeline-title">&#128647; 난바로 이동</div>
+      <div class="timeline-desc">지하철 또는 도보 약 10분</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-num">8</div>
+      <div class="timeline-time">14:00</div>
+      <div class="timeline-title">&#128717;&#65039; 난바 쇼핑 &amp; 마무리</div>
+      <div class="timeline-desc"><a href="https://www.google.com/maps/search/Namba+Parks" target="_blank" class="place-link">난바 파크스</a> / 난바 CITY / 도톤보리 주변<br><span class="info-tag">약 1시간</span></div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-num">9</div>
+      <div class="timeline-time">15:00</div>
+      <div class="timeline-title">&#128646; 간사이공항으로 이동</div>
+      <div class="timeline-desc"><span class="info-tag">난카이 공항급행 약 45분</span> <span class="info-tag">라피트 약 34분</span></div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-num">10</div>
+      <div class="timeline-time">16:00</div>
+      <div class="timeline-title">&#9992;&#65039; <a href="https://www.google.com/maps/search/Kansai+International+Airport" target="_blank" class="place-link">공항</a> 도착</div>
+      <div class="timeline-desc">체크인 및 보안검색, 면세점</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-num">11</div>
+      <div class="timeline-time">18:00</div>
+      <div class="timeline-title">&#128747; 간사이공항 출발</div>
+      <div class="timeline-desc">귀국</div>
     </div>
   </div>
 
   <div class="tip-box">
-    <strong>⚠️ 4일차 TIP:</strong> <strong>항공편</strong> 간사이공항 출발 터미널과 체크인 마감 시각을 미리 확인하세요.
+    <strong>⚠️ 4일차 TIP:</strong> 18:00 출발이므로 <strong>14:00~15:00 사이 공항 이동</strong>을 권장합니다 (최소 3시간 전 도착).
   </div>
 </div>
 </div>
 
-<!-- ==================== SLIDE 7: TRANSPORT SUMMARY ==================== -->
-<div class="slide" id="slide-7">
+<!-- ==================== SLIDE 8: TRANSPORT SUMMARY ==================== -->
+<div class="slide" id="slide-8">
 <div class="slide-inner">
   <div class="slide-header">
-    <h1>&#128646; 주요 교통편 한눈에 보기</h1>
+    <h1>&#128646; 주요 교통편 요약</h1>
     <div class="subtitle">구간별 추천 교통편과 예상 소요 시간</div>
   </div>
 
@@ -929,34 +1083,29 @@ body {
     <table class="summary-table">
       <tr>
         <th>구간</th>
-        <th>추천 교통편</th>
-        <th>예상 소요</th>
+        <th>교통편 · 소요 시간</th>
       </tr>
-      <tr><td><span class="day-pill" style="background:var(--day1)">D1</span>간사이공항 → 난바</td><td>난카이 공항급행 / 라피트</td><td>약 35~45분</td></tr>
-      <tr><td><span class="day-pill" style="background:var(--day1)">D1</span>난바 → 차니와</td><td>택시 또는 지하철 · 도보</td><td>약 10~25분</td></tr>
-      <tr><td><span class="day-pill" style="background:var(--day1)">D1</span>차니와 → 나카노시마</td><td>택시 또는 지하철 · 도보</td><td>약 15~30분</td></tr>
-      <tr><td><span class="day-pill" style="background:var(--day1)">D1</span>나카노시마 도서관 → MOUNT Coffee</td><td>도보</td><td>약 10~15분</td></tr>
-      <tr><td><span class="day-pill" style="background:var(--day1)">D1</span>나카노시마 → 난바</td><td>지하철 (미도스지선)</td><td>약 15분</td></tr>
-      <tr><td><span class="day-pill" style="background:var(--day3)">D3</span>숙소 → USJ</td><td>지하철 + JR 환승</td><td>약 35~50분</td></tr>
-      <tr><td><span class="day-pill" style="background:var(--day4)">D4</span>난바 → 신세카이</td><td>지하철 또는 도보</td><td>약 10~20분</td></tr>
-      <tr><td><span class="day-pill" style="background:var(--day4)">D4</span>난바 → 간사이공항</td><td>난카이선 (공항급행/라피트)</td><td>약 35~45분</td></tr>
+      <tr><td><span class="day-pill" style="background:var(--day1)">D1</span>간사이공항 → 난바</td><td>난카이 공항급행 약 45분 / 라피트 약 34분</td></tr>
+      <tr><td>난바 → 마쓰야마치역</td><td>지하철 약 7분 (미도스지선 → 나가호리쓰루미료쿠치선)</td></tr>
+      <tr><td><span class="day-pill" style="background:var(--day3)">D3</span>마쓰야마치역 → USJ</td><td>지하철 + JR 환승 약 45~60분</td></tr>
+      <tr><td><span class="day-pill" style="background:var(--day4)">D4</span>난바 → 간사이공항</td><td>난카이 공항급행 약 45분 / 라피트 약 34분</td></tr>
     </table>
   </div>
 </div>
 </div>
 
-<!-- ==================== SLIDE 8: CLOSING ==================== -->
-<div class="slide" id="slide-8">
+<!-- ==================== SLIDE 9: CLOSING ==================== -->
+<div class="slide" id="slide-9">
 <div class="slide-inner title-slide">
-  <div class="title-flag">&#128508; &#9992;&#65039;</div>
+  <div class="title-flag">&#127983; &#9992;&#65039;</div>
   <div class="closing-msg">즐거운 여행 되세요! &#128156;</div>
-  <p class="title-sub">오사카 3박 4일 · 2026.12.12 ~ 12.15</p>
+  <p class="title-sub">오사카 3박 4일 가족여행 · 2026.12.12 ~ 12.15</p>
 
   <div class="day-legend">
-    <button class="day-chip" onclick="goTo(2)"><span class="day-dot" style="background:var(--day1)"></span><span><strong>1일차</strong> (12/12 토) – 파란색</span></button>
-    <button class="day-chip" onclick="goTo(3)"><span class="day-dot" style="background:var(--day2)"></span><span><strong>2일차</strong> (12/13 일) – 분홍색</span></button>
-    <button class="day-chip" onclick="goTo(4)"><span class="day-dot" style="background:var(--day3)"></span><span><strong>3일차</strong> (12/14 월) – 초록색</span></button>
-    <button class="day-chip" onclick="goTo(5)"><span class="day-dot" style="background:var(--day4)"></span><span><strong>4일차</strong> (12/15 화) – 주황색</span></button>
+    <button class="day-chip" onclick="goTo(3)"><span class="day-dot" style="background:var(--day1)"></span><span><strong>1일차</strong> (12/12 토) – 파란색</span></button>
+    <button class="day-chip" onclick="goTo(4)"><span class="day-dot" style="background:var(--day2)"></span><span><strong>2일차</strong> (12/13 일) – 분홍색</span></button>
+    <button class="day-chip" onclick="goTo(5)"><span class="day-dot" style="background:var(--day3)"></span><span><strong>3일차</strong> (12/14 월) – 초록색</span></button>
+    <button class="day-chip" onclick="goTo(6)"><span class="day-dot" style="background:var(--day4)"></span><span><strong>4일차</strong> (12/15 화) – 주황색</span></button>
   </div>
 
   <p class="footnote">★ 본 일정은 대략적인 계획으로, 현지 상황에 따라 시간과 동선이 변경될 수 있습니다.<br>최종 일정은 여행 전 최신 정보를 꼭 확인해 주세요.</p>
@@ -968,7 +1117,7 @@ body {
 <!-- ===== NAVIGATION ===== -->
 <div class="nav-arrows">
   <button class="nav-btn" id="prevBtn" onclick="goSlide(-1)" aria-label="이전">&#9664; 이전</button>
-  <span class="slide-indicator" id="slideIndicator">1 / 8</span>
+  <span class="slide-indicator" id="slideIndicator">1 / 9</span>
   <button class="nav-btn" id="nextBtn" onclick="goSlide(1)" aria-label="다음">다음 &#9654;</button>
 </div>
 
