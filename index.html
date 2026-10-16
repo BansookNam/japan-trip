@@ -121,6 +121,47 @@ a { color: inherit; }
 .overview-value { font-size: 0.9rem; color: var(--primary); font-weight: 700; line-height: 1.45; margin-top: 2px; }
 .overview-value small { display: block; font-size: 0.76rem; font-weight: 500; color: var(--text-light); }
 
+/* ===== WEATHER STRIP ===== */
+.weather-box { margin-top: 20px; text-align: left; }
+.weather-title {
+  font-family: var(--display); font-size: 1.05rem; color: var(--primary);
+  text-align: center; margin-bottom: 10px;
+}
+.weather-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 6px;
+}
+.weather-card {
+  background: var(--tint);
+  border: 2px solid var(--accent-light);
+  border-radius: 16px;
+  padding: 10px 4px 9px;
+  text-align: center;
+  box-shadow: var(--shadow);
+  line-height: 1.35;
+}
+.weather-day { font-size: 0.74rem; font-weight: 700; color: var(--primary); }
+.weather-date { font-size: 0.68rem; color: var(--text-light); }
+.weather-emoji { font-size: 1.9rem; line-height: 1.25; margin: 4px 0 2px; }
+.weather-place { font-size: 0.68rem; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+.weather-temp { font-size: 0.82rem; font-weight: 800; color: var(--text); }
+.weather-temp .hi { color: #E5484D; }
+.weather-temp .lo { color: #2563C9; }
+.weather-row { font-size: 0.68rem; color: var(--text-light); margin-top: 3px; }
+.weather-tip {
+  margin-top: 6px; padding-top: 5px; border-top: 1px dashed var(--accent-light);
+  font-size: 0.68rem; font-weight: 700; color: var(--primary);
+}
+.weather-note { font-size: 0.7rem; color: var(--text-light); text-align: center; margin-top: 8px; line-height: 1.5; }
+@media (min-width: 640px) {
+  .weather-grid { gap: 10px; }
+  .weather-card { padding: 14px 8px 12px; }
+  .weather-day { font-size: 0.85rem; }
+  .weather-date, .weather-place, .weather-row, .weather-tip { font-size: 0.78rem; }
+  .weather-temp { font-size: 0.98rem; }
+}
+
 /* ===== DAY CHIPS (jump links) ===== */
 .day-legend {
   display: grid;
@@ -578,6 +619,53 @@ a { color: inherit; }
     <div class="hero-flags">&#x1F1F0;&#x1F1F7; &#9992;&#65039; &#x1F1EF;&#x1F1F5;</div>
     <h1>오사카 3박 4일<br><span class="pink">졸업여행</span> 가이드</h1>
     <div class="hero-date">2026.12.12(토) ~ 12.15(화) · 3박 4일</div>
+
+    <div class="weather-box">
+      <div class="weather-title">&#127780;&#65039; 날짜별 날씨 &#127471;&#127477;</div>
+      <div class="weather-grid">
+      <div class="weather-card day1">
+        <div class="weather-day">1일차</div>
+        <div class="weather-date">12/12 토</div>
+        <div class="weather-emoji">&#127780;&#65039;</div>
+        <div class="weather-place">나카노시마</div>
+        <div class="weather-temp"><span class="hi">12°</span> / <span class="lo">4°</span></div>
+        <div class="weather-row">&#9748;&#65039; 비 19%</div>
+        <div class="weather-row">&#127749; 일몰 16:47</div>
+        <div class="weather-tip">&#129507; 일루미 저녁 대비</div>
+      </div>
+      <div class="weather-card day2">
+        <div class="weather-day">2일차</div>
+        <div class="weather-date">12/13 일</div>
+        <div class="weather-emoji">&#9925;</div>
+        <div class="weather-place">난바·도톤보리</div>
+        <div class="weather-temp"><span class="hi">12°</span> / <span class="lo">4°</span></div>
+        <div class="weather-row">&#9748;&#65039; 비 22%</div>
+        <div class="weather-row">&#127749; 일몰 16:47</div>
+        <div class="weather-tip">&#128717;&#65039; 낮엔 포근</div>
+      </div>
+      <div class="weather-card day3">
+        <div class="weather-day">3일차</div>
+        <div class="weather-date">12/14 월</div>
+        <div class="weather-emoji">&#127782;&#65039;</div>
+        <div class="weather-place">USJ</div>
+        <div class="weather-temp"><span class="hi">11°</span> / <span class="lo">4°</span></div>
+        <div class="weather-row">&#9748;&#65039; 비 24%</div>
+        <div class="weather-row">&#127749; 일몰 16:48</div>
+        <div class="weather-tip">&#127906; 아침 든든히</div>
+      </div>
+      <div class="weather-card day4">
+        <div class="weather-day">4일차</div>
+        <div class="weather-date">12/15 화</div>
+        <div class="weather-emoji">&#9729;&#65039;</div>
+        <div class="weather-place">신세카이·공항</div>
+        <div class="weather-temp"><span class="hi">11°</span> / <span class="lo">3°</span></div>
+        <div class="weather-row">&#9748;&#65039; 비 23%</div>
+        <div class="weather-row">&#127749; 일몰 16:48</div>
+        <div class="weather-tip">&#9992;&#65039; 따뜻하게 귀국</div>
+      </div>
+      </div>
+      <div class="weather-note">&#128161; 2013~2025년 12월 12~15일(&plusmn;3일) 평균 기온·비 온 날 비율이에요. 예보가 아니라 평년값이니, 출발 1주 전쯤 다시 확인하세요!</div>
+    </div>
 
     <div class="overview-grid">
       <div class="overview-card">
