@@ -1,4 +1,4 @@
-# 오사카 3박 4일 가족여행 일정표 (trip2.png 추출본)
+# 오사카 3박 4일 졸업여행 일정표 (trip2.png 추출본)
 
 > Source: `trip2.png` (1312×1199), the updated version of `trip.png`. I read it from crops at 3× zoom, then rechecked the smallest text at 5×. The accommodation address comes from the user.
 
