@@ -1,0 +1,1204 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>오사카 3박 4일 여행 가이드</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* ===== RESET & BASE ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 18px; scroll-behavior: smooth; }
+body {
+  font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #F3F6FB;
+  color: #23293A;
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+}
+
+/* ===== COLOR PALETTE ===== */
+:root {
+  --primary: #1A2B5C;
+  --accent: #2F5BB7;
+  --accent-light: #5B8DEF;
+  --bg: #F3F6FB;
+  --bg-card: #FFFFFF;
+  --bg-card-alt: #EEF2F9;
+  --text: #23293A;
+  --text-light: #667085;
+  --border: #D6DEEB;
+  --warning: #E65100;
+  --info: #0277BD;
+  --day1: #1E6FD9;
+  --day1-dark: #0F4C9E;
+  --day2: #E8487F;
+  --day2-dark: #B8285C;
+  --day3: #23A04B;
+  --day3-dark: #157535;
+  --day4: #F07F1A;
+  --day4-dark: #C25E07;
+  --shadow: 0 2px 12px rgba(26,43,92,0.10);
+  --shadow-lg: 0 4px 24px rgba(26,43,92,0.15);
+}
+
+/* ===== PER-DAY THEME ===== */
+.slide.day1 { --primary: var(--day1-dark); --accent: var(--day1); --accent-light: #5B9BF0; --tint: #EAF2FD; }
+.slide.day2 { --primary: var(--day2-dark); --accent: var(--day2); --accent-light: #F27BA4; --tint: #FDECF2; }
+.slide.day3 { --primary: var(--day3-dark); --accent: var(--day3); --accent-light: #5CC27C; --tint: #E8F6EC; }
+.slide.day4 { --primary: var(--day4-dark); --accent: var(--day4); --accent-light: #F7A85E; --tint: #FEF1E4; }
+
+/* ===== SLIDE CONTAINER ===== */
+.slides-wrapper {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+.slide {
+  min-width: 100vw;
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 0;
+  -webkit-overflow-scrolling: touch;
+}
+
+.slide-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 24px 100px 24px;
+}
+
+/* ===== HEADER ===== */
+.slide-header {
+  background: var(--primary);
+  color: white;
+  padding: 18px 24px;
+  border-radius: 0 0 20px 20px;
+  margin: 0 -24px 24px -24px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  box-shadow: var(--shadow-lg);
+}
+.slide-header h1 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.slide-header .subtitle {
+  font-size: 0.85rem;
+  opacity: 0.9;
+  font-weight: 300;
+}
+.day-badge {
+  display: inline-block;
+  background: var(--accent-light);
+  color: white;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 3px 12px;
+  border-radius: 20px;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+.day-date {
+  font-size: 0.85rem;
+  opacity: 0.9;
+  font-weight: 400;
+}
+
+/* ===== NAVIGATION ===== */
+.nav-arrows {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  z-index: 1000;
+  background: rgba(26,43,92,0.92);
+  padding: 10px 20px;
+  border-radius: 50px;
+  backdrop-filter: blur(10px);
+  box-shadow: var(--shadow-lg);
+}
+.nav-btn {
+  background: none;
+  border: 2px solid rgba(255,255,255,0.4);
+  color: white;
+  min-width: 44px;
+  height: 44px;
+  padding: 0 16px;
+  border-radius: 30px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  transition: all 0.15s;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+  font-family: inherit;
+}
+.nav-btn:hover { background: #2F5BB7; border-color: #2F5BB7; }
+.slide-indicator {
+  color: white;
+  font-size: 0.85rem;
+  font-weight: 500;
+  min-width: 50px;
+  text-align: center;
+}
+
+/* ===== CARDS ===== */
+.card {
+  background: var(--bg-card);
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 16px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+}
+.card h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 10px;
+}
+.card p, .card li {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: var(--text);
+}
+
+/* ===== ROUTE STRIP ===== */
+.route-strip {
+  background: var(--tint, var(--bg-card-alt));
+  border: 1px solid var(--border);
+  border-left: 5px solid var(--accent);
+  border-radius: 0 12px 12px 0;
+  padding: 12px 16px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--primary);
+  line-height: 1.7;
+  margin-bottom: 16px;
+}
+
+/* ===== TIMELINE ===== */
+.timeline { position: relative; padding-left: 44px; margin-top: 8px; }
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 14px;
+  top: 8px;
+  bottom: 8px;
+  width: 3px;
+  background: linear-gradient(to bottom, var(--accent), var(--accent-light));
+  border-radius: 3px;
+}
+.timeline-item {
+  position: relative;
+  margin-bottom: 20px;
+  padding-bottom: 2px;
+}
+.timeline-num {
+  position: absolute;
+  left: -44px;
+  top: 0;
+  width: 31px;
+  height: 31px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: white;
+  font-weight: 800;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid var(--bg);
+  box-shadow: 0 0 0 2px var(--accent);
+}
+.timeline-time {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 2px;
+}
+.timeline-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--primary);
+}
+.timeline-title .jp {
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: var(--text-light);
+}
+.timeline-desc {
+  font-size: 0.85rem;
+  color: var(--text-light);
+  margin-top: 2px;
+  line-height: 1.6;
+}
+.timeline-desc ul { margin: 4px 0 0 18px; }
+.timeline-desc li { margin-bottom: 2px; }
+
+/* ===== MAP CONTAINER ===== */
+.map-container {
+  border-radius: 14px;
+  overflow: hidden;
+  margin: 0 0 16px 0;
+  box-shadow: var(--shadow);
+  border: 2px solid var(--border);
+}
+.map-container iframe {
+  width: 100%;
+  height: 280px;
+  border: none;
+  display: block;
+}
+.map-label {
+  background: var(--primary);
+  color: white;
+  font-size: 0.78rem;
+  padding: 8px 14px;
+  font-weight: 500;
+}
+
+/* ===== CHECKLIST ===== */
+.check-card {
+  background: white;
+  border-radius: 14px;
+  padding: 16px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+  margin-bottom: 16px;
+}
+.check-card h4 {
+  font-size: 0.95rem;
+  color: var(--primary);
+  font-weight: 700;
+  margin-bottom: 10px;
+  padding-bottom: 6px;
+  border-bottom: 2px solid var(--accent-light);
+}
+.check-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 8px 0;
+  cursor: pointer;
+  user-select: none;
+  border-bottom: 1px dashed var(--border);
+}
+.check-item:last-child { border-bottom: none; }
+.check-item input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--accent);
+  cursor: pointer;
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+.check-item label {
+  font-size: 0.88rem;
+  cursor: pointer;
+  line-height: 1.5;
+}
+.check-item.checked label {
+  text-decoration: line-through;
+  color: var(--text-light);
+}
+
+/* ===== OVERVIEW CARDS ===== */
+.overview-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 16px;
+}
+.overview-card {
+  background: white;
+  border-radius: 14px;
+  padding: 14px;
+  text-align: center;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+}
+.overview-icon {
+  font-size: 2rem;
+  margin-bottom: 6px;
+}
+.overview-label {
+  font-size: 0.75rem;
+  color: var(--text-light);
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+.overview-value {
+  font-size: 0.95rem;
+  color: var(--primary);
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+/* ===== DAY LEGEND ===== */
+.day-legend {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 16px;
+}
+.day-chip {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px 14px;
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+  font-size: 0.85rem;
+  color: var(--text);
+  box-shadow: var(--shadow);
+  transition: transform 0.15s;
+}
+.day-chip:hover { transform: translateY(-2px); }
+.day-dot { width: 18px; height: 18px; border-radius: 50%; flex-shrink: 0; }
+.day-chip strong { color: var(--primary); }
+.day-chip .chip-sub { display: block; font-size: 0.75rem; color: var(--text-light); margin-top: 2px; }
+
+/* ===== TITLE SLIDE ===== */
+.title-slide {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100vh;
+  text-align: center;
+  padding: 32px 24px 110px;
+}
+.title-slide h1 {
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: var(--primary);
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+.title-slide .title-sub {
+  font-size: 1rem;
+  color: var(--accent);
+  font-weight: 500;
+  margin-bottom: 24px;
+}
+.title-flag {
+  font-size: 3rem;
+  margin-bottom: 10px;
+}
+
+/* ===== INFO TAGS ===== */
+.info-tag {
+  display: inline-block;
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  color: var(--accent);
+  font-size: 0.78rem;
+  padding: 4px 10px;
+  border-radius: 8px;
+  margin: 2px 2px 2px 0;
+  font-weight: 500;
+}
+.info-tag.warning {
+  background: rgba(230,81,0,0.1);
+  color: var(--warning);
+}
+.info-tag.info {
+  background: rgba(2,119,189,0.1);
+  color: var(--info);
+}
+
+/* ===== SUMMARY TABLE ===== */
+.summary-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+  margin-top: 12px;
+}
+.summary-table th {
+  background: var(--primary);
+  color: white;
+  padding: 10px 10px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.78rem;
+}
+.summary-table td {
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+.summary-table tr:nth-child(even) { background: #F6F8FC; }
+.summary-table td:last-child { white-space: nowrap; font-weight: 600; color: var(--primary); }
+.day-pill {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: white;
+  padding: 1px 7px;
+  border-radius: 8px;
+  margin-right: 4px;
+  vertical-align: 1px;
+}
+
+/* ===== TIP BOX ===== */
+.tip-box {
+  background: #FFF3E0;
+  border-left: 4px solid #E65100;
+  border-radius: 0 8px 8px 0;
+  padding: 14px 20px;
+  margin: 16px 0;
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+/* ===== CLOSING ===== */
+.closing-msg {
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--primary);
+  margin: 10px 0 6px;
+}
+.footnote {
+  font-size: 0.78rem;
+  color: var(--text-light);
+  line-height: 1.6;
+  margin-top: 20px;
+}
+
+.place-link { color: var(--accent); text-decoration: none; border-bottom: 1px dotted var(--accent); }
+.place-link:hover { color: var(--primary); }
+.qr-inline { display: inline-block; width: 50px; height: 50px; vertical-align: middle; margin-left: 6px; border-radius: 4px; border: 1px solid var(--border); }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 700px) {
+  html { font-size: 16px; }
+  .slide-inner { padding: 16px 16px 120px 16px; }
+  .slide-header { margin: 0 -16px 20px -16px; padding: 14px 16px; }
+  .slide-header h1 { font-size: 1.3rem; }
+  .title-slide h1 { font-size: 1.7rem; }
+  .qr-inline { width: 40px; height: 40px; }
+  .nav-arrows {
+    bottom: 0;
+    left: 0;
+    right: 0;
+    transform: none;
+    width: 100%;
+    border-radius: 0;
+    padding: 12px 20px;
+    justify-content: space-between;
+    background: rgba(26,43,92,0.96);
+    gap: 0;
+  }
+  .nav-btn {
+    min-width: 80px;
+    height: 48px;
+    padding: 0 18px;
+    font-size: 0.9rem;
+  }
+  .nav-btn:active { background: #2F5BB7; border-color: #2F5BB7; transform: scale(0.95); }
+  .slide-indicator { font-size: 0.9rem; min-width: 70px; }
+  .map-container iframe { height: 220px; }
+  .summary-table { font-size: 0.76rem; }
+  .summary-table th, .summary-table td { padding: 7px 6px; }
+}
+
+@media (max-width: 400px) {
+  .overview-grid, .day-legend { grid-template-columns: 1fr; }
+  html { font-size: 15px; }
+  .slide-inner { padding: 12px 12px 120px 12px; }
+  .slide-header { margin: 0 -12px 16px -12px; }
+}
+
+/* ===== PRINT ===== */
+@media print {
+  body { overflow: visible; height: auto; }
+  .slide { min-width: auto !important; width: auto !important; height: auto; overflow: visible; page-break-after: always; }
+  .slides-wrapper { display: block; width: auto !important; height: auto; overflow: visible; transform: none !important; }
+  .nav-arrows, #pw-overlay { display: none !important; }
+  .slide-header { position: static; }
+  .map-container { display: none; }
+  .slide-inner { padding-bottom: 20px; }
+}
+
+/* ===== SCROLLBAR ===== */
+.slide::-webkit-scrollbar { width: 6px; }
+.slide::-webkit-scrollbar-track { background: transparent; }
+.slide::-webkit-scrollbar-thumb { background: rgba(26,43,92,0.2); border-radius: 3px; }
+.slide::-webkit-scrollbar-thumb:hover { background: rgba(26,43,92,0.4); }
+
+/* ===== PASSWORD OVERLAY ===== */
+#pw-overlay {
+  position: fixed; inset: 0; z-index: 9999;
+  background: rgba(26,43,92,0.97);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 20px;
+}
+#pw-overlay h2 { color: #fff; font-size: 1.4rem; }
+#pw-overlay input {
+  font-size: 1.5rem; letter-spacing: 0.4em;
+  text-align: center; padding: 12px 24px;
+  border-radius: 12px; border: 2px solid #5B8DEF;
+  width: 200px; outline: none;
+}
+#pw-overlay button {
+  background: #5B8DEF; color: #fff;
+  border: none; border-radius: 10px;
+  padding: 12px 32px; font-size: 1rem;
+  cursor: pointer; font-weight: 700;
+  font-family: inherit;
+}
+#pw-overlay button:disabled { background: #666; cursor: not-allowed; }
+#pw-msg { color: #FF6B6B; font-size: 0.9rem; min-height: 1.2em; }
+#pw-cooldown { color: #FFD54F; font-size: 0.9rem; }
+</style>
+</head>
+<body>
+
+<!-- ===== PASSWORD OVERLAY ===== -->
+<div id="pw-overlay">
+  <div style="font-size:2.5rem;">🔐</div>
+  <h2>오사카 여행 가이드</h2>
+  <p style="color:#ccc;font-size:0.85rem;">암호를 입력하세요</p>
+  <input type="password" id="pw-input" maxlength="10" placeholder="••••" inputmode="numeric" autofocus>
+  <button id="pw-btn" onclick="checkPassword()">확인</button>
+  <div id="pw-msg"></div>
+  <div id="pw-cooldown"></div>
+</div>
+
+<div class="slides-wrapper" id="slidesWrapper">
+
+<!-- ==================== SLIDE 1: TITLE ==================== -->
+<div class="slide" id="slide-1">
+<div class="slide-inner title-slide">
+  <div class="title-flag">&#x1F1F0;&#x1F1F7; &#10145; &#x1F1EF;&#x1F1F5;</div>
+  <h1>오사카 3박 4일<br>여행 가이드</h1>
+  <p class="title-sub">2026.12.12(토) ~ 12.15(화) | 3박 4일</p>
+
+  <div class="overview-grid">
+    <div class="overview-card">
+      <div class="overview-icon">&#9992;&#65039;</div>
+      <div class="overview-label">공항</div>
+      <div class="overview-value">간사이공항 (KIX)<br>난카이 라피트 / 공항급행</div>
+    </div>
+    <div class="overview-card">
+      <div class="overview-icon">&#127976;</div>
+      <div class="overview-label">숙소</div>
+      <div class="overview-value">미쓰아마치 스미요시 6-26<br><span style="font-size:0.75rem; font-weight:500; color:var(--warning);">정확한 주소 확인 필요</span></div>
+    </div>
+    <div class="overview-card">
+      <div class="overview-icon">&#127906;</div>
+      <div class="overview-label">하이라이트</div>
+      <div class="overview-value">USJ 종일<br>도톤보리 · 신세카이</div>
+    </div>
+    <div class="overview-card">
+      <div class="overview-icon">&#128647;</div>
+      <div class="overview-label">주요 거점</div>
+      <div class="overview-value">난바역<br>짐 보관 · 환승 중심</div>
+    </div>
+  </div>
+
+  <div class="day-legend">
+    <button class="day-chip" onclick="goTo(2)"><span class="day-dot" style="background:var(--day1)"></span><span><strong>1일차</strong> (12/12 토)<span class="chip-sub">나카노시마 · 빛의 마르셰</span></span></button>
+    <button class="day-chip" onclick="goTo(3)"><span class="day-dot" style="background:var(--day2)"></span><span><strong>2일차</strong> (12/13 일)<span class="chip-sub">구로몬 · 덴덴타운 · 도톤보리</span></span></button>
+    <button class="day-chip" onclick="goTo(4)"><span class="day-dot" style="background:var(--day3)"></span><span><strong>3일차</strong> (12/14 월)<span class="chip-sub">유니버설 스튜디오 재팬</span></span></button>
+    <button class="day-chip" onclick="goTo(5)"><span class="day-dot" style="background:var(--day4)"></span><span><strong>4일차</strong> (12/15 화)<span class="chip-sub">신세카이 · 난바 쇼핑 · 귀국</span></span></button>
+  </div>
+
+  <p style="margin-top:24px; font-size:0.78rem; color:var(--text-light);">
+    &#8592; &#8594; 화살표 키 또는 하단 버튼으로 슬라이드를 넘기세요
+  </p>
+</div>
+</div>
+
+<!-- ==================== SLIDE 2: CHECKLIST ==================== -->
+<div class="slide" id="slide-2">
+<div class="slide-inner">
+  <div class="slide-header">
+    <h1>&#9989; 꼭 확인하세요!</h1>
+    <div class="subtitle">출발 전 확인할 사항 (체크하면 이 기기에 저장돼요)</div>
+  </div>
+
+  <div class="check-card">
+    <h4>&#128203; 출발 전 확인</h4>
+    <div class="check-item" onclick="toggleCheck(this)">
+      <input type="checkbox" data-key="chk_chaniwa"><label><strong>차니와</strong>: 토요일 한정 영업, 당일 운영시간 확인</label>
+    </div>
+    <div class="check-item" onclick="toggleCheck(this)">
+      <input type="checkbox" data-key="chk_library"><label><strong>나카노시마 도서관</strong>: 토요일 17시 폐관 (일요일 휴관)</label>
+    </div>
+    <div class="check-item" onclick="toggleCheck(this)">
+      <input type="checkbox" data-key="chk_mount"><label><strong>MOUNT Coffee</strong>: 영업 여부 및 메뉴 확인</label>
+    </div>
+    <div class="check-item" onclick="toggleCheck(this)">
+      <input type="checkbox" data-key="chk_usj"><label><strong>USJ</strong>: 12월 14일 운영시간, 입장권, 닌텐도 월드 입장 조건 확인</label>
+    </div>
+    <div class="check-item" onclick="toggleCheck(this)">
+      <input type="checkbox" data-key="chk_flight"><label><strong>항공편</strong>: 간사이공항 출발 터미널, 체크인 마감 시각 확인</label>
+    </div>
+    <div class="check-item" onclick="toggleCheck(this)">
+      <input type="checkbox" data-key="chk_hotel"><label><strong>숙소</strong>: 정확한 주소 기준으로 가장 가까운 역과 짐 보관 위치 확인</label>
+    </div>
+  </div>
+
+  <div class="tip-box">
+    <strong>⚠️ 참고:</strong> 본 일정은 대략적인 계획으로, 현지 상황에 따라 시간과 동선이 변경될 수 있습니다. 최종 일정은 여행 전 최신 정보를 꼭 확인해 주세요.
+  </div>
+</div>
+</div>
+
+<!-- ==================== SLIDE 3: D1 (12/12) ==================== -->
+<div class="slide day1" id="slide-3">
+<div class="slide-inner">
+  <div class="slide-header">
+    <h1><span class="day-badge">1일차</span> 나카노시마 + 빛의 마르셰</h1>
+    <div class="subtitle"><span class="day-date">12월 12일 (토) | 공항 도착 · 난바 · 나카노시마</span></div>
+  </div>
+
+  <div class="route-strip">공항 → 난바 짐보관 → 차니와 → 나카노시마 도서관 → MOUNT Coffee → 일루미네이션 → 숙소</div>
+
+  <div class="map-container">
+    <div class="map-label">&#128205; 1일차 동선 (대략적인 경로): 난바 → 나카노시마 → 난바</div>
+    <iframe src="https://maps.google.com/maps?saddr=Nankai+Namba+Station&daddr=Osaka+Prefectural+Nakanoshima+Library+to:Osaka+City+Central+Public+Hall+to:Namba+Station&output=embed" allowfullscreen loading="lazy" title="1일차 지도"></iframe>
+  </div>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-num">1</div>
+      <div class="timeline-time">07:00</div>
+      <div class="timeline-title">&#9992;&#65039; <a href="https://www.google.com/maps/search/Kansai+International+Airport" target="_blank" class="place-link">간사이공항</a> <img src="https://api.qrserver.com/v1/create-qr-code/?size=60x60&data=https://www.google.com/maps/search/Kansai+International+Airport" alt="QR" class="qr-inline"> 출발</div>
+      <div class="timeline-desc">난카이 공항급행 / 라피트<br><span class="info-tag">약 35~45분</span></div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-num">2</div>
+      <div class="timeline-time">08:00</div>
+      <div class="timeline-title">&#129523; <a href="https://www.google.com/maps/search/Nankai+Namba+Station" target="_blank" class="place-link">난바역</a> <img src="https://api.qrserver.com/v1/create-qr-code/?size=60x60&data=https://www.google.com/maps/search/Nankai+Namba+Station" alt="QR" class="qr-inline"> 도착 → 짐 보관</div>
+      <div class="timeline-desc">n·e·s·t 난카이 난바역 (역 2층 중앙 개찰구 근처)</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-num">3</div>
+      <div class="timeline-time">12:00</div>
+      <div class="timeline-title">&#127861; <a href="https://www.google.com/maps/search/Chaniwa+Osaka" target="_blank" class="place-link">차니와</a> <img src="https://api.qrserver.com/v1/create-qr-code/?size=60x60&data=https://www.google.com/maps/search/Chaniwa+Osaka" alt="QR" class="qr-inline"> <span class="jp">(寺カフェ 茶庭)</span></div>
+      <div class="timeline-desc">난바에서 택시 약 10분<br><span class="info-tag">영업 12:00~17:30</span> <span class="info-tag warning">토요일만</span></div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-num">4</div>
+      <div class="timeline-time">13:30</div>
+      <div class="timeline-title">&#127963; <a href="https://www.google.com/maps/search/Osaka+Prefectural+Nakanoshima+Library" target="_blank" class="place-link">나카노시마 도서관</a> <img src="https://api.qrserver.com/v1/create-qr-code/?size=60x60&data=https://www.google.com/maps/search/Osaka+Prefectural+Nakanoshima+Library" alt="QR" class="qr-inline"></div>
+      <div class="timeline-desc">택시 또는 지하철+도보 (약 15~30분)<br><span class="info-tag">토요일 09:00 ~ 17:00</span></div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-num">5</div>
+      <div class="timeline-time">14:30</div>
+      <div class="timeline-title">&#9749; <a href="https://www.google.com/maps/search/MOUNT+Coffee+Osaka" target="_blank" class="place-link">MOUNT Coffee</a> <img src="https://api.qrserver.com/v1/create-qr-code/?size=60x60&data=https://www.google.com/maps/search/MOUNT+Coffee+Osaka" alt="QR" class="qr-inline"></div>
+      <div class="timeline-desc">도보 약 10~15분<br><span class="info-tag">토요일 11:00~18:00</span></div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-num">6</div>
+      <div class="timeline-time">16:00</div>
+      <div class="timeline-title">&#10024; <a href="https://www.google.com/maps/search/Nakanoshima+Park+Osaka" target="_blank" class="place-link">나카노시마 공원</a> <img src="https://api.qrserver.com/v1/create-qr-code/?size=60x60&data=https://www.google.com/maps/search/Nakanoshima+Park+Osaka" alt="QR" class="qr-inline"> &amp; 빛의 마르셰</div>
+      <div class="timeline-desc"><span class="info-tag">마르셰 16:00~</span> <span class="info-tag">조명 17:00~</span><br><a href="https://www.google.com/maps/search/Osaka+City+Central+Public+Hall" target="_blank" class="place-link">중앙공회당</a> 매핑 <span class="info-tag info">17:30~21:30</span></div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-num">7</div>
+      <div class="timeline-time">18:15</div>
+      <div class="timeline-title">&#127860; 난바로 이동 → 저녁 식사</div>
+      <div class="timeline-desc">지하철 약 15분 / 도보<br>타코야키, 오코노미야키 등</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-num">8</div>
+      <div class="timeline-time">20:00</div>
+      <div class="timeline-title">&#128719; 숙소 이동 및 휴식</div>
+      <div class="timeline-desc">미쓰아마치 스미요시 6-26</div>
+    </div>
+  </div>
+
+  <div class="tip-box">
+    <strong>⚠️ 1일차 TIP:</strong> <strong>차니와</strong>는 토요일 한정 영업이니 당일 운영시간을 꼭 확인하세요.<br>
+    <strong>나카노시마 도서관</strong>은 토요일 17시 폐관 (일요일 휴관)입니다.
+  </div>
+</div>
+</div>
+
+<!-- ==================== SLIDE 4: D2 (12/13) ==================== -->
+<div class="slide day2" id="slide-4">
+<div class="slide-inner">
+  <div class="slide-header">
+    <h1><span class="day-badge">2일차</span> 구로몬 + 덴덴타운 + 도톤보리</h1>
+    <div class="subtitle"><span class="day-date">12월 13일 (일) | 난바 · 닛폰바시 · 신사이바시</span></div>
+  </div>
+
+  <div class="route-strip">숙소 → 난바 야사카 신사 → 구로몬 시장 → 덴덴타운 → 도톤보리 → 숙소</div>
+
+  <div class="map-container">
+    <div class="map-label">&#128205; 2일차 동선</div>
+    <iframe src="https://maps.google.com/maps?saddr=Namba+Station+Osaka&daddr=Namba+Yasaka+Shrine+to:Kuromon+Market+to:Den+Den+Town+Osaka+to:Dotonbori+to:Shinsaibashi+Osaka&output=embed" allowfullscreen loading="lazy" title="2일차 지도"></iframe>
+  </div>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-num">1</div>
+      <div class="timeline-time">09:30</div>
+      <div class="timeline-title">&#9961;&#65039; <a href="https://www.google.com/maps/search/Namba+Yasaka+Shrine" target="_blank" class="place-link">난바 야사카 신사</a> <img src="https://api.qrserver.com/v1/create-qr-code/?size=60x60&data=https://www.google.com/maps/search/Namba+Yasaka+Shrine" alt="QR" class="qr-inline"> <span class="info-tag info">외관만</span></div>
+      <div class="timeline-desc">숙소에서 도보 또는 지하철·도보 (약 20~30분)</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-num">2</div>
+      <div class="timeline-time">10:30</div>
+      <div class="timeline-title">&#128722; <a href="https://www.google.com/maps/search/Kuromon+Market+Osaka" target="_blank" class="place-link">구로몬 시장</a> <img src="https://api.qrserver.com/v1/create-qr-code/?size=60x60&data=https://www.google.com/maps/search/Kuromon+Market+Osaka" alt="QR" class="qr-inline"></div>
+      <div class="timeline-desc">도보 약 15~20분<br><span class="info-tag">체류 약 45~60분</span></div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-num">3</div>
+      <div class="timeline-time">12:00</div>
+      <div class="timeline-title">&#127836; 난바·닛폰바시에서 점심</div>
+      <div class="timeline-desc">라멘, 우동, 돈카츠 등</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-num">4</div>
+      <div class="timeline-time">13:00</div>
+      <div class="timeline-title">&#127918; <a href="https://www.google.com/maps/search/Den+Den+Town+Osaka" target="_blank" class="place-link">덴덴타운</a> <img src="https://api.qrserver.com/v1/create-qr-code/?size=60x60&data=https://www.google.com/maps/search/Den+Den+Town+Osaka" alt="QR" class="qr-inline"></div>
+      <div class="timeline-desc">도보 약 10~15분<br><span class="info-tag">체류 약 1~2시간</span></div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-num">5</div>
+      <div class="timeline-time">15:30</div>
+      <div class="timeline-title">&#128717;&#65039; <a href="https://www.google.com/maps/search/Dotonbori+Osaka" target="_blank" class="place-link">도톤보리</a> <img src="https://api.qrserver.com/v1/create-qr-code/?size=60x60&data=https://www.google.com/maps/search/Dotonbori+Osaka" alt="QR" class="qr-inline"> · <a href="https://www.google.com/maps/search/Shinsaibashi-suji+Osaka" target="_blank" class="place-link">신사이바시</a></div>
+      <div class="timeline-desc">도보 약 10~20분<br>간식, 쇼핑, 사진</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-num">6</div>
+      <div class="timeline-time">18:00</div>
+      <div class="timeline-title">&#128719; 난바에서 저녁 식사 후 숙소 복귀</div>
+      <div class="timeline-desc">도보 또는 지하철 (약 15~20분)</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ==================== SLIDE 5: D3 (12/14) ==================== -->
+<div class="slide day3" id="slide-5">
+<div class="slide-inner">
+  <div class="slide-header">
+    <h1><span class="day-badge">3일차</span> 유니버설 스튜디오 재팬</h1>
+    <div class="subtitle"><span class="day-date">12월 14일 (월) | USJ 종일</span></div>
+  </div>
+
+  <div class="route-strip">숙소 → 지하철·JR 환승 → USJ 종일</div>
+
+  <div class="map-container">
+    <div class="map-label">&#128205; 3일차 동선: 숙소 → 니시쿠조역 → 유니버설시티역 → USJ</div>
+    <iframe src="https://maps.google.com/maps?saddr=Namba+Station+Osaka&daddr=Nishikujo+Station+to:Universal+City+Station+to:Universal+Studios+Japan&output=embed" allowfullscreen loading="lazy" title="3일차 지도"></iframe>
+  </div>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-num">1</div>
+      <div class="timeline-time">07:00</div>
+      <div class="timeline-title">&#128694; 숙소 출발</div>
+      <div class="timeline-desc">도보 → 지하철역 이동</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-num">2</div>
+      <div class="timeline-time">07:30</div>
+      <div class="timeline-title">&#128646; 지하철·JR 환승 → USJ</div>
+      <div class="timeline-desc"><a href="https://www.google.com/maps/search/Nishikujo+Station" target="_blank" class="place-link">니시쿠조역</a> → <a href="https://www.google.com/maps/search/Universal+City+Station" target="_blank" class="place-link">유니버설시티역</a><br><span class="info-tag">약 35~50분</span></div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-num">3</div>
+      <div class="timeline-time">09:00</div>
+      <div class="timeline-title">&#127775; <a href="https://www.google.com/maps/search/Universal+Studios+Japan" target="_blank" class="place-link">유니버설 스튜디오 재팬</a> <img src="https://api.qrserver.com/v1/create-qr-code/?size=60x60&data=https://www.google.com/maps/search/Universal+Studios+Japan" alt="QR" class="qr-inline"> 도착</div>
+      <div class="timeline-desc">개장 시간에 맞춰 입장</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-num">4</div>
+      <div class="timeline-time">오전~오후</div>
+      <div class="timeline-title">&#127906; USJ에서 하루 종일</div>
+      <div class="timeline-desc">
+        <ul>
+          <li>슈퍼 닌텐도 월드</li>
+          <li>해리 포터 구역</li>
+          <li>미니언 파크 등</li>
+          <li>파크 내 식사 및 간식</li>
+        </ul>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-num">5</div>
+      <div class="timeline-time">저녁</div>
+      <div class="timeline-title">&#128719; 숙소 복귀</div>
+      <div class="timeline-desc">지하철·JR 환승 (약 35~50분)</div>
+    </div>
+  </div>
+
+  <div class="tip-box">
+    <strong>⚠️ 3일차 TIP:</strong> <strong>USJ</strong> 12월 14일 운영시간, 입장권, 닌텐도 월드 입장 조건을 미리 확인하세요.
+  </div>
+</div>
+</div>
+
+<!-- ==================== SLIDE 6: D4 (12/15) ==================== -->
+<div class="slide day4" id="slide-6">
+<div class="slide-inner">
+  <div class="slide-header">
+    <h1><span class="day-badge">4일차</span> 신세카이 + 난바 쇼핑 + 귀국</h1>
+    <div class="subtitle"><span class="day-date">12월 15일 (화) | 신세카이 · 난바 · 간사이공항</span></div>
+  </div>
+
+  <div class="route-strip">신세카이·쓰텐카쿠 → 점심 → 난바 쇼핑 → 간사이공항</div>
+
+  <div class="map-container">
+    <div class="map-label">&#128205; 4일차 동선</div>
+    <iframe src="https://maps.google.com/maps?saddr=Namba+Station+Osaka&daddr=Tsutenkaku+to:Namba+Parks+to:Kansai+International+Airport&output=embed" allowfullscreen loading="lazy" title="4일차 지도"></iframe>
+  </div>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-num">1</div>
+      <div class="timeline-time">09:00</div>
+      <div class="timeline-title">&#129523; 체크아웃 및 짐 보관</div>
+      <div class="timeline-desc">난바역 주변 보관소 또는 코인락카</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-num">2</div>
+      <div class="timeline-time">10:00</div>
+      <div class="timeline-title">&#128508; <a href="https://www.google.com/maps/search/Shinsekai+Osaka" target="_blank" class="place-link">신세카이</a> &amp; <a href="https://www.google.com/maps/search/Tsutenkaku" target="_blank" class="place-link">쓰텐카쿠</a> <img src="https://api.qrserver.com/v1/create-qr-code/?size=60x60&data=https://www.google.com/maps/search/Tsutenkaku" alt="QR" class="qr-inline"></div>
+      <div class="timeline-desc">지하철 <a href="https://www.google.com/maps/search/Dobutsuen-mae+Station" target="_blank" class="place-link">도부쓰엔마에역</a> 하차 후 도보<br><span class="info-tag">체류 약 60~90분</span></div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-num">3</div>
+      <div class="timeline-time">11:30</div>
+      <div class="timeline-title">&#127842; 신세카이에서 쿠시카츠 점심</div>
+      <div class="timeline-desc">꼬치튀김 등</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-num">4</div>
+      <div class="timeline-time">13:00</div>
+      <div class="timeline-title">&#128717;&#65039; 난바로 이동 및 쇼핑</div>
+      <div class="timeline-desc">지하철 약 10분<br><a href="https://www.google.com/maps/search/Namba+Parks" target="_blank" class="place-link">난바 파크스</a> 등</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-num">5</div>
+      <div class="timeline-time">14:00</div>
+      <div class="timeline-title">&#129523; 난바에서 짐 찾기</div>
+      <div class="timeline-desc">지하철 또는 도보</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-num">6</div>
+      <div class="timeline-time">14:30</div>
+      <div class="timeline-title">&#9992;&#65039; 난카이 난바역 → <a href="https://www.google.com/maps/search/Kansai+International+Airport" target="_blank" class="place-link">간사이공항</a></div>
+      <div class="timeline-desc"><span class="info-tag">공항급행 약 45분</span> <span class="info-tag">라피트 약 34분</span><br><strong>오후 3시 전후 공항 도착 목표</strong></div>
+    </div>
+  </div>
+
+  <div class="tip-box">
+    <strong>⚠️ 4일차 TIP:</strong> <strong>항공편</strong> 간사이공항 출발 터미널과 체크인 마감 시각을 미리 확인하세요.
+  </div>
+</div>
+</div>
+
+<!-- ==================== SLIDE 7: TRANSPORT SUMMARY ==================== -->
+<div class="slide" id="slide-7">
+<div class="slide-inner">
+  <div class="slide-header">
+    <h1>&#128646; 주요 교통편 한눈에 보기</h1>
+    <div class="subtitle">구간별 추천 교통편과 예상 소요 시간</div>
+  </div>
+
+  <div class="card">
+    <table class="summary-table">
+      <tr>
+        <th>구간</th>
+        <th>추천 교통편</th>
+        <th>예상 소요</th>
+      </tr>
+      <tr><td><span class="day-pill" style="background:var(--day1)">D1</span>간사이공항 → 난바</td><td>난카이 공항급행 / 라피트</td><td>약 35~45분</td></tr>
+      <tr><td><span class="day-pill" style="background:var(--day1)">D1</span>난바 → 차니와</td><td>택시 또는 지하철 · 도보</td><td>약 10~25분</td></tr>
+      <tr><td><span class="day-pill" style="background:var(--day1)">D1</span>차니와 → 나카노시마</td><td>택시 또는 지하철 · 도보</td><td>약 15~30분</td></tr>
+      <tr><td><span class="day-pill" style="background:var(--day1)">D1</span>나카노시마 도서관 → MOUNT Coffee</td><td>도보</td><td>약 10~15분</td></tr>
+      <tr><td><span class="day-pill" style="background:var(--day1)">D1</span>나카노시마 → 난바</td><td>지하철 (미도스지선)</td><td>약 15분</td></tr>
+      <tr><td><span class="day-pill" style="background:var(--day3)">D3</span>숙소 → USJ</td><td>지하철 + JR 환승</td><td>약 35~50분</td></tr>
+      <tr><td><span class="day-pill" style="background:var(--day4)">D4</span>난바 → 신세카이</td><td>지하철 또는 도보</td><td>약 10~20분</td></tr>
+      <tr><td><span class="day-pill" style="background:var(--day4)">D4</span>난바 → 간사이공항</td><td>난카이선 (공항급행/라피트)</td><td>약 35~45분</td></tr>
+    </table>
+  </div>
+</div>
+</div>
+
+<!-- ==================== SLIDE 8: CLOSING ==================== -->
+<div class="slide" id="slide-8">
+<div class="slide-inner title-slide">
+  <div class="title-flag">&#128508; &#9992;&#65039;</div>
+  <div class="closing-msg">즐거운 여행 되세요! &#128156;</div>
+  <p class="title-sub">오사카 3박 4일 · 2026.12.12 ~ 12.15</p>
+
+  <div class="day-legend">
+    <button class="day-chip" onclick="goTo(2)"><span class="day-dot" style="background:var(--day1)"></span><span><strong>1일차</strong> (12/12 토) – 파란색</span></button>
+    <button class="day-chip" onclick="goTo(3)"><span class="day-dot" style="background:var(--day2)"></span><span><strong>2일차</strong> (12/13 일) – 분홍색</span></button>
+    <button class="day-chip" onclick="goTo(4)"><span class="day-dot" style="background:var(--day3)"></span><span><strong>3일차</strong> (12/14 월) – 초록색</span></button>
+    <button class="day-chip" onclick="goTo(5)"><span class="day-dot" style="background:var(--day4)"></span><span><strong>4일차</strong> (12/15 화) – 주황색</span></button>
+  </div>
+
+  <p class="footnote">★ 본 일정은 대략적인 계획으로, 현지 상황에 따라 시간과 동선이 변경될 수 있습니다.<br>최종 일정은 여행 전 최신 정보를 꼭 확인해 주세요.</p>
+</div>
+</div>
+
+</div><!-- end slides-wrapper -->
+
+<!-- ===== NAVIGATION ===== -->
+<div class="nav-arrows">
+  <button class="nav-btn" id="prevBtn" onclick="goSlide(-1)" aria-label="이전">&#9664; 이전</button>
+  <span class="slide-indicator" id="slideIndicator">1 / 8</span>
+  <button class="nav-btn" id="nextBtn" onclick="goSlide(1)" aria-label="다음">다음 &#9654;</button>
+</div>
+
+<script>
+// ===== PASSWORD PROTECTION =====
+(function() {
+  const CORRECT = '1212';
+  const LS_KEY = 'osaka_trip_auth';
+  const FAIL_KEY = 'osaka_trip_fails';
+  const COOLDOWN_KEY = 'osaka_trip_cooldown';
+  const MAX_FAILS = 3;
+  const COOLDOWN_MS = 15 * 60 * 1000;
+
+  const overlay = document.getElementById('pw-overlay');
+  const input = document.getElementById('pw-input');
+  const btn = document.getElementById('pw-btn');
+  const msg = document.getElementById('pw-msg');
+  const cooldownEl = document.getElementById('pw-cooldown');
+
+  function lsGet(k) { try { return localStorage.getItem(k); } catch(e) { return null; } }
+  function lsSet(k, v) { try { localStorage.setItem(k, v); } catch(e) {} }
+  function lsDel(k) { try { localStorage.removeItem(k); } catch(e) {} }
+
+  // 이미 인증된 경우 바로 숨김
+  if (lsGet(LS_KEY) === 'ok') {
+    overlay.style.display = 'none';
+    return;
+  }
+
+  // 쿨타임 체크
+  function getCooldownRemaining() {
+    const end = parseInt(lsGet(COOLDOWN_KEY) || '0');
+    return Math.max(0, end - Date.now());
+  }
+
+  function startCooldownTimer() {
+    btn.disabled = true;
+    input.disabled = true;
+    const interval = setInterval(() => {
+      const rem = getCooldownRemaining();
+      if (rem <= 0) {
+        clearInterval(interval);
+        lsSet(FAIL_KEY, '0');
+        lsDel(COOLDOWN_KEY);
+        btn.disabled = false;
+        input.disabled = false;
+        msg.textContent = '';
+        cooldownEl.textContent = '';
+      } else {
+        const m = Math.floor(rem / 60000);
+        const s = Math.floor((rem % 60000) / 1000);
+        cooldownEl.textContent = `⏳ ${m}분 ${s}초 후 재시도 가능`;
+      }
+    }, 1000);
+  }
+
+  // 초기 쿨타임 확인
+  if (getCooldownRemaining() > 0) {
+    msg.textContent = '3회 실패로 잠시 잠겼습니다.';
+    startCooldownTimer();
+  }
+
+  window.checkPassword = function() {
+    if (getCooldownRemaining() > 0) return;
+    const val = input.value.trim();
+    if (val === CORRECT) {
+      lsSet(LS_KEY, 'ok');
+      lsSet(FAIL_KEY, '0');
+      overlay.style.display = 'none';
+    } else {
+      let fails = parseInt(lsGet(FAIL_KEY) || '0') + 1;
+      lsSet(FAIL_KEY, fails);
+      if (fails >= MAX_FAILS) {
+        lsSet(COOLDOWN_KEY, Date.now() + COOLDOWN_MS);
+        msg.textContent = '3회 실패! 15분 후 재시도 가능합니다.';
+        startCooldownTimer();
+      } else {
+        msg.textContent = `❌ 틀렸습니다. (${fails}/${MAX_FAILS}회 실패)`;
+      }
+      input.value = '';
+      input.focus();
+    }
+  };
+
+  // Enter 키 지원
+  input.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') window.checkPassword();
+  });
+})();
+
+// ===== SLIDE NAVIGATION =====
+let currentSlide = 0;
+const slides = document.querySelectorAll('.slide');
+const totalSlides = slides.length;
+const wrapper = document.getElementById('slidesWrapper');
+const indicator = document.getElementById('slideIndicator');
+
+function updateSlide() {
+  wrapper.style.transform = `translateX(-${currentSlide * 100}vw)`;
+  indicator.textContent = `${currentSlide + 1} / ${totalSlides}`;
+  slides[currentSlide].scrollTop = 0;
+}
+
+function goSlide(dir) {
+  let newSlide = currentSlide + dir;
+  if (newSlide < 0) newSlide = totalSlides - 1;
+  else if (newSlide >= totalSlides) newSlide = 0;
+  currentSlide = newSlide;
+  updateSlide();
+}
+
+function goTo(index) {
+  currentSlide = Math.max(0, Math.min(totalSlides - 1, index));
+  updateSlide();
+}
+
+// Keyboard navigation
+document.addEventListener('keydown', function(e) {
+  if (document.getElementById('pw-overlay').style.display !== 'none') return;
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+    e.preventDefault();
+    goSlide(1);
+  } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+    e.preventDefault();
+    goSlide(-1);
+  }
+});
+
+// ===== MOBILE SWIPE (robust) =====
+(function() {
+  let startX = 0, startY = 0, startTime = 0;
+  let dirLocked = null; // 'h' or 'v' or null
+
+  slides.forEach(function(slide) {
+    slide.addEventListener('touchstart', function(e) {
+      startX = e.touches[0].clientX;
+      startY = e.touches[0].clientY;
+      startTime = Date.now();
+      dirLocked = null;
+    }, { passive: true });
+
+    slide.addEventListener('touchmove', function(e) {
+      if (dirLocked === 'v') return;
+
+      const dx = e.touches[0].clientX - startX;
+      const dy = e.touches[0].clientY - startY;
+
+      if (dirLocked === null && (Math.abs(dx) > 8 || Math.abs(dy) > 8)) {
+        if (Math.abs(dx) > Math.abs(dy)) {
+          dirLocked = 'h';
+        } else {
+          dirLocked = 'v';
+          return;
+        }
+      }
+
+      if (dirLocked === 'h') {
+        e.preventDefault();
+      }
+    }, { passive: false });
+
+    slide.addEventListener('touchend', function(e) {
+      if (dirLocked !== 'h') return;
+
+      const dx = startX - e.changedTouches[0].clientX;
+      const elapsed = Date.now() - startTime;
+
+      // Swipe threshold: 40px minimum, within 600ms
+      if (Math.abs(dx) > 40 && elapsed < 600) {
+        if (dx > 0) goSlide(1);
+        else goSlide(-1);
+      }
+
+      dirLocked = null;
+    }, { passive: true });
+  });
+})();
+
+// ===== SLIDES WRAPPER STYLE =====
+wrapper.style.transition = 'transform 0.45s cubic-bezier(0.4, 0, 0.2, 1)';
+wrapper.style.width = `${totalSlides * 100}vw`;
+slides.forEach(slide => {
+  slide.style.minWidth = '100vw';
+  slide.style.width = '100vw';
+});
+
+// ===== CHECKBOX PERSISTENCE =====
+function toggleCheck(el) {
+  const cb = el.querySelector('input[type="checkbox"]');
+  cb.checked = !cb.checked;
+  el.classList.toggle('checked', cb.checked);
+  saveChecks();
+}
+
+function saveChecks() {
+  const checks = {};
+  document.querySelectorAll('.check-item input[type="checkbox"]').forEach(cb => {
+    if (cb.dataset.key) checks[cb.dataset.key] = cb.checked;
+  });
+  try {
+    localStorage.setItem('osaka_trip_checks', JSON.stringify(checks));
+  } catch(e) {}
+}
+
+function loadChecks() {
+  try {
+    const saved = localStorage.getItem('osaka_trip_checks');
+    if (saved) {
+      const checks = JSON.parse(saved);
+      document.querySelectorAll('.check-item input[type="checkbox"]').forEach(cb => {
+        if (cb.dataset.key && checks[cb.dataset.key]) {
+          cb.checked = true;
+          cb.closest('.check-item').classList.add('checked');
+        }
+      });
+    }
+  } catch(e) {}
+}
+
+document.querySelectorAll('.check-item input[type="checkbox"]').forEach(cb => {
+  cb.addEventListener('click', function(e) {
+    e.stopPropagation();
+    this.closest('.check-item').classList.toggle('checked', this.checked);
+    saveChecks();
+  });
+});
+
+// Init
+loadChecks();
+updateSlide();
+</script>
+</body>
+</html>
