@@ -520,6 +520,37 @@ a { color: inherit; }
 .sub-item:last-child { border-bottom: none; }
 .sub-time { font-weight: 800; color: var(--primary); font-size: 0.8rem; min-width: 42px; flex-shrink: 0; }
 
+/* ===== MINI GAMES ===== */
+.game-stats { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 10px; font-size: 0.82rem; font-weight: 700; color: var(--primary); }
+.game-stats span { background: var(--tint); border-radius: 999px; padding: 4px 12px; }
+.game-btn {
+  font-family: inherit; font-size: 0.9rem; font-weight: 800; color: #fff;
+  background: var(--accent); border: none; border-radius: 999px;
+  padding: 10px 22px; cursor: pointer; touch-action: manipulation;
+}
+.game-btn:active { transform: scale(0.97); }
+.game-msg { margin-top: 10px; min-height: 1.4em; font-size: 0.88rem; font-weight: 700; color: var(--day2-dark); }
+.game-grid { display: grid; gap: 8px; user-select: none; -webkit-user-select: none; }
+.mem-grid { grid-template-columns: repeat(4, 1fr); max-width: 340px; margin: 0 auto 4px; }
+.mem-card {
+  aspect-ratio: 1; font-size: 1.9rem; line-height: 1; border: 2px solid var(--border);
+  border-radius: 14px; background: var(--tint); cursor: pointer;
+  touch-action: manipulation; transition: transform .25s, background .2s; font-family: inherit;
+}
+.mem-card.open { background: #fff; border-color: var(--accent-light); }
+.mem-card.done { background: #E8F8EE; border-color: var(--day3); }
+.mem-card:not(.open):not(.done) { font-size: 0; }
+.mem-card:not(.open):not(.done)::after { content: "?"; font-size: 1.4rem; font-weight: 800; color: var(--accent); }
+.mole-grid { grid-template-columns: repeat(3, 1fr); max-width: 300px; margin: 0 auto 4px; }
+.mole-hole {
+  aspect-ratio: 1; font-size: 2.4rem; line-height: 1; border: none; border-radius: 50%;
+  background: radial-gradient(circle at 50% 60%, #5b4a3f 0 45%, #3b2f28 46% 100%);
+  cursor: pointer; touch-action: manipulation; font-family: inherit; padding: 0;
+}
+.mole-hole span { display: inline-block; transform: translateY(8px) scale(0); transition: transform .12s; }
+.mole-hole.up span { transform: translateY(0) scale(1); }
+.game-center { text-align: center; }
+
 /* ===== CLOSING ===== */
 .closing { text-align: center; padding: 36px 0 calc(88px + env(safe-area-inset-bottom)); }
 .closing-flags { font-size: 2.2rem; }
@@ -745,6 +776,7 @@ a { color: inherit; }
     <a href="#day3" class="day3">3일차</a>
     <a href="#day4" class="day4">4일차</a>
     <a href="#transport">&#128646; 교통</a>
+    <a href="#games">&#127918; 게임</a>
   </div>
 </nav>
 
@@ -1577,6 +1609,33 @@ a { color: inherit; }
   </div>
 </section>
 
+<!-- ==================== MINI GAMES ==================== -->
+<section class="section" id="games">
+  <div class="section-head">
+    <div class="section-icon">&#127918;</div>
+    <div>
+      <h2>심심할 때 미니게임</h2>
+      <div class="subtitle">비행기 · 지하철 · 줄 서는 시간에 가볍게 즐겨요</div>
+    </div>
+  </div>
+
+  <div class="card game-center">
+    <h3>&#127841; 오사카 먹거리 짝 맞추기</h3>
+    <div class="game-stats"><span id="memMoves">시도 0회</span><span id="memBest">최고 기록 -</span></div>
+    <div class="game-grid mem-grid" id="memGrid"></div>
+    <div class="game-msg" id="memMsg">같은 먹거리 2장을 찾아보세요</div>
+    <button type="button" class="game-btn" id="memRestart">다시 섞기</button>
+  </div>
+
+  <div class="card game-center">
+    <h3>&#128025; 30초 타코야키 잡기</h3>
+    <div class="game-stats"><span id="moleTime">남은 시간 30초</span><span id="moleScore">점수 0</span><span id="moleBest">최고 점수 -</span></div>
+    <div class="game-grid mole-grid" id="moleGrid"></div>
+    <div class="game-msg" id="moleMsg">&#128025; 문어는 +1점, &#128121; 도깨비는 -2점이에요!</div>
+    <button type="button" class="game-btn" id="moleStart">시작하기</button>
+  </div>
+</section>
+
 <!-- ==================== CLOSING ==================== -->
 <footer class="closing">
   <div class="closing-flags">&#127983; &#9992;&#65039;</div>
@@ -1818,6 +1877,141 @@ loadChecks();
     requestAnimationFrame(function() { check(); ticking = false; });
   }
   window.addEventListener('scroll', onScroll, { passive: true });
+})();
+</script>
+<script>
+// ===== MINI GAMES =====
+(function() {
+  function lsGet(k) { try { return localStorage.getItem(k); } catch(e) { return null; } }
+  function lsSet(k, v) { try { localStorage.setItem(k, v); } catch(e) {} }
+  const $ = function(id) { return document.getElementById(id); };
+
+  // --- 1) 먹거리 짝 맞추기 ---
+  const FOODS = ['🍙', '🍜', '🍣', '🐙', '🍡', '🍦', '🥟', '🍢'];
+  const MEM_KEY = 'osaka_game_mem_best';
+  const memGrid = $('memGrid');
+  let first = null, lock = false, moves = 0, pairs = 0;
+
+  function showMemBest() {
+    const b = lsGet(MEM_KEY);
+    $('memBest').textContent = '최고 기록 ' + (b ? b + '회' : '-');
+  }
+  function memStart() {
+    const deck = FOODS.concat(FOODS).sort(function() { return Math.random() - 0.5; });
+    memGrid.innerHTML = '';
+    first = null; lock = false; moves = 0; pairs = 0;
+    $('memMoves').textContent = '시도 0회';
+    $('memMsg').textContent = '같은 먹거리 2장을 찾아보세요';
+    deck.forEach(function(f) {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'mem-card';
+      b.dataset.f = f;
+      b.setAttribute('aria-label', '카드');
+      b.textContent = f;
+      b.addEventListener('click', function() { flip(b); });
+      memGrid.appendChild(b);
+    });
+    showMemBest();
+  }
+  function flip(b) {
+    if (lock || b.classList.contains('open') || b.classList.contains('done')) return;
+    b.classList.add('open');
+    if (!first) { first = b; return; }
+    moves++;
+    $('memMoves').textContent = '시도 ' + moves + '회';
+    const a = first;
+    first = null;
+    if (a.dataset.f === b.dataset.f) {
+      a.classList.replace('open', 'done');
+      b.classList.replace('open', 'done');
+      pairs++;
+      if (pairs === FOODS.length) {
+        const best = parseInt(lsGet(MEM_KEY), 10);
+        if (!best || moves < best) { lsSet(MEM_KEY, String(moves)); $('memMsg').textContent = '🎉 ' + moves + '회 만에 성공! 최고 기록이에요!'; }
+        else { $('memMsg').textContent = '🎉 ' + moves + '회 만에 성공!'; }
+        showMemBest();
+      }
+    } else {
+      lock = true;
+      setTimeout(function() { a.classList.remove('open'); b.classList.remove('open'); lock = false; }, 700);
+    }
+  }
+  $('memRestart').addEventListener('click', memStart);
+  memStart();
+
+  // --- 2) 타코야키 잡기 ---
+  const MOLE_KEY = 'osaka_game_mole_best';
+  const GAME_SEC = 30;
+  const moleGrid = $('moleGrid');
+  const holes = [];
+  let score = 0, left = GAME_SEC, running = false, tick = null, spawn = null, current = -1, hideT = null, kind = '';
+
+  for (let i = 0; i < 9; i++) {
+    const h = document.createElement('button');
+    h.type = 'button';
+    h.className = 'mole-hole';
+    h.setAttribute('aria-label', '구멍');
+    h.innerHTML = '<span></span>';
+    h.addEventListener('click', function() { whack(i); });
+    moleGrid.appendChild(h);
+    holes.push(h);
+  }
+  function showMoleBest() {
+    const b = lsGet(MOLE_KEY);
+    $('moleBest').textContent = '최고 점수 ' + (b || '-');
+  }
+  function hideCurrent() {
+    if (current >= 0) holes[current].classList.remove('up');
+    current = -1;
+    clearTimeout(hideT);
+  }
+  function popUp() {
+    if (!running) return;
+    hideCurrent();
+    let i;
+    do { i = Math.floor(Math.random() * 9); } while (i === current);
+    kind = Math.random() < 0.8 ? 'takoyaki' : 'oni';
+    holes[i].firstChild.textContent = kind === 'takoyaki' ? '🐙' : '👹';
+    holes[i].classList.add('up');
+    current = i;
+    const stay = Math.max(450, 900 - (GAME_SEC - left) * 15);
+    hideT = setTimeout(function() { hideCurrent(); spawn = setTimeout(popUp, 180); }, stay);
+  }
+  function whack(i) {
+    if (!running || i !== current) return;
+    score += kind === 'takoyaki' ? 1 : -2;
+    if (score < 0) score = 0;
+    $('moleScore').textContent = '점수 ' + score;
+    hideCurrent();
+    clearTimeout(spawn);
+    spawn = setTimeout(popUp, 120);
+  }
+  function moleEnd() {
+    running = false;
+    clearInterval(tick); clearTimeout(spawn); hideCurrent();
+    const best = parseInt(lsGet(MOLE_KEY), 10) || 0;
+    if (score > best) { lsSet(MOLE_KEY, String(score)); $('moleMsg').textContent = '🎉 ' + score + '점! 새 최고 점수예요!'; }
+    else { $('moleMsg').textContent = '끝! ' + score + '점이에요. 다시 도전해 보세요'; }
+    showMoleBest();
+    $('moleStart').disabled = false;
+    $('moleStart').textContent = '다시 하기';
+  }
+  $('moleStart').addEventListener('click', function() {
+    if (running) return;
+    score = 0; left = GAME_SEC; running = true;
+    $('moleScore').textContent = '점수 0';
+    $('moleTime').textContent = '남은 시간 ' + left + '초';
+    $('moleMsg').textContent = '🐙를 눌러요! 👹는 피하세요';
+    this.disabled = true;
+    tick = setInterval(function() {
+      left--;
+      $('moleTime').textContent = '남은 시간 ' + left + '초';
+      if (left <= 0) moleEnd();
+    }, 1000);
+    popUp();
+  });
+  showMoleBest();
 })();
 </script>
 </body>
