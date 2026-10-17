@@ -546,6 +546,29 @@ a { color: inherit; }
 }
 .to-top.show { opacity: 0.9; pointer-events: auto; }
 
+/* ===== EASTER EGG: HEART RAIN ===== */
+.heart-rain {
+  position: fixed; inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 60;
+}
+.heart-rain span {
+  position: absolute;
+  top: -40px;
+  line-height: 1;
+  opacity: 0;
+  will-change: transform, opacity;
+  animation: heart-fall var(--dur, 3s) ease-in var(--delay, 0s) forwards;
+}
+@keyframes heart-fall {
+  0%   { transform: translate(0, 0) rotate(0deg); opacity: 0; }
+  10%  { opacity: 0.9; }
+  35%  { transform: translate(var(--sway, 20px), 35vh) rotate(var(--rot, 15deg)); }
+  70%  { transform: translate(calc(var(--sway, 20px) * -0.6), 70vh) rotate(calc(var(--rot, 15deg) * -1)); opacity: 0.8; }
+  100% { transform: translate(var(--sway, 20px), 105vh) rotate(var(--rot, 15deg)); opacity: 0; }
+}
+
 /* ===== RESPONSIVE ===== */
 @media (min-width: 640px) {
   html { font-size: 17px; }
@@ -1341,6 +1364,57 @@ document.querySelectorAll('.check-item input[type="checkbox"]').forEach(cb => {
 });
 
 loadChecks();
+
+// ===== EASTER EGG: 맨 아래까지 내리면 하트 비 =====
+(function() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const COLORS = ['#F2708F', '#FFB3C4', '#A9C8FB', '#A6E2BC', '#FBCF9F', '#C9B6F2'];
+  let played = false;
+
+  function rain() {
+    played = true;
+    const box = document.createElement('div');
+    box.className = 'heart-rain';
+    box.setAttribute('aria-hidden', 'true');
+    const count = 40;
+    let maxEnd = 0;
+    for (let i = 0; i < count; i++) {
+      const h = document.createElement('span');
+      const dur = 2 + Math.random() * 1.6;
+      const delay = Math.random() * 1.2;
+      maxEnd = Math.max(maxEnd, dur + delay);
+      h.textContent = '♥';
+      h.style.left = (Math.random() * 96) + '%';
+      h.style.fontSize = (12 + Math.random() * 18) + 'px';
+      h.style.color = COLORS[i % COLORS.length];
+      h.style.setProperty('--dur', dur.toFixed(2) + 's');
+      h.style.setProperty('--delay', delay.toFixed(2) + 's');
+      h.style.setProperty('--sway', ((Math.random() * 2 - 1) * 40).toFixed(0) + 'px');
+      h.style.setProperty('--rot', ((Math.random() * 2 - 1) * 30).toFixed(0) + 'deg');
+      box.appendChild(h);
+    }
+    document.body.appendChild(box);
+    setTimeout(function() { box.remove(); }, (maxEnd + 0.3) * 1000);
+  }
+
+  function check() {
+    if (played) return;
+    const overlay = document.getElementById('pw-overlay');
+    if (overlay && overlay.style.display !== 'none') return;
+    const doc = document.documentElement;
+    if (window.innerHeight + window.scrollY >= doc.scrollHeight - 40) {
+      window.removeEventListener('scroll', onScroll);
+      rain();
+    }
+  }
+  let ticking = false;
+  function onScroll() {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function() { check(); ticking = false; });
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+})();
 </script>
 </body>
 </html>
