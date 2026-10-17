@@ -435,6 +435,16 @@ a { color: inherit; }
   vertical-align: top;
   line-height: 1.5;
 }
+.usj-thumb {
+  display: block;
+  width: 100%;
+  max-width: 160px;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 6px;
+  background: var(--tint);
+}
 .flight-table td:last-child { white-space: nowrap; font-weight: 800; color: var(--primary); }
 
 /* transport list (replaces wide table) */
@@ -1376,20 +1386,21 @@ a { color: inherit; }
     <h3>&#127942; USJ 인기 어트랙션 TOP 9</h3>
     <table class="summary-table">
       <tr><th>순위</th><th>어트랙션 / 구역</th><th>키 제한</th><th>메모</th></tr>
-      <tr><td><strong>1</strong></td><td><strong>마리오 카트: 쿠파의 도전장</strong><br><span class="jp">슈퍼 닌텐도 월드</span></td><td>122cm 이상</td><td>3D 안경과 핸들로 즐기는 게임형, 스릴 없음. 오픈 직후 가장 먼저 공략</td></tr>
-      <tr><td><strong>2</strong></td><td><strong>플라잉 다이너소어</strong><br><span class="jp">쥬라기 공원</span></td><td>132~198cm</td><td>거꾸로 매달려 나는 고속 코스터. 고소공포·멀미 있으면 비추천</td></tr>
-      <tr><td><strong>3</strong></td><td><strong>해리포터 앤드 포비든 저니</strong><br><span class="jp">해리포터</span></td><td>122cm 이상</td><td>호그와트 성 안 4D 라이드. 멀미 호불호 있음</td></tr>
-      <tr><td><strong>4</strong></td><td><strong>동키콩의 크레이지 트롤리</strong><br><span class="jp">슈퍼 닌텐도 월드</span></td><td>122cm 이상</td><td>오픈런이면 마리오 카트 다음으로 추천</td></tr>
-      <tr><td><strong>5</strong></td><td><strong>할리우드 드림 라이드</strong><br><span class="jp">할리우드</span></td><td>132cm 이상</td><td><strong>2026년 10월 중순 현재 운휴 중이고 재개 시기는 미정</strong>이라는 보도가 있어요. 공식 앱에서 확인하세요</td></tr>
-      <tr><td><strong>6</strong></td><td><strong>요시 어드벤처</strong><br><span class="jp">슈퍼 닌텐도 월드</span></td><td>92cm 이상</td><td>스릴 거의 없는 느긋한 탑승</td></tr>
-      <tr><td><strong>7</strong></td><td><strong>쥬라기 공원 더 라이드</strong><br><span class="jp">쥬라기 공원</span></td><td>122cm 이상</td><td>마지막 급강하 때 물벼락. 우비 권장</td></tr>
-      <tr><td><strong>8</strong></td><td><strong>미니언 메이헴</strong><br><span class="jp">미니언 파크</span></td><td>122cm 이상</td><td>3D 시뮬레이터, 스릴보다 재미 중심</td></tr>
-      <tr><td><strong>9</strong></td><td><strong>플라이트 오브 더 히포그리프</strong><br><span class="jp">해리포터</span></td><td>122cm 이상</td><td>짧고 부드러운 코스터</td></tr>
+      <tr><td><strong>1</strong></td><td><img class="usj-thumb" src="assets/usj/01-mario-kart.jpg" alt="마리오 카트: 쿠파의 도전장" loading="lazy"><a href="https://en.wikipedia.org/wiki/Mario_Kart:_Koopa%27s_Challenge" target="_blank" rel="noopener" class="place-link"><strong>마리오 카트: 쿠파의 도전장</strong></a><br><span class="jp">슈퍼 닌텐도 월드</span></td><td>122cm 이상</td><td>3D 안경과 핸들로 즐기는 게임형, 스릴 없음. 오픈 직후 가장 먼저 공략</td></tr>
+      <tr><td><strong>2</strong></td><td><img class="usj-thumb" src="assets/usj/02-flying-dinosaur.jpg" alt="플라잉 다이너소어" loading="lazy"><a href="https://en.wikipedia.org/wiki/The_Flying_Dinosaur" target="_blank" rel="noopener" class="place-link"><strong>플라잉 다이너소어</strong></a><br><span class="jp">쥬라기 공원</span></td><td>132~198cm</td><td>거꾸로 매달려 나는 고속 코스터. 고소공포·멀미 있으면 비추천</td></tr>
+      <tr><td><strong>3</strong></td><td><img class="usj-thumb" src="assets/usj/03-harry-potter.jpg" alt="해리포터 앤드 포비든 저니" loading="lazy"><a href="https://ja.wikipedia.org/wiki/%E3%83%8F%E3%83%AA%E3%83%BC%E3%83%BB%E3%83%9D%E3%83%83%E3%82%BF%E3%83%BC%E3%83%BB%E3%82%A2%E3%83%B3%E3%83%89%E3%83%BB%E3%82%B6%E3%83%BB%E3%83%95%E3%82%A9%E3%83%BC%E3%83%93%E3%83%89%E3%82%A5%E3%83%B3%E3%83%BB%E3%82%B8%E3%83%A3%E3%83%BC%E3%83%8B%E3%83%BC" target="_blank" rel="noopener" class="place-link"><strong>해리포터 앤드 포비든 저니</strong></a><br><span class="jp">해리포터</span></td><td>122cm 이상</td><td>호그와트 성 안 4D 라이드. 멀미 호불호 있음</td></tr>
+      <tr><td><strong>4</strong></td><td><img class="usj-thumb" src="assets/usj/04-donkey-kong.jpg" alt="동키콩의 크레이지 트롤리" loading="lazy"><a href="https://en.wikipedia.org/wiki/Donkey_Kong_Country_(Super_Nintendo_World)" target="_blank" rel="noopener" class="place-link"><strong>동키콩의 크레이지 트롤리</strong></a><br><span class="jp">슈퍼 닌텐도 월드</span></td><td>122cm 이상</td><td>오픈런이면 마리오 카트 다음으로 추천</td></tr>
+      <tr><td><strong>5</strong></td><td><img class="usj-thumb" src="assets/usj/05-hollywood-dream.jpg" alt="할리우드 드림 라이드" loading="lazy"><a href="https://ja.wikipedia.org/wiki/%E3%83%8F%E3%83%AA%E3%82%A6%E3%83%83%E3%83%89%E3%83%BB%E3%83%89%E3%83%AA%E3%83%BC%E3%83%A0%E3%83%BB%E3%82%B6%E3%83%BB%E3%83%A9%E3%82%A4%E3%83%89" target="_blank" rel="noopener" class="place-link"><strong>할리우드 드림 라이드</strong></a><br><span class="jp">할리우드</span></td><td>132cm 이상</td><td><strong>2026년 10월 중순 현재 운휴 중이고 재개 시기는 미정</strong>이라는 보도가 있어요. 공식 앱에서 확인하세요</td></tr>
+      <tr><td><strong>6</strong></td><td><img class="usj-thumb" src="assets/usj/06-yoshi.jpg" alt="요시 어드벤처" loading="lazy"><a href="https://ja.wikipedia.org/wiki/%E3%83%A8%E3%83%83%E3%82%B7%E3%83%BC%E3%83%BB%E3%82%A2%E3%83%89%E3%83%99%E3%83%B3%E3%83%81%E3%83%A3%E3%83%BC" target="_blank" rel="noopener" class="place-link"><strong>요시 어드벤처</strong></a><br><span class="jp">슈퍼 닌텐도 월드</span></td><td>92cm 이상</td><td>스릴 거의 없는 느긋한 탑승</td></tr>
+      <tr><td><strong>7</strong></td><td><img class="usj-thumb" src="assets/usj/07-jurassic-park.jpg" alt="쥬라기 공원 더 라이드" loading="lazy"><a href="https://ja.wikipedia.org/wiki/%E3%82%B8%E3%83%A5%E3%83%A9%E3%82%B7%E3%83%83%E3%82%AF%E3%83%BB%E3%83%91%E3%83%BC%E3%82%AF%E3%83%BB%E3%82%B6%E3%83%BB%E3%83%A9%E3%82%A4%E3%83%89" target="_blank" rel="noopener" class="place-link"><strong>쥬라기 공원 더 라이드</strong></a><br><span class="jp">쥬라기 공원</span></td><td>122cm 이상</td><td>마지막 급강하 때 물벼락. 우비 권장</td></tr>
+      <tr><td><strong>8</strong></td><td><img class="usj-thumb" src="assets/usj/08-minion-mayhem.jpg" alt="미니언 메이헴" loading="lazy"><a href="https://ja.wikipedia.org/wiki/%E3%83%9F%E3%83%8B%E3%82%AA%E3%83%B3%E3%83%BB%E3%83%8F%E3%83%81%E3%83%A3%E3%83%A1%E3%83%81%E3%83%A3%E3%83%BB%E3%83%A9%E3%82%A4%E3%83%89" target="_blank" rel="noopener" class="place-link"><strong>미니언 메이헴</strong></a><br><span class="jp">미니언 파크</span></td><td>122cm 이상</td><td>3D 시뮬레이터, 스릴보다 재미 중심</td></tr>
+      <tr><td><strong>9</strong></td><td><img class="usj-thumb" src="assets/usj/09-hippogriff.jpg" alt="플라이트 오브 더 히포그리프" loading="lazy"><a href="https://ja.wikipedia.org/wiki/%E3%83%95%E3%83%A9%E3%82%A4%E3%83%88%E3%83%BB%E3%82%AA%E3%83%96%E3%83%BB%E3%82%B6%E3%83%BB%E3%83%92%E3%83%83%E3%83%9D%E3%82%B0%E3%83%AA%E3%83%95" target="_blank" rel="noopener" class="place-link"><strong>플라이트 오브 더 히포그리프</strong></a><br><span class="jp">해리포터</span></td><td>122cm 이상</td><td>짧고 부드러운 코스터</td></tr>
     </table>
     <div style="margin-top:10px;">
       <span class="info-tag info">평일 기준 대기는 보통 30분~3시간이에요 (마리오 카트가 가장 길어요)</span>
       <span class="info-tag warning">주말·성수기는 1.5~2배</span>
     </div>
+    <p class="footnote">사진: Wikimedia Commons. Christophe95 (플라잉 다이너소어 · 할리우드 드림 · 쥬라기 공원 · 미니언, CC BY-SA 4.0), Dick Thomas Johnson (마리오 카트, CC BY 2.0), Freddo (해리포터 · 히포그리프, CC BY-SA 4.0), Avatar5991 (동키콩 컨트리 입구, CC BY-SA 4.0), 高砂の浦 (요시, CC0). 동키콩은 어트랙션 입구가 아니라 구역 입구 사진이에요. 이름을 누르면 위키백과 설명으로 이동해요.</p>
   </div>
 
   <div class="card">
