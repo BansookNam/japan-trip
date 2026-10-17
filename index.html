@@ -1520,10 +1520,12 @@ loadChecks();
 (function() {
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   const COLORS = ['#F2708F', '#FFB3C4', '#A9C8FB', '#A6E2BC', '#FBCF9F', '#C9B6F2'];
-  let played = false;
+  const DEBOUNCE_MS = 1000;
+  let atBottom = false;   // 바닥 구간에 머무는 중인지 (벗어나야 다시 무장)
+  let lastRain = 0;
 
   function rain() {
-    played = true;
+    lastRain = Date.now();
     const box = document.createElement('div');
     box.className = 'heart-rain';
     box.setAttribute('aria-hidden', 'true');
@@ -1549,14 +1551,15 @@ loadChecks();
   }
 
   function check() {
-    if (played) return;
     const overlay = document.getElementById('pw-overlay');
     if (overlay && overlay.style.display !== 'none') return;
     const doc = document.documentElement;
-    if (window.innerHeight + window.scrollY >= doc.scrollHeight - 40) {
-      window.removeEventListener('scroll', onScroll);
-      rain();
-    }
+    const nearBottom = window.innerHeight + window.scrollY >= doc.scrollHeight - 40;
+    if (!nearBottom) { atBottom = false; return; }   // 위로 올라가면 재무장
+    if (atBottom) return;                            // 바닥에 계속 머무는 동안은 1회만
+    atBottom = true;
+    if (Date.now() - lastRain < DEBOUNCE_MS) return; // 1초 debounce
+    rain();
   }
   let ticking = false;
   function onScroll() {
