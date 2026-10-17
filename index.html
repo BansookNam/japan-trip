@@ -727,6 +727,8 @@ a { color: inherit; }
   <div class="wrap topnav-inner">
     <a href="#stay">&#127976; 항공·숙소</a>
     <a href="#check">&#9989; 체크</a>
+    <a href="#packing">&#127890; 준비물</a>
+    <a href="#taxfree">&#129534; 택스리펀</a>
     <a href="#day1" class="day1">1일차</a>
     <a href="#day2" class="day2">2일차</a>
     <a href="#day3" class="day3">3일차</a>
@@ -810,6 +812,155 @@ a { color: inherit; }
   <div class="tip-box">
     <strong>⚠️ 참고:</strong> 본 일정은 대략적인 계획으로, 현지 상황에 따라 시간과 동선이 변경될 수 있습니다. 최종 일정은 여행 전 최신 정보를 꼭 확인해 주세요.
   </div>
+</section>
+
+<!-- ==================== PACKING LIST ==================== -->
+<section class="section" id="packing">
+  <div class="section-head">
+    <div class="section-icon">&#127890;</div>
+    <div>
+      <h2>여행 필수 준비물</h2>
+      <div class="subtitle">출발 전 짐 쌀 때 하나씩 체크하세요 (이 기기에 저장돼요)</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>&#128708; 서류 · 결제</h3>
+    <div class="check-item" onclick="toggleCheck(this)">
+      <input type="checkbox" data-key="v3_passport"><label><strong>여권</strong> 유효기간 확인 (택스리펀 때도 필요해요)</label>
+    </div>
+    <div class="check-item" onclick="toggleCheck(this)">
+      <input type="checkbox" data-key="v3_vjw"><label><strong>Visit Japan Web</strong> 입국·세관 신고 QR 미리 등록</label>
+    </div>
+    <div class="check-item" onclick="toggleCheck(this)">
+      <input type="checkbox" data-key="v3_tickets"><label><strong>항공권 · 숙소 예약 · USJ 티켓</strong> 캡처 또는 출력</label>
+    </div>
+    <div class="check-item" onclick="toggleCheck(this)">
+      <input type="checkbox" data-key="v3_card"><label><strong>해외결제 카드</strong> (트래블 카드 등) + 비상용 카드</label>
+    </div>
+    <div class="check-item" onclick="toggleCheck(this)">
+      <input type="checkbox" data-key="v3_yen"><label><strong>엔화 현금</strong> + 동전지갑 (일본은 동전이 많아요)</label>
+    </div>
+    <div class="check-item" onclick="toggleCheck(this)">
+      <input type="checkbox" data-key="v3_insurance"><label><strong>해외여행자보험</strong> 가입</label>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>&#128241; 전자기기</h3>
+    <div class="check-item" onclick="toggleCheck(this)">
+      <input type="checkbox" data-key="v3_esim"><label><strong>eSIM / 로밍 / 포켓와이파이</strong> 준비</label>
+    </div>
+    <div class="check-item" onclick="toggleCheck(this)">
+      <input type="checkbox" data-key="v3_charger"><label><strong>충전기 · 케이블</strong></label>
+    </div>
+    <div class="check-item" onclick="toggleCheck(this)">
+      <input type="checkbox" data-key="v3_battery"><label><strong>보조배터리</strong> 반드시 기내 휴대 (위탁 수하물 불가)</label>
+    </div>
+    <div class="check-item" onclick="toggleCheck(this)">
+      <input type="checkbox" data-key="v3_plug"><label><strong>일본용 플러그(돼지코)</strong> 일본은 100V, 11자 모양 콘센트예요</label>
+    </div>
+    <div class="check-item" onclick="toggleCheck(this)">
+      <input type="checkbox" data-key="v3_icoca"><label><strong>교통카드</strong> ICOCA 등 (또는 휴대폰 모바일 교통카드)</label>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>&#129509; 옷 · 날씨 대비</h3>
+    <div class="check-item" onclick="toggleCheck(this)">
+      <input type="checkbox" data-key="v3_coat"><label><strong>두꺼운 겉옷 + 겹쳐 입을 옷</strong> (최저 3~4°C, 낮 최고 11~12°C)</label>
+    </div>
+    <div class="check-item" onclick="toggleCheck(this)">
+      <input type="checkbox" data-key="v3_warm"><label><strong>목도리 · 장갑 · 핫팩</strong> (1일차 저녁 일루미네이션, USJ 대비)</label>
+    </div>
+    <div class="check-item" onclick="toggleCheck(this)">
+      <input type="checkbox" data-key="v3_shoes"><label><strong>편한 신발</strong> (하루 1만 보 이상 걸어요)</label>
+    </div>
+    <div class="check-item" onclick="toggleCheck(this)">
+      <input type="checkbox" data-key="v3_umbrella"><label><strong>접이식 우산 / 우비</strong> (비 확률 20% 안팎)</label>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>&#129523; 기타</h3>
+    <div class="check-item" onclick="toggleCheck(this)">
+      <input type="checkbox" data-key="v3_meds"><label><strong>상비약</strong> (소화제 · 진통제 · 밴드 · 개인 처방약)</label>
+    </div>
+    <div class="check-item" onclick="toggleCheck(this)">
+      <input type="checkbox" data-key="v3_toiletry"><label><strong>세면도구 · 마스크 · 립밤 · 핸드크림</strong> (겨울이라 건조해요)</label>
+    </div>
+    <div class="check-item" onclick="toggleCheck(this)">
+      <input type="checkbox" data-key="v3_bag"><label><strong>에코백 · 지퍼백</strong> (쇼핑용, 비닐봉투는 유료예요)</label>
+    </div>
+    <div class="check-item" onclick="toggleCheck(this)">
+      <input type="checkbox" data-key="v3_space"><label><strong>캐리어 여유 공간</strong> 확보 (쇼핑 짐 대비)</label>
+    </div>
+    <div class="check-item" onclick="toggleCheck(this)">
+      <input type="checkbox" data-key="v3_liquid"><label><strong>기내 액체류</strong> 100ml 이하 + 지퍼백에 담기</label>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== TAX REFUND ==================== -->
+<section class="section" id="taxfree">
+  <div class="section-head">
+    <div class="section-icon">&#129534;</div>
+    <div>
+      <h2>택스리펀 (면세) 새 방식</h2>
+      <div class="subtitle">2026년 11월 1일부터 &lsquo;리펀드 방식&rsquo;으로 바뀌었어요 &mdash; 이번 여행(12월)부터 적용돼요</div>
+    </div>
+  </div>
+
+  <div class="tip-box">
+    <strong>&#128161; 핵심:</strong> 예전처럼 매장에서 여권을 보여주고 세금을 빼고 사는 게 아니에요. <strong>이제는 세금(10%) 포함 전액을 먼저 결제</strong>하고, <strong>출국할 때 세관 확인을 받은 뒤 환급</strong>받아요.
+  </div>
+
+  <div class="card">
+    <h3>&#128722; 매장에서 (구매할 때)</h3>
+    <ul class="route-list">
+      <li><div class="route-from">1. 세금 포함 전액 결제</div><div class="route-how">면세가가 아니라 세금 포함 가격을 내요</div></li>
+      <li><div class="route-from">2. 여권 제시</div><div class="route-how">계산할 때 여권을 보여주면 구매 정보가 자동 등록돼요</div></li>
+      <li><div class="route-from">3. 환급 받을 방법 등록</div><div class="route-how">신용카드 환급 · 캐시리스 등 (현금 가능 여부는 매장마다 달라요. 계산할 때 물어보세요)</div></li>
+      <li><div class="route-from">4. 영수증 · 물건 보관</div><div class="route-how">영수증과 산 물건은 한곳에 모아두세요</div></li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>&#9992;&#65039; 간사이공항에서 (출국할 때)</h3>
+    <ul class="route-list">
+      <li><div class="route-from">1. 위탁 수하물 맡기기 전에!</div><div class="route-how">국제선 출발 로비의 <strong>면세 절차 단말기(키오스크)</strong>에 여권을 스캔해요. 짐을 먼저 부치면 안 돼요</div></li>
+      <li><div class="route-from">2. 결과 확인</div><div class="route-how"><strong>GREEN</strong>: 검사 없이 완료 / <strong>RED</strong>: 산 물건을 들고 세관 확인 카운터로 가요</div></li>
+      <li><div class="route-from">3. 환급</div><div class="route-how">세관과 매장 확인이 끝나면, 결제 때 등록한 방법으로 소비세 상당액이 환급돼요</div></li>
+    </ul>
+    <div style="margin-top:10px;">
+      <span class="info-tag info">간사이공항은 Visit Japan Web으로 보안검색 전 지정 구역에서도 시작할 수 있어요</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>&#9989; 꼭 지킬 조건</h3>
+    <div class="check-item" onclick="toggleCheck(this)">
+      <input type="checkbox" data-key="v3_tax_min"><label><strong>같은 날, 같은 매장</strong>에서 세전 합계 <strong>5,000엔 이상</strong>이어야 해요</label>
+    </div>
+    <div class="check-item" onclick="toggleCheck(this)">
+      <input type="checkbox" data-key="v3_tax_unopened"><label><strong>식품 · 화장품 등 소모품은 일본에서 개봉 · 사용 · 섭취 금지</strong> (하면 환급 불가, 포장 규정은 폐지됐어요)</label>
+    </div>
+    <div class="check-item" onclick="toggleCheck(this)">
+      <input type="checkbox" data-key="v3_tax_receipt"><label><strong>영수증 1장 단위로 확인</strong>해요. 한 영수증의 물건 중 하나라도 없으면 그 영수증 전체가 환급 안 돼요</label>
+    </div>
+    <div class="check-item" onclick="toggleCheck(this)">
+      <input type="checkbox" data-key="v3_tax_carry"><label><strong>산 물건은 전부 직접 들고 출국</strong> (별송 불가, 위탁 수하물에 넣으려면 먼저 단말기 확인)</label>
+    </div>
+    <div class="check-item" onclick="toggleCheck(this)">
+      <input type="checkbox" data-key="v3_tax_time"><label><strong>구매 후 90일 이내</strong> 출국 절차 완료 (이번 여행은 해당 없음)</label>
+    </div>
+  </div>
+
+  <div class="tip-box">
+    <strong>&#9888;&#65039; 4일차 TIP:</strong> 비행기는 18:00 출발이라 <strong>공항에 15:00 전후 도착</strong>을 추천해요. 면세 절차 때문에 비행기를 놓쳐도 보상은 없어요. 쇼핑한 물건은 <strong>체크인 전에 먼저 면세 단말기</strong>에 스캔하세요. 환급 시점과 수수료는 매장 · 환급 업체마다 달라서, 결제할 때 꼭 확인하세요.
+  </div>
+
+  <p class="footnote">출처: <a href="https://www.japan.travel/en/us/blog/everything-you-need-to-know-japans-new-tax-free-shopping-system/" target="_blank" rel="noopener" class="place-link">일본정부관광국(JNTO)</a> · <a href="https://matcha-jp.com/ko/27460" target="_blank" rel="noopener" class="place-link">MATCHA 새 면세 제도 안내</a> (2026.10 기준). 세부 규정은 바뀔 수 있으니 출발 전 한 번 더 확인하세요.</p>
 </section>
 
 <!-- ==================== D1 (12/12) ==================== -->
@@ -1152,7 +1303,7 @@ a { color: inherit; }
   </div>
 
   <div class="tip-box">
-    <strong>⚠️ 4일차 TIP:</strong> 18:00 출발이므로 <strong>14:00~15:00 사이 공항 이동</strong>을 권장합니다 (최소 3시간 전 도착).
+    <strong>⚠️ 4일차 TIP:</strong> 18:00 출발이므로 <strong>14:00~15:00 사이 공항 이동</strong>을 권장합니다 (최소 3시간 전 도착). 쇼핑한 면세품이 있으면 <strong>짐 부치기 전에 면세 절차 단말기</strong>부터 들르세요 (<a href="#taxfree" class="place-link">택스리펀 안내</a>).
   </div>
 </section>
 
