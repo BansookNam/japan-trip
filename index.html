@@ -520,6 +520,17 @@ a { color: inherit; }
 .sub-item:last-child { border-bottom: none; }
 .sub-time { font-weight: 800; color: var(--primary); font-size: 0.8rem; min-width: 42px; flex-shrink: 0; }
 
+.parkmap { position: relative; border-radius: 16px; overflow: hidden; border: 2px solid var(--accent-light); margin-bottom: 10px; background: #b4cb8c; }
+.parkmap img { display: block; width: 100%; height: auto; }
+.pm-label {
+  position: absolute; transform: translate(-50%, -50%);
+  background: rgba(255,255,255,0.92); color: var(--primary);
+  border: 1.5px solid var(--accent); border-radius: 999px;
+  padding: 2px 8px; font-size: 0.66rem; font-weight: 800; line-height: 1.3;
+  white-space: nowrap; box-shadow: 0 2px 6px rgba(0,0,0,0.18); pointer-events: none;
+}
+.pm-label.warn { border-color: var(--warning); color: var(--warning); }
+
 /* ===== MINI GAMES ===== */
 .game-stats { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 10px; font-size: 0.82rem; font-weight: 700; color: var(--primary); }
 .game-stats span { background: var(--tint); border-radius: 999px; padding: 4px 12px; }
@@ -1481,11 +1492,19 @@ a { color: inherit; }
   </div>
 
   <div class="card">
-    <h3>&#128506;&#65039; USJ 파크 지도</h3>
-    <div class="map-container">
-      <div class="map-label">&#128205; 유니버설 스튜디오 재팬 위치</div>
-      <iframe src="https://maps.google.com/maps?q=Universal+Studios+Japan&z=16&output=embed" allowfullscreen loading="lazy" title="USJ 지도"></iframe>
+    <h3>&#128506;&#65039; USJ 파크 안 지도</h3>
+    <div class="parkmap">
+      <img src="assets/usj/park-map.jpg" alt="USJ 파크 안 지도" loading="lazy">
+      <span class="pm-label " style="left:75%;top:16%;">🚪 입구</span>
+      <span class="pm-label " style="left:24%;top:15%;">🍄 슈퍼 닌텐도 월드</span>
+      <span class="pm-label " style="left:40%;top:10%;">🧙 해리 포터 구역</span>
+      <span class="pm-label " style="left:54%;top:28%;">🎠 유니버설 원더랜드</span>
+      <span class="pm-label warn" style="left:66%;top:40%;">🎢 할리우드 드림 라이드 (운휴)</span>
+      <span class="pm-label " style="left:42%;top:59%;">🌊 라군(호수)</span>
+      <span class="pm-label " style="left:15%;top:66%;">🦖 쥬라기 공원</span>
+      <span class="pm-label " style="left:46%;top:82%;">🍌 미니언 메이헴</span>
     </div>
+    <p class="footnote" style="margin-bottom:12px;">위가 북쪽인 지도예요. 이름표는 우리가 가는 곳 위주로 붙인 참고용이고, 정확한 구역 · 식당 · 숍 위치는 아래 공식 맵에서 확인하세요. 지도 그림 출처: USJ 공식 파크 맵.</p>
     <p style="font-size:0.88rem;line-height:1.6;margin-bottom:10px;">파크 안 길 찾기는 공식 지도가 가장 정확해요. 어트랙션 · 식당 · 숍 위치를 필터로 골라 볼 수 있어요.</p>
     <a class="place-link" href="https://www.usj.co.jp/web/ko/kr/service-guide/parkmap" target="_blank" rel="noopener"><strong>&#128506;&#65039; 공식 파크 맵 열기 (한국어)</strong></a>
     <ul class="route-list" style="margin-top:14px;">
