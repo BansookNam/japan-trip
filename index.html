@@ -2059,8 +2059,12 @@ loadChecks();
     const stay = Math.max(450, 900 - (GAME_SEC - left) * 15);
     hideT = setTimeout(function() { hideCurrent(); spawn = setTimeout(popUp, 180); }, stay);
   }
+  function buzz(pattern) {
+    try { if (navigator.vibrate) navigator.vibrate(pattern); } catch (e) {}
+  }
   function whack(i) {
     if (!running || i !== current) return;
+    buzz(kind === 'takoyaki' ? 30 : [60, 40, 60]);
     score += kind === 'takoyaki' ? 1 : -2;
     if (score < 0) score = 0;
     $('moleScore').textContent = '점수 ' + score;
@@ -2071,6 +2075,7 @@ loadChecks();
   function moleEnd() {
     running = false;
     clearInterval(tick); clearTimeout(spawn); hideCurrent();
+    buzz(200);
     const best = parseInt(lsGet(MOLE_KEY), 10) || 0;
     if (score > best) { lsSet(MOLE_KEY, String(score)); $('moleMsg').textContent = '🎉 ' + score + '점! 새 최고 점수예요!'; }
     else { $('moleMsg').textContent = '끝! ' + score + '점이에요. 다시 도전해 보세요'; }
