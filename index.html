@@ -621,6 +621,53 @@ a { color: inherit; }
   100% { transform: translate(var(--sway, 20px), 105vh) rotate(var(--rot, 15deg)); opacity: 0; }
 }
 
+/* ===== PLACE SEARCH ===== */
+.ps-form { display: flex; gap: 8px; }
+.ps-input {
+  flex: 1; min-width: 0; font: inherit; font-size: 1rem; padding: 12px 16px;
+  border-radius: 16px; border: 2px solid var(--accent-light); background: #fff; color: var(--text);
+}
+.ps-input:focus { outline: none; border-color: var(--accent); }
+.ps-btn {
+  flex: 0 0 auto; font: inherit; font-weight: 800; font-size: 0.95rem; padding: 0 18px;
+  border-radius: 16px; border: none; background: var(--accent); color: #fff; cursor: pointer; min-height: 46px;
+}
+.ps-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.ps-chip {
+  font: inherit; font-size: 0.8rem; font-weight: 700; padding: 5px 12px; border-radius: 999px;
+  border: 1.5px solid var(--border); background: #fff; color: var(--text-light); cursor: pointer;
+}
+.ps-chip:active { background: var(--tint); }
+.ps-result { margin-top: 14px; }
+.ps-head { font-size: 0.92rem; font-weight: 800; color: var(--primary); margin: 4px 0 8px; line-height: 1.5; }
+.ps-sub { font-size: 0.78rem; color: var(--text-light); font-weight: 400; display: block; margin-top: 2px; }
+.ps-group { font-size: 0.85rem; font-weight: 800; color: var(--primary); margin: 14px 0 6px; }
+.ps-hit {
+  --accent: var(--day1); --tint: #EAF2FE; --primary: var(--day1-dark);
+  border: 1.5px solid var(--accent-light); border-left: 6px solid var(--accent);
+  border-radius: 14px; padding: 10px 12px; margin-bottom: 8px; background: var(--tint);
+}
+.ps-hit { border-color: #A9C8FB; }
+.ps-hit.day2 { --accent: var(--day2); --tint: #FFEEF3; --primary: var(--day2-dark); border-color: #FFB3C4; }
+.ps-hit.day3 { --accent: var(--day3); --tint: #E9F8EF; --primary: var(--day3-dark); border-color: #A6E2BC; }
+.ps-hit.day4 { --accent: var(--day4); --tint: #FFF2E3; --primary: var(--day4-dark); border-color: #FBCF9F; }
+.ps-hit { border-left-color: var(--accent); }
+.ps-hit-top { display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap; }
+.ps-day { font-size: 0.74rem; font-weight: 800; color: #fff; background: var(--accent); border-radius: 999px; padding: 1px 10px; }
+.ps-time { font-weight: 800; color: var(--primary); font-size: 0.9rem; }
+.ps-title { font-weight: 800; font-size: 0.95rem; color: var(--text); margin-top: 4px; overflow-wrap: anywhere; }
+.ps-desc { font-size: 0.82rem; color: var(--text-light); margin-top: 3px; line-height: 1.5; }
+.ps-info { font-size: 0.84rem; color: var(--text); margin-top: 6px; line-height: 1.55; }
+.ps-go {
+  font: inherit; font-size: 0.8rem; font-weight: 800; margin-top: 8px; padding: 6px 12px;
+  border-radius: 999px; border: 1.5px solid var(--accent); background: #fff; color: var(--primary); cursor: pointer;
+}
+.ps-more { font: inherit; font-size: 0.82rem; font-weight: 700; padding: 8px 14px; border-radius: 12px; border: 1.5px dashed var(--accent-light); background: #fff; color: var(--text-light); cursor: pointer; width: 100%; }
+.ps-empty { font-size: 0.88rem; color: var(--text-light); line-height: 1.6; padding: 6px 2px; }
+.ps-note { font-size: 0.76rem; color: var(--text-light); margin-top: 10px; line-height: 1.55; }
+.timeline-item.ps-flash { animation: psFlash 2.2s ease-out; border-radius: 14px; }
+@keyframes psFlash { 0%, 40% { background: #FFF3B0; box-shadow: 0 0 0 6px #FFF3B0; } 100% { background: transparent; box-shadow: 0 0 0 6px transparent; } }
+
 /* ===== RESPONSIVE ===== */
 @media (min-width: 640px) {
   html { font-size: 17px; }
@@ -777,6 +824,7 @@ a { color: inherit; }
 <!-- ==================== STICKY NAV ==================== -->
 <nav class="topnav" aria-label="섹션 이동">
   <div class="wrap topnav-inner">
+    <a href="#placesearch">&#128269; 장소검색</a>
     <a href="#stay">&#127976; 항공·숙소</a>
     <a href="#check">&#9989; 체크</a>
     <a href="#packing">&#127890; 준비물</a>
@@ -792,6 +840,27 @@ a { color: inherit; }
 </nav>
 
 <main class="wrap">
+
+<!-- ==================== PLACE SEARCH ==================== -->
+<section class="section" id="placesearch">
+  <div class="section-head">
+    <div class="section-icon">&#128269;</div>
+    <div>
+      <h2>오사카 장소 검색</h2>
+      <div class="subtitle">일정에 있는 곳은 일정을 보여주고, 없는 곳은 어울리는 일정을 추천해요</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <form class="ps-form" id="psForm" autocomplete="off">
+      <input class="ps-input" id="psInput" type="search" inputmode="search" enterkeyhint="search" placeholder="장소 이름 (예: 도톤보리, 오사카성)" aria-label="오사카 장소 검색">
+      <button class="ps-btn" type="submit">검색</button>
+    </form>
+    <div class="ps-chips" id="psChips"></div>
+    <div class="ps-result" id="psResult" aria-live="polite"></div>
+    <p class="ps-note">추천만 보여줘요. 일정은 바뀌지 않아요. 거리와 이동 시간은 직선거리 기준 대략적인 추정이라 구글 지도로 한 번 더 확인하세요.</p>
+  </div>
+</section>
 
 <!-- ==================== FLIGHT + HOTEL ==================== -->
 <section class="section" id="stay">
@@ -2134,6 +2203,355 @@ loadChecks();
     popUp();
   });
   showMoleBest();
+})();
+</script>
+<script>
+// ===== PLACE SEARCH (일정 데이터는 읽기만 하고 수정하지 않아요) =====
+(function() {
+  try {
+  var $ = function(id) { return document.getElementById(id); };
+  var form = $('psForm'), input = $('psInput'), out = $('psResult'), chipBox = $('psChips');
+  if (!form || !input || !out) return;
+
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function(c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+  function norm(s) { return String(s || '').normalize('NFC').toLowerCase().replace(/[\s·・\-_.,\/()&+~!?'"“”‘’:;]/g, ''); }
+  function clean(s) { return String(s || '').replace(/\s+/g, ' ').trim(); }
+
+  // ---- 일정 장소(구글맵 링크 키) 좌표 ----
+  var KEYC = {
+    'Kansai+International+Airport': [34.4320, 135.2304],
+    'Nankai+Namba+Station': [34.6655, 135.5014],
+    'Yotsubashi+Station': [34.6740, 135.4968],
+    'Chaniwa+Osaka': [34.6745, 135.4965],
+    'Osaka+Prefectural+Nakanoshima+Library': [34.6935, 135.5055],
+    'MOUNT+KITAHAMA+Osaka': [34.6922, 135.5048],
+    'Nakanoshima+Park+Osaka': [34.6924, 135.5078],
+    'Namba+Yasaka+Shrine': [34.6615, 135.4967],
+    'Kuromon+Market+Osaka': [34.6653, 135.5070],
+    'Den+Den+Town+Osaka': [34.6603, 135.5060],
+    'Namba+Parks': [34.6617, 135.5021],
+    'Namba+CITY': [34.6645, 135.5012],
+    'Dotonbori+Osaka': [34.6687, 135.5013],
+    'Ninja+Experience+Cafe+Osaka+Dotonbori': [34.6668, 135.5013],
+    'Shinsaibashi+PARCO': [34.6739, 135.5010],
+    'Don+Quijote+Dotonbori': [34.6688, 135.5028],
+    'Nishikujo+Station': [34.6820, 135.4690],
+    'Universal+City+Station': [34.6657, 135.4363],
+    'Universal+Studios+Japan': [34.6654, 135.4323],
+    'Shinsekai+Osaka': [34.6523, 135.5064],
+    'Tsutenkaku': [34.6525, 135.5063]
+  };
+  var HOTEL = [34.6754, 135.5122];
+  var KW = [['닛폰바시', [34.6603, 135.5060]], ['난바', [34.6655, 135.5014]], ['숙소 도착', HOTEL]];
+
+  // ---- 장소 데이터: [이름, 별칭(|), 위도, 경도, 머무는 시간(분), 지역, 일정 링크 키] ----
+  var P = [
+    ['간사이공항', 'kix|kansai|간사이국제공항|関西空港|공항', 34.4320, 135.2304, 60, '', 'Kansai+International+Airport'],
+    ['난카이 난바역', '난바역|namba|난카이|難波', 34.6655, 135.5014, 30, '', 'Nankai+Namba+Station'],
+    ['요쓰바시역', '요츠바시|yotsubashi|四ツ橋', 34.6740, 135.4968, 20, '', 'Yotsubashi+Station'],
+    ['차니와', 'chaniwa|茶庭|사찰카페|절카페', 34.6745, 135.4965, 90, '', 'Chaniwa+Osaka'],
+    ['나카노시마 도서관', 'nakanoshima library|中之島図書館|도서관', 34.6935, 135.5055, 60, '', 'Osaka+Prefectural+Nakanoshima+Library'],
+    ['MOUNT KITAHAMA', '마운트기타하마|마운트키타하마|kitahama|기타하마|키타하마|北浜', 34.6922, 135.5048, 60, '', 'MOUNT+KITAHAMA+Osaka'],
+    ['나카노시마 일루미네이션', '나카노시마|nakanoshima|illumination|빛의르네상스|中之島|일루미네이션', 34.6924, 135.5078, 60, '', 'Nakanoshima+Park+Osaka'],
+    ['난바 야사카 신사', '야사카|사자머리|yasaka|八坂|사자신사', 34.6615, 135.4967, 30, '', 'Namba+Yasaka+Shrine'],
+    ['구로몬 시장', '구로몬|kuromon|黒門|黑門|구로몬시장', 34.6653, 135.5070, 90, '', 'Kuromon+Market+Osaka'],
+    ['덴덴타운', '덴덴|닛폰바시|일본교|denden|でんでんタウン|오타쿠거리', 34.6603, 135.5060, 90, '', 'Den+Den+Town+Osaka'],
+    ['난바 파크스', '난바파크|nambaparks|파크스', 34.6617, 135.5021, 60, '', 'Namba+Parks'],
+    ['난바 CITY', '난바시티|nambacity|난바씨티', 34.6645, 135.5012, 60, '', 'Namba+CITY'],
+    ['도톤보리', 'dotonbori|道頓堀|글리코|글리코상|glico|구리코|에비스바시|도톤볼리', 34.6687, 135.5013, 60, '', 'Dotonbori+Osaka'],
+    ['닌자 체험 카페', '닌자|ninja|닌자카페', 34.6668, 135.5013, 90, '', 'Ninja+Experience+Cafe+Osaka+Dotonbori'],
+    ['신사이바시 PARCO', '신사이바시|shinsaibashi|파르코|parco|핸즈|hands|도큐핸즈|心斎橋', 34.6739, 135.5010, 60, '', 'Shinsaibashi+PARCO'],
+    ['돈키호테 도톤보리점', '돈키호테|돈키|donki|donquijote|ドンキ', 34.6688, 135.5028, 45, '', 'Don+Quijote+Dotonbori'],
+    ['니시쿠조역', 'nishikujo|西九条', 34.6820, 135.4690, 10, '', 'Nishikujo+Station'],
+    ['유니버설시티역', 'universalcity|유니버셜시티역', 34.6657, 135.4363, 10, '', 'Universal+City+Station'],
+    ['유니버설 스튜디오 재팬', 'usj|유니버셜|유니버설|스튜디오|universal|닌텐도|해리포터|미니언|마리오', 34.6654, 135.4323, 480, '', 'Universal+Studios+Japan'],
+    ['신세카이', 'shinsekai|新世界|빌리켄|쿠시카츠거리', 34.6523, 135.5064, 90, '', 'Shinsekai+Osaka'],
+    ['쓰텐카쿠', 'tsutenkaku|츠텐카쿠|통천각|通天閣', 34.6525, 135.5063, 60, '', 'Tsutenkaku'],
+
+    ['오사카성', 'osakacastle|osakajo|오사카죠|오사카성공원|大阪城', 34.6873, 135.5262, 120, '오사카성 공원'],
+    ['오사카 역사박물관', 'museum of history|역사박물관|大阪歴史博物館', 34.6813, 135.5222, 90, '오사카성 근처'],
+    ['우메다 스카이빌딩', '공중정원|skybuilding|umedasky|梅田スカイビル|스카이빌딩', 34.7053, 135.4905, 75, '우메다'],
+    ['그랜드 프론트 오사카', '그랜드프론트|grandfront|グランフロント', 34.7055, 135.4930, 60, '우메다'],
+    ['오사카역 (우메다)', '우메다|umeda|오사카역|jr오사카|梅田|osakastation', 34.7025, 135.4959, 90, '우메다'],
+    ['헵파이브 관람차', '헵파이브|hepfive|hep5|헵파이브관람차|우메다관람차', 34.7046, 135.5003, 45, '우메다'],
+    ['요도바시 카메라 우메다', '요도바시|yodobashi|ヨドバシ', 34.7044, 135.4973, 60, '우메다'],
+    ['나카자키초', 'nakazakicho|나카자키쵸|中崎町|빈티지카페', 34.7064, 135.5090, 90, '우메다 동쪽'],
+    ['덴진바시스지 상점가', '덴진바시|tenjinbashi|天神橋筋|덴진바시스지', 34.7040, 135.5130, 90, '기타 지역'],
+    ['오사카 덴만구', '덴만구|tenmangu|天満宮|텐만구', 34.6972, 135.5114, 45, '기타 지역'],
+    ['호젠지 요코초', '호젠지|hozenji|法善寺|호젠지요코초', 34.6679, 135.5028, 30, '난바'],
+    ['아메리카무라', '아메리카촌|americamura|아메무라|アメ村|미국촌', 34.6720, 135.4985, 60, '신사이바시 · 난바'],
+    ['신사이바시스지 상점가', '신사이바시스지|shinsaibashisuji|心斎橋筋', 34.6737, 135.5011, 60, '신사이바시'],
+    ['다이마루 신사이바시', '다이마루|daimaru|大丸', 34.6736, 135.5019, 60, '신사이바시'],
+    ['오렌지 스트리트', 'orangestreet|オレンジストリート|오렌지스트릿', 34.6704, 135.4995, 45, '미나미 호리에'],
+    ['호리에', 'horie|堀江', 34.6750, 135.4930, 60, '난바 서쪽'],
+    ['센니치마에 도구야스지', '도구야스지|doguyasuji|주방거리|센니치마에|道具屋筋', 34.6641, 135.5043, 30, '난바'],
+    ['빅카메라 난바', '빅카메라|bigcamera|ビックカメラ', 34.6640, 135.5018, 45, '난바'],
+    ['이치란 도톤보리', '이치란|ichiran|一蘭', 34.6685, 135.5025, 50, '도톤보리'],
+    ['킨류 라멘', '킨류|金龍|kinryu|금룡라멘', 34.6688, 135.5020, 40, '도톤보리'],
+    ['파블로 치즈타르트', '파블로|pablo|치즈타르트', 34.6684, 135.5019, 30, '도톤보리'],
+    ['앗치치 혼포 타코야키', '앗치치|아츠치치|acchichi|타코야키|takoyaki|たこ焼き', 34.6684, 135.5028, 30, '도톤보리'],
+    ['551 호라이', '551|호라이|houraiehorai|蓬莱|돼지고기만두|부타만', 34.6665, 135.5010, 30, '난바'],
+    ['지유켄 (오므라이스)', '지유켄|jiyuken|自由軒|카레', 34.6659, 135.5032, 50, '난바'],
+    ['쿠시카츠 다루마', '다루마|daruma|串かつだるま|쿠시카츠|구시카츠', 34.6520, 135.5060, 50, '신세카이'],
+    ['스파월드', 'spaworld|스파월즈|スパワールド|온천', 34.6520, 135.5062, 150, '신세카이'],
+    ['덴노지 동물원', '덴노지동물원|tennojizoo|天王寺動物園|동물원', 34.6516, 135.5083, 120, '덴노지'],
+    ['아베노 하루카스', '하루카스|harukas|あべのハルカス|아베노', 34.6459, 135.5140, 90, '덴노지'],
+    ['시텐노지', '사천왕사|shitennoji|四天王寺', 34.6538, 135.5167, 60, '덴노지'],
+    ['스미요시 타이샤', '스미요시|sumiyoshi|住吉大社|스미요시대사', 34.6118, 135.4934, 60, '난카이선 스미요시'],
+    ['쓰루하시 코리아타운', '쓰루하시|tsuruhashi|鶴橋|코리아타운|한인타운', 34.6657, 135.5316, 90, '쓰루하시'],
+    ['오사카 수족관 가이유칸', '가이유칸|kaiyukan|해유관|오사카수족관|수족관|海遊館', 34.6545, 135.4290, 150, '오사카 항'],
+    ['덴포잔 대관람차', '덴포잔|tempozan|天保山|대관람차|관람차', 34.6552, 135.4301, 60, '오사카 항'],
+    ['린쿠 프리미엄 아울렛', '린쿠|rinku|아울렛|outlet|りんくう|프리미엄아울렛|린쿠아울렛', 34.4122, 135.2970, 150, '간사이공항 근처'],
+    ['미노오 폭포', '미노오|미노|minoh|箕面|폭포', 34.8537, 135.4707, 120, '오사카 북쪽 근교'],
+    ['고베', 'kobe|神戸|고배|고베항|메리켄', 34.6901, 135.1955, 360, '효고현 (당일치기)'],
+    ['나라 (사슴공원)', '나라|nara|사슴공원|도다이지|동대사|奈良', 34.6851, 135.8048, 300, '나라현 (당일치기)'],
+    ['교토', 'kyoto|京都|기요미즈데라|청수사|후시미이나리|아라시야마|금각사', 35.0116, 135.7681, 420, '교토부 (당일치기)'],
+    ['히메지성', '히메지|himeji|姫路城|백로성', 34.8394, 134.6939, 360, '효고현 (당일치기)']
+  ];
+  var PLACES = P.map(function(r) {
+    return { name: r[0], names: [r[0]].concat(r[1] ? r[1].split('|') : []).map(norm).filter(Boolean), lat: r[2], lng: r[3], stay: r[4], area: r[5], key: r[6] || null };
+  });
+
+  // ---- 일정 읽기 ----
+  var DAYS = ['day1', 'day2', 'day3', 'day4'];
+  var anchors = [], items = [];
+  function toMin(t) { var m = /(\d{1,2}):(\d{2})/.exec(t || ''); return m ? (+m[1]) * 60 + (+m[2]) : null; }
+  function keyOf(href) { var m = /\/maps\/search\/([^?#]+)/.exec(href || ''); return m ? decodeURIComponent(m[1]).replace(/ /g, '+') : null; }
+
+  DAYS.forEach(function(dk) {
+    var sec = document.getElementById(dk);
+    if (!sec) return;
+    var badge = clean((sec.querySelector('.day-badge') || {}).textContent);
+    var sub = clean((sec.querySelector('.subtitle') || {}).textContent).split('|')[0].trim();
+    var els = sec.querySelectorAll('.timeline > .timeline-item');
+    var prevCoord = null;
+    var list = [];
+    els.forEach(function(el, i) {
+      var titleEl = el.querySelector('.timeline-title'), descEl = el.querySelector('.timeline-desc');
+      function txt(n) { if (!n) return ''; var c = n.cloneNode(true); c.querySelectorAll('br').forEach(function(b) { b.replaceWith(' '); }); return clean(c.textContent); }
+      var title = txt(titleEl), desc = txt(descEl);
+      var time = clean((el.querySelector('.timeline-time') || {}).textContent);
+      var subs = Array.prototype.map.call(el.querySelectorAll('.sub-item'), function(s) {
+        return { time: clean((s.querySelector('.sub-time') || {}).textContent), text: clean(s.textContent).replace(/^\d{1,2}:\d{2}\s*/, '') };
+      });
+      var keys = [];
+      el.querySelectorAll('a[href*="/maps/search/"]').forEach(function(a) { var k = keyOf(a.getAttribute('href')); if (k && keys.indexOf(k) < 0) keys.push(k); });
+      var coord = null;
+      for (var j = 0; j < keys.length && !coord; j++) if (KEYC[keys[j]]) coord = KEYC[keys[j]];
+      if (!coord) for (var q = 0; q < KW.length && !coord; q++) if (title.indexOf(KW[q][0]) > -1) coord = KW[q][1];
+      var fixedKw = /예약|입장|출발|도착|체크인|체크아웃|기상|하루 종일/.test(title);
+      var flexKw = /식사|점심|저녁|간식|구경|쇼핑|관광|산책|마무리|자유/.test(title + ' ' + desc);
+      var transit = /이동|출발|복귀|기상|체크아웃|환승/.test(title);
+      var flex = flexKw && !fixedKw;
+      var it = { el: el, day: dk, badge: badge, date: sub, idx: i, time: time, min: toMin(time), title: title, desc: desc, subs: subs, keys: keys, flex: flex, transit: transit && !flex,
+        text: norm(title + ' ' + desc + ' ' + subs.map(function(s) { return s.text; }).join(' ')), titleNorm: norm(title), coord: coord || prevCoord, gap: null };
+      if (coord) prevCoord = coord;
+      list.push(it);
+    });
+    list.forEach(function(it, i) {
+      var nx = list[i + 1];
+      if (nx && it.min != null && nx.min != null) it.gap = nx.min - it.min;
+      items.push(it);
+      if (!it.transit && it.coord) anchors.push(it);
+    });
+  });
+
+  // ---- 검색 ----
+  function placeMatches(nq) {
+    var res = [];
+    PLACES.forEach(function(p) {
+      var best = 0;
+      p.names.forEach(function(n) {
+        var s = 0;
+        if (n === nq) s = 4;
+        else if (n.indexOf(nq) === 0) s = 3;
+        else if (n.indexOf(nq) > -1) s = 2;
+        else if (n.length >= 3 && nq.indexOf(n) > -1) s = 1;
+        if (s > best) best = s;
+      });
+      if (best) res.push({ p: p, s: best });
+    });
+    res.sort(function(a, b) { return b.s - a.s || a.p.name.length - b.p.name.length; });
+    return res.map(function(r) { return r.p; });
+  }
+  function scheduleHits(nq, dbMatches) {
+    var keys = [];
+    dbMatches.forEach(function(p) { if (p.key) keys.push(p.key); });
+    var res = [];
+    items.forEach(function(it) {
+      var tm = it.titleNorm.indexOf(nq) > -1, dm = it.text.indexOf(nq) > -1;
+      var km = keys.some(function(k) { return it.keys.indexOf(k) > -1; });
+      if (tm || dm || km) res.push({ it: it, score: tm ? 3 : (km ? 2 : 1) });
+    });
+    res.sort(function(a, b) { return DAYS.indexOf(a.it.day) - DAYS.indexOf(b.it.day) || a.it.idx - b.it.idx; });
+    return res.map(function(r) { return r.it; });
+  }
+
+  function hav(a, b) {
+    var R = 6371, rad = Math.PI / 180;
+    var dLat = (b[0] - a[0]) * rad, dLng = (b[1] - a[1]) * rad;
+    var x = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(a[0] * rad) * Math.cos(b[0] * rad) * Math.sin(dLng / 2) * Math.sin(dLng / 2);
+    return 2 * R * Math.asin(Math.sqrt(x));
+  }
+  function travel(d) {
+    if (d <= 1.0) return { walk: true, min: Math.max(3, Math.round(d * 1.3 / 4.5 * 60)) };
+    if (d <= 15) return { walk: false, min: Math.round(8 + d * 1.3 * 2.2) };
+    return { walk: false, min: Math.round(15 + d) };
+  }
+  function usable(a) {
+    if (a.gap == null) return a.flex ? 90 : 0;
+    if (a.flex) return a.gap;
+    if (a.gap >= 150 && !/하루/.test(a.title)) return a.gap - 90;
+    return 0;
+  }
+  function fmtMin(m) { return m >= 60 ? (Math.floor(m / 60) + '시간' + (m % 60 ? ' ' + (m % 60) + '분' : '')) : (m + '분'); }
+  function fmtKm(d) { return d < 10 ? d.toFixed(1) : String(Math.round(d)); }
+
+  // ---- 렌더 ----
+  function dayClass(dk) { return dk; }
+  function hitCard(it, extra) {
+    var h = '<div class="ps-hit ' + dayClass(it.day) + '">';
+    h += '<div class="ps-hit-top"><span class="ps-day">' + esc(it.badge) + '</span><span class="ps-time">' + esc(it.time) + '</span><span class="ps-desc" style="margin:0">' + esc(it.date) + '</span></div>';
+    h += '<div class="ps-title">' + esc(it.title) + '</div>';
+    if (it.desc) h += '<div class="ps-desc">' + esc(it.desc) + '</div>';
+    if (it.subs.length) h += '<div class="ps-desc">' + it.subs.map(function(s) { return esc(s.time + ' ' + s.text); }).join('<br>') + '</div>';
+    if (extra) h += '<div class="ps-info">' + extra + '</div>';
+    h += '<button type="button" class="ps-go" data-day="' + it.day + '" data-idx="' + it.idx + '">일정에서 보기 &#8594;</button>';
+    return h + '</div>';
+  }
+  function findItem(day, idx) { for (var i = 0; i < items.length; i++) if (items[i].day === day && items[i].idx === +idx) return items[i]; return null; }
+
+  var lastToken = 0;
+  function showHits(q, hits) {
+    var LIMIT = 6;
+    var h = '<div class="ps-head">&#9989; 일정에 있어요 (' + hits.length + '곳)<span class="ps-sub">「' + esc(q) + '」가 들어간 일정이에요</span></div>';
+    hits.forEach(function(it, i) { h += '<div data-more="' + (i >= LIMIT ? 1 : 0) + '"' + (i >= LIMIT ? ' hidden' : '') + '>' + hitCard(it) + '</div>'; });
+    if (hits.length > LIMIT) h += '<button type="button" class="ps-more" id="psMore">나머지 ' + (hits.length - LIMIT) + '곳 더 보기</button>';
+    out.innerHTML = h;
+    var more = $('psMore');
+    if (more) more.addEventListener('click', function() {
+      out.querySelectorAll('[data-more="1"]').forEach(function(n) { n.hidden = false; });
+      more.remove();
+    });
+  }
+
+  function recommend(place, others, isExternal) {
+    var pc = [place.lat, place.lng];
+    var stay = place.stay || 60;
+    var rows = anchors.map(function(a) {
+      var d = hav(pc, a.coord), t = travel(d), u = usable(a);
+      return { a: a, d: d, t: t, u: u, need: stay + 2 * t.min };
+    });
+    var nearest = rows.slice().sort(function(x, y) { return x.d - y.d; });
+    var minD = nearest[0] ? nearest[0].d : 999;
+    var fits = rows.filter(function(r) { return r.d <= 4 && r.u >= r.need; })
+      .sort(function(x, y) { return x.d - y.d || y.u - x.u; });
+
+    var h = '<div class="ps-head">&#128161; 일정에는 없는 장소예요<span class="ps-sub">「' + esc(place.name) + '」' + (place.area ? ' · ' + esc(place.area) : '') + ' · 보통 ' + fmtMin(stay) + ' 정도' + (isExternal ? ' (지도 검색 결과예요. 머무는 시간은 60분으로 가정했어요)' : '') + '</span></div>';
+    if (others && others.length) {
+      h += '<div class="ps-chips" style="margin:0 0 8px">' + others.map(function(o) { return '<button type="button" class="ps-chip" data-q="' + esc(o.name) + '">' + esc(o.name) + '</button>'; }).join('') + '</div>';
+    }
+    if (!rows.length) { out.innerHTML = h + '<div class="ps-empty">비교할 일정을 찾지 못했어요.</div>'; return; }
+
+    if (minD > 15) {
+      h += '<div class="ps-info" style="margin-bottom:8px">&#9888;&#65039; 일정 지역에서 많이 멀어요 (가장 가까운 일정에서도 직선 약 ' + fmtKm(minD) + 'km). 당일치기나 반나절 이상 필요해서, 기존 일정에 끼워 넣기는 어려워요.</div>';
+    }
+
+    var shown = [];
+    if (minD <= 15 && fits.length) {
+      h += '<div class="ps-group">&#9201;&#65039; 시간이 남는 일정에 넣어보세요</div>';
+      fits.slice(0, 2).forEach(function(r) {
+        shown.push(r.a);
+        var gapTxt = r.a.gap == null ? '이후 자유 시간이에요' : '다음 일정까지 ' + fmtMin(r.a.gap) + ' 구간이에요';
+        h += hitCard(r.a, '직선 약 ' + fmtKm(r.d) + 'km, ' + (r.t.walk ? '도보' : '이동') + ' 약 ' + r.t.min + '분 거리예요. 이 일정은 ' + gapTxt + '. 이 시간을 조금 줄이면 「' + esc(place.name) + '」에 ' + fmtMin(stay) + ' 정도 들를 수 있어요.');
+      });
+    } else if (minD <= 15) {
+      h += '<div class="ps-info" style="margin-bottom:6px">&#9201;&#65039; 「' + esc(place.name) + '」(' + fmtMin(stay) + ' + 왕복 이동)을 통째로 넣을 만큼 시간이 남는 가까운 일정은 없어요. 대신 가장 가까운 일정 앞뒤로 짧게 들르는 걸 추천해요.</div>';
+    }
+
+    var near = nearest.filter(function(r) { return shown.indexOf(r.a) < 0; }).slice(0, minD > 15 ? 1 : 2);
+    if (near.length) {
+      h += '<div class="ps-group">&#128205; ' + (minD > 15 ? '그래도 가장 가까운 일정' : '가장 가까운 일정') + '</div>';
+      near.forEach(function(r) {
+        h += hitCard(r.a, '직선 약 ' + fmtKm(r.d) + 'km, ' + (r.t.walk ? '도보' : '이동') + ' 약 ' + r.t.min + '분 거리예요.' + (minD <= 15 ? ' 이 일정 앞이나 뒤에 짧게 들르면 이동이 적어요.' : ''));
+      });
+    }
+    h += '<div class="ps-info" style="margin-top:10px"><a class="place-link" target="_blank" rel="noopener" href="https://www.google.com/maps/search/' + encodeURIComponent(place.name + ' Osaka') + '">구글 지도에서 「' + esc(place.name) + '」 보기</a></div>';
+    out.innerHTML = h;
+  }
+
+  var VIEWBOX = '134.6,35.4,136.2,34.1';
+  function geocode(q, token) {
+    out.innerHTML = '<div class="ps-empty">&#128269; 지도에서 찾는 중이에요…</div>';
+    var tries = [q, q + ' Osaka'], n = 0;
+    function attempt() {
+      var ctl = (typeof AbortController !== 'undefined') ? new AbortController() : null;
+      var to = setTimeout(function() { if (ctl) ctl.abort(); }, 8000);
+      var url = 'https://nominatim.openstreetmap.org/search?format=jsonv2&limit=1&accept-language=ko&bounded=1&viewbox=' + VIEWBOX + '&q=' + encodeURIComponent(tries[n]);
+      fetch(url, ctl ? { signal: ctl.signal } : undefined).then(function(r) { return r.json(); }).then(function(arr) {
+        clearTimeout(to);
+        if (token !== lastToken) return;
+        if (arr && arr[0]) {
+          var r = arr[0];
+          recommend({ name: clean(r.name || (r.display_name || q).split(',')[0]) || q, area: '', lat: +r.lat, lng: +r.lon, stay: 60 }, null, true);
+        } else if (++n < tries.length) attempt();
+        else notFound(q);
+      }).catch(function() {
+        clearTimeout(to);
+        if (token !== lastToken) return;
+        notFound(q, true);
+      });
+    }
+    attempt();
+  }
+  function notFound(q, netErr) {
+    out.innerHTML = '<div class="ps-empty">「' + esc(q) + '」는 일정에서도, 오사카 장소 목록에서도 찾지 못했어요.' + (netErr ? ' (지도 검색에 연결하지 못했어요)' : '') + '<br>다른 이름(한국어·영어·일본어)으로 다시 검색해 보세요. 예: 오사카성, 우메다, 가이유칸</div>';
+  }
+
+  function run(q) {
+    q = clean(q);
+    var token = ++lastToken;
+    var nq = norm(q);
+    if (nq.length < 2) { out.innerHTML = q ? '<div class="ps-empty">두 글자 이상 입력해 주세요.</div>' : ''; return; }
+    var db = placeMatches(nq);
+    var hits = scheduleHits(nq, db);
+    if (hits.length) { showHits(q, hits); return; }
+    var unsched = db.filter(function(p) { return !p.key; });
+    if (unsched.length) { recommend(unsched[0], unsched.slice(1, 5)); return; }
+    geocode(q, token);
+  }
+
+  form.addEventListener('submit', function(e) { e.preventDefault(); run(input.value); if (input.blur) input.blur(); });
+  var timer = null;
+  input.addEventListener('input', function() { clearTimeout(timer); timer = setTimeout(function() { run(input.value); }, 350); });
+
+  out.addEventListener('click', function(e) {
+    var go = e.target.closest ? e.target.closest('.ps-go') : null;
+    if (go) {
+      var it = findItem(go.getAttribute('data-day'), go.getAttribute('data-idx'));
+      if (it && it.el) {
+        it.el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        it.el.classList.remove('ps-flash'); void it.el.offsetWidth; it.el.classList.add('ps-flash');
+        setTimeout(function() { it.el.classList.remove('ps-flash'); }, 2400);
+      }
+      return;
+    }
+    var chip = e.target.closest ? e.target.closest('.ps-chip') : null;
+    if (chip) { var q = chip.getAttribute('data-q'); input.value = q; run(q); }
+  });
+
+  ['도톤보리', '차니와', 'USJ', '글리코', '오사카성', '우메다', '가이유칸', '아베노 하루카스', '린쿠 아울렛', '교토'].forEach(function(t) {
+    var b = document.createElement('button');
+    b.type = 'button'; b.className = 'ps-chip'; b.setAttribute('data-q', t); b.textContent = t;
+    chipBox.appendChild(b);
+  });
+  chipBox.addEventListener('click', function(e) {
+    var chip = e.target.closest ? e.target.closest('.ps-chip') : null;
+    if (chip) { var q = chip.getAttribute('data-q'); input.value = q; run(q); }
+  });
+
+  window.__placeSearch = { run: run, anchors: anchors, items: items };
+  } catch (err) { if (window.console) console.error('placesearch init failed', err); }
 })();
 </script>
 </body>
